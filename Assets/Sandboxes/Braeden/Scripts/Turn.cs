@@ -7,11 +7,12 @@ public class Turn : Unit
     //static Dictionary<string, List<TacticsMove>> units = new Dictionary<string, List<TacticsMove>>();
     //may not use above definition???
     Queue<Unit> turnQueue = new Queue<Unit>();
+    private GameObject[] unitList;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        CreateAQueue();
     }
 
     // Update is called once per frame
@@ -24,7 +25,19 @@ public class Turn : Unit
     public void CreateAQueue()
     {
         //Get all turn takers
-        Unit[] turnTakers = (Unit[])FindObjectsByType(typeof(Unit), FindObjectsSortMode.None);
+        //GameObject[] turnTakers = FindObjectsByType(typeof(Unit), FindObjectsSortMode.None);
+
+        GameObject[] playList = GameObject.FindGameObjectsWithTag("Unit");
+        Debug.Log("Hi");
+        Debug.Log(playList);
+        foreach (GameObject obj in playList)
+        {
+            Debug.Log("->" + obj.GetComponent<Unit>().characterName);
+        }
+        /*foreach(GameObject obj in playList)
+        {
+            unitList.append(obj)
+        }*/
 
         //Sort it by speed from highest speed to lowest speed
         //ToDO: add .GetSpeed Func in units
@@ -33,7 +46,7 @@ public class Turn : Unit
         //Additional sorting to ensure that player and enemy moves interchangably ?
 
         //Create a queue that will allow you to get the correct character first
-        turnQueue = new Queue<Unit>(turnTakers);
+        //turnQueue = new Queue<Unit>(turnTakers);
     }
 
     //Check if turn is done
@@ -48,7 +61,8 @@ public class Turn : Unit
     }
 
     //ill figure it out later
-    public int[] SortArray(int[] array, int leftIndex, int rightIndex)
+    //edit to account for speed times
+    /*public int[] SortArray(int[] array, int leftIndex, int rightIndex)
     {
     var i = leftIndex;
     var j = rightIndex;
@@ -74,5 +88,5 @@ public class Turn : Unit
             }
         }
 
-    }
+    }*/
 }

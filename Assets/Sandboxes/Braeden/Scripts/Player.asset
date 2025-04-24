@@ -20,7 +20,7 @@ MonoBehaviour:
   xpCurrent: 0
   currentLevel: 0
   moveDistance: 3
-  moveSpeed: 4
+  moveSpeed: 2
   strengthStat: 0
   dexterityStat: 0
   constitutionStat: 0
