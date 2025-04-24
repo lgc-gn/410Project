@@ -7,6 +7,7 @@ TagManager:
   - Tile
   - row
   - Unit
+  - NME
   layers:
   - Default
   - TransparentFX
