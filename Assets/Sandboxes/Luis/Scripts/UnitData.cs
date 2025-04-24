@@ -31,8 +31,8 @@ public class UnitData : ScriptableObject
 
     
 
-    public float maxMoveDistance = 9f; // How far the unit can move in a turn. 1 Unity unit = 1 meter
-    public float currentMoveDistance = 0f; // How much distance the character as moved in a turn. If this >= maxMoveDistance the unit can no longer move in the turn.
+    public int moveDistance = 5; // How many tiles the unit can move in a turn.
+    public int moveSpeed = 0; // How fast the unit moves
 
     public int strengthStat, dexterityStat, constitutionStat, intelligenceStat, wisdomStat, charismaStat;   // Ability scores
 
