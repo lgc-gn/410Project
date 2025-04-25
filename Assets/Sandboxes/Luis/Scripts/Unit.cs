@@ -14,7 +14,7 @@ public class Unit : LTacticsMove
 {
 
     public UnitData data; // Pass in the UnitData scriptableobject
-    private Animator animator;
+    public Animator animator;
 
     public string characterName, characterClass;
 

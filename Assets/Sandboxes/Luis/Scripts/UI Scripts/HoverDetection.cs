@@ -11,24 +11,51 @@ public class HoverDetector : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            // Filter ONLY objects tagged as "Unit"
+
             if (hit.collider.CompareTag("Unit"))
             {
                 Unit unit = hit.collider.GetComponent<Unit>();
-                if (unit != null && unit != lastHoveredUnit)
+                if (unit != null)
                 {
-                    lastHoveredUnit = unit;
-                    UIManager.Instance.ShowUnitInfo(unit.data);
+
+                    if (unit != lastHoveredUnit)
+                    {
+                        lastHoveredUnit = unit;
+                        lastHoveredUnit.animator.SetBool("isSelected", true);
+
+                        UIManager.Instance.ShowUnitInfo(unit);
+                    }
+
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        OnUnitClicked(unit);
+                    }
                 }
             }
-            else if (lastHoveredUnit != null)
+            else
             {
-                lastHoveredUnit = null;
-                UIManager.Instance.HideUnitInfo();
+                ClearHover();
             }
         }
-        else if (lastHoveredUnit != null)
+        else
         {
+            ClearHover();
+        }
+    }
+
+    void OnUnitClicked(Unit unit)
+    {
+        Debug.Log($"Unit clicked: {unit.data.characterName}");
+
+    }
+
+    void ClearHover()
+    {
+        if (lastHoveredUnit != null)
+        {
+            lastHoveredUnit.animator.SetBool("isSelected", false);
+
             lastHoveredUnit = null;
             UIManager.Instance.HideUnitInfo();
         }

@@ -18,13 +18,16 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShowUnitInfo(UnitData data)
+    public void ShowUnitInfo(Unit unit)
     {
-        print($"Name: {data.characterName}\nClass: {data.characterClass}\nHealth: {data.currentHealth}\nLevel: {data.currentLevel}");
+        //print($"Name: {data.characterName}\nClass: {data.characterClass}\nHealth: {data.currentHealth}\nLevel: {data.currentLevel}");
+        print("Hovered");
+
     }
 
     public void HideUnitInfo()
     {
         //infoPanel.SetActive(false);
+        print("Unhovered");
     }
 }
