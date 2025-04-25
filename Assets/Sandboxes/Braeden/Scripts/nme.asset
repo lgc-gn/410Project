@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: Player
+  m_Name: nme
   m_EditorClassIdentifier: 
-  characterName: robor
-  characterClass: thing
-  maxHealth: 5
+  characterName: gooble
+  characterClass: 
+  maxHealth: 0
   currentHealth: 0
   xpNeeded: 0
   xpCurrent: 0
   currentLevel: 0
-  moveDistance: 3
-  moveSpeed: 5
+  moveDistance: 5
+  moveSpeed: 4
   strengthStat: 0
   dexterityStat: 0
   constitutionStat: 0

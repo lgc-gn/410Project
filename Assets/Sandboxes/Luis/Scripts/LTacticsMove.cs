@@ -13,9 +13,9 @@ public class LTacticsMove : MonoBehaviour
     private Animator unitAnimator;
 
     public bool moving=false;
-    private int move;
+    public int move;
     //public float jumpH=2;
-    private float moveSpeed;
+    public int moveSpeed;
 
     Vector3 velo=new Vector3();
     Vector3 compass = new Vector3();

@@ -11911,7 +11911,7 @@ GameObject:
   - component: {fileID: 1550557450}
   m_Layer: 0
   m_Name: Unit (1)
-  m_TagString: Unit
+  m_TagString: NME
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11951,6 +11951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  move: 0
+  moveSpeed: 0
 --- !u!114 &1550557452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11964,7 +11966,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
-  data: {fileID: 11400000, guid: 6e87ecdd095c5024d80c7dcce2ab9cb6, type: 2}
+  move: 0
+  moveSpeed: 0
+  data: {fileID: 11400000, guid: 39f839d0a78c334458998d5508fe9c12, type: 2}
+  animator: {fileID: 0}
+  characterName: 
+  characterClass: 
 --- !u!136 &1550557453
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12759,6 +12766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  move: 0
+  moveSpeed: 0
 --- !u!114 &1664521325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12772,7 +12781,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  move: 0
+  moveSpeed: 0
   data: {fileID: 11400000, guid: 6e87ecdd095c5024d80c7dcce2ab9cb6, type: 2}
+  animator: {fileID: 0}
+  characterName: 
+  characterClass: 
 --- !u!136 &1664521326
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13055,7 +13069,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  move: 0
+  moveSpeed: 0
   data: {fileID: 0}
+  animator: {fileID: 0}
+  characterName: 
+  characterClass: 
 --- !u!1 &1716079058
 GameObject:
   m_ObjectHideFlags: 0
