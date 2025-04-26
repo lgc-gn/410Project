@@ -18,6 +18,7 @@ Referenced in Unit script for hopefully things like movement, combat, levelling 
 public class UnitData : ScriptableObject
 {
 
+    [Header("Unit Info")]
     public string characterName; // name of the character
     public string characterClass; // class of the character
 
@@ -32,10 +33,17 @@ public class UnitData : ScriptableObject
     
 
     public int moveDistance = 5; // How many tiles the unit can move in a turn.
-    public int moveSpeed = 0; // How fast the unit moves
+    public int moveSpeed = 5; // How fast the unit moves
 
-    public int strengthStat, dexterityStat, constitutionStat, intelligenceStat, wisdomStat, charismaStat;   // Ability scores
+    [Header("Ability Scores")]
+    public int strengthStat;
+    public int dexterityStat, constitutionStat, intelligenceStat, wisdomStat, charismaStat;   // Ability scores, to get it to look pretty in inspector there needs to be a new line idk why
 
+    [Header("Equipment")]
+    public WeaponData RightHand;
+    public WeaponData LeftHand;
+
+    public ArmorData Armor;
 
     
 

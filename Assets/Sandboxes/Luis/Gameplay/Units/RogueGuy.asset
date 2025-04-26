@@ -27,3 +27,6 @@ MonoBehaviour:
   intelligenceStat: 10
   wisdomStat: 12
   charismaStat: 10
+  RightHand: {fileID: 11400000, guid: ea8149332bd80f043819e5dcf73d0d87, type: 2}
+  LeftHand: {fileID: 0}
+  Armor: {fileID: 0}
