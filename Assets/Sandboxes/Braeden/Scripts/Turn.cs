@@ -15,13 +15,16 @@ public class Turn : Unit
         {
             Debug.Log(unit.moveSpeed);
         }
+        StartTurn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Need to constantly run a process here to check for updated speed values to 
-        // keep turn order consistent
+        if(!turnQueue.Peek().turn)
+        {
+            End_of_Turn();
+        }
     }
 
     public void CreateAQueue()
@@ -116,6 +119,19 @@ public class Turn : Unit
             return right;
             }
         }
+    }
+
+    public void StartTurn()
+    {
+        turnQueue.Peek().BeginTurn();
+    }
+
+    public void End_of_Turn()
+    {
+        Unit turning = turnQueue.Dequeue();
+        Debug.Log(turning.characterName);
+        turnQueue.Enqueue(turning);
+        StartTurn();
     }
 
 }

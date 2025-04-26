@@ -38,6 +38,11 @@ public class Unit : LTacticsMove
     // Update is called once per frame
     void Update()
     {
+        //attack updates here. prio over turn
+        if(!turn)
+        {
+            return;
+        }
         if (!moving)
         {
             FindTilesBST();

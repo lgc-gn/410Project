@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class LTacticsMove : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class LTacticsMove : MonoBehaviour
     Vector3 compass = new Vector3();
 
     float halfHeight=0;
+
+    public bool turn = false;
+
+    public Turn turnManager;
 
 
     public void init(UnitData data, Animator animator)
@@ -141,6 +146,8 @@ public class LTacticsMove : MonoBehaviour
             RemoveSelcTiles();
             moving = false;
             unitAnimator.SetBool("isMoving", false);
+            //ToDo, move below to action function. later.
+            EndTurn();
         }
     }
 
@@ -167,6 +174,16 @@ public class LTacticsMove : MonoBehaviour
             tile.Reset();
         }
         selectTiles.Clear();
+    }
+
+    public void BeginTurn()
+    {
+        turn = true;
+    }
+
+    public void EndTurn()
+    {
+        turn = false;
     }
 
 }
