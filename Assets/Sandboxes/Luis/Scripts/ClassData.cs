@@ -13,6 +13,7 @@ public class ClassData : ScriptableObject
     public string className, classDescription, subclassName;
     public Sprite classIcon;
 
+
     // add skills further down the road
     // can add things like HP scaling per level and such
     // class specific resources (rage, sorcery points, ki, etc)
