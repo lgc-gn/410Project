@@ -19,6 +19,11 @@ public class Tile : MonoBehaviour
     public Tile par = null;
     public int dist=0;
 
+    //for enemy AI
+    public float f =0;
+    public float g = 0;
+    public float h =0;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,30 +56,34 @@ public class Tile : MonoBehaviour
     //clears position for new movement when selected
     public void Reset()
     {
-    adjList.Clear();
-    current=false;
-    target=false;
-    selectable=false;
+        adjList.Clear();
+        current=false;
+        target=false;
+        selectable=false;
+        g=h=f=0;
+        par=null;
 
-    //general flags
-    walk = true;
+        //general flags
+        walk = true;
 
-    //BFS strategy
-    visited = false;
-    par = null;
-    dist=0;
+        //BFS strategy
+        visited = false;
+        par = null;
+        dist=0;
+
+        f=g=h=0;
     }
     //checks neighboring tiles existing
-    public void Neighbors(/*float jump*/)
+    public void Neighbors(Tile target)
     {
         Reset();
-        CheckTile(Vector3.forward);
-        CheckTile(-Vector3.forward);
-        CheckTile(Vector3.right);
-        CheckTile(-Vector3.right);
+        CheckTile(Vector3.forward, target);
+        CheckTile(-Vector3.forward, target);
+        CheckTile(Vector3.right, target);
+        CheckTile(-Vector3.right, target);
     }
     //checks tile type, tag, and contents
-    public void CheckTile(Vector3 direction /*jumpheight*/)
+    public void CheckTile(Vector3 direction, Tile target /*jumpheight*/)
     {
         Vector3 halfEx = new Vector3(0.25f, 0.25f, 0.25f);
         Collider[] colliders = Physics.OverlapBox(transform.position+direction, halfEx);
@@ -85,7 +94,7 @@ public class Tile : MonoBehaviour
             if (tile!=null && tile.walk)
             {
                 RaycastHit hit;
-                if(!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
+                if(!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1)||(tile == target))
                 {
                     adjList.Add(tile);
                 }

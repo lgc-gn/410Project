@@ -1,17 +1,18 @@
-using UnityEngine;
+using UnityEngine;  // Make sure to include this namespace
+
 using System.Collections.Generic;
 using System.Collections;
 
 public class Turn : Unit
 {
-    Queue<Unit> turnQueue = new Queue<Unit>();  // Change to Queue<Unit> to store Unit components
+    Queue<LTacticsMove> turnQueue = new Queue<LTacticsMove>();
     List<GameObject> unitList = new List<GameObject>();  // Use List instead of array for dynamic additions
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         CreateAQueue();
-        foreach (Unit unit in turnQueue)
+        foreach (LTacticsMove unit in turnQueue)
         {
             Debug.Log(unit.moveSpeed);
         }
@@ -21,7 +22,13 @@ public class Turn : Unit
     // Update is called once per frame
     void Update()
     {
-        if(!turnQueue.Peek().turn)
+        if (turnQueue.Count == 0)
+        {
+            return;
+        }
+
+        LTacticsMove current = turnQueue.Peek();
+        if (current != null && !current.turn)
         {
             End_of_Turn();
         }
@@ -34,44 +41,38 @@ public class Turn : Unit
         
         foreach (GameObject obj in playList)
         {
-            unitList.Add(obj);  // Use Add method for List
-        }
-        
-        foreach (GameObject obj in nmeList)
-        {
-            unitList.Add(obj);  // Corrected from nmeListyList to nmeList
-        }
-        
-        // Sort the unitList using Quick_Sort (convert List to array for sorting)
-        GameObject[] unitArray = unitList.ToArray();  // Convert List to array for sorting
-        Quick_Sort(unitArray, 0, unitArray.Length - 1);  // Sort the array by moveSpeed
-    
-        // Create a new queue and populate it with the sorted units
-        Queue<Unit> sortedQueue = new Queue<Unit>();
-    
-        // Add the sorted units (Unit components) to the queue
-        foreach (GameObject obj in unitArray)
-        {
-            Unit unit = obj.GetComponent<Unit>();
+            LTacticsMove unit = obj.GetComponent<LTacticsMove>();
             if (unit != null)
             {
-                sortedQueue.Enqueue(unit);
+                unitList.Add(obj);  // Add GameObject to the list
+                turnQueue.Enqueue(unit);  // Add LTacticsMove component to the queue
             }
         }
 
-        // Assign the sorted queue back to turnQueue (which is now Queue<Unit>)
-        turnQueue = sortedQueue;
+        foreach (GameObject obj in nmeList)
+        {
+            LTacticsMove unit = obj.GetComponent<LTacticsMove>();
+            if (unit != null)
+            {
+                unitList.Add(obj);  // Add GameObject to the list
+                turnQueue.Enqueue(unit);  // Add LTacticsMove component to the queue
+            }
+        }
+
+        // Sort the unitList by moveSpeed of LTacticsMove components
+        unitList.Sort((a, b) => b.GetComponent<LTacticsMove>().moveSpeed.CompareTo(a.GetComponent<LTacticsMove>().moveSpeed));
     }
 
     // Check if turn is done
     public bool IsTurnDone() => turnQueue.Count <= 0;
 
     // Get the next character to move
-    public Unit GetNextCharacter()  // Change return type to Unit
+        // Get the next character to move
+    public LTacticsMove GetNextCharacter()
     {
         if (IsTurnDone())
             return null;
-        return turnQueue.Dequeue();  // Dequeue Unit, not GameObject
+        return turnQueue.Dequeue();  // Dequeue LTacticsMove, not GameObject
     }
 
     private static void Quick_Sort(GameObject[] arr, int left, int right)
@@ -90,20 +91,20 @@ public class Turn : Unit
     private static int Partition(GameObject[] arr, int left, int right)
     {
         // Select the pivot element (choose the first element in this case)
-        int pivot = arr[left].GetComponent<Unit>().moveSpeed;
+        int pivot = arr[left].GetComponent<LTacticsMove>().moveSpeed;
 
         while (true)
         {
             // Move left pointer until a value smaller than or equal to pivot is found
-            while (arr[left].GetComponent<Unit>().moveSpeed > pivot)  // Changed to > for descending order
+            while (arr[left].GetComponent<LTacticsMove>().moveSpeed > pivot)  // Changed to > for descending order
             {
                 left++;
             }
 
             // Move right pointer until a value greater than or equal to pivot is found
-            while (arr[right].GetComponent<Unit>().moveSpeed < pivot)  // Changed to < for descending order
+            while (arr[right].GetComponent<LTacticsMove>().moveSpeed < pivot)  // Changed to < for descending order
             {
-            right--;
+                right--;
             }
 
             // If left pointer is still smaller than right pointer, swap elements
@@ -116,22 +117,56 @@ public class Turn : Unit
             else
             {
                 // Return the right pointer, indicating the partitioning position
-            return right;
+                return right;
             }
         }
     }
 
-    public void StartTurn()
+    void StartTurn()
     {
-        turnQueue.Peek().BeginTurn();
+        LTacticsMove current = turnQueue.Peek();
+        if (current != null)
+        {
+            Debug.Log("Starting turn for: " + current.name);
+            current.BeginTurn();
+        }
+        else
+        {
+            Debug.LogWarning("No unit available for turn!");
+        }
     }
+
 
     public void End_of_Turn()
     {
-        Unit turning = turnQueue.Dequeue();
-        Debug.Log(turning.characterName);
-        turnQueue.Enqueue(turning);
-        StartTurn();
+        // If the turn queue is empty, just return.
+        if (turnQueue.Count == 0)
+        {
+            Debug.LogWarning("No units left in the turn queue!");
+            return;
+        }
+
+        LTacticsMove finished = turnQueue.Dequeue(); // Remove the unit from the front of the queue
+        Debug.Log("Finished turn for: " + finished.name);
+    
+        finished.EndTurn();  // Mark the unit as finished
+
+        // Re-enqueue the unit for the next turn cycle.
+        turnQueue.Enqueue(finished);  // Add the finished unit back to the queue
+
+        // Check if there are still units in the queue to start the next turn
+        if (turnQueue.Count > 0)
+        {
+            LTacticsMove next = turnQueue.Peek();  // Peek at the next unit
+            Debug.Log("Starting turn for: " + next.name);
+            next.BeginTurn();  // Begin the next unit's turn
+        }
+        else
+        {
+            Debug.LogWarning("The turn queue is empty!");
+        }
     }
 
+
 }
+

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /*
 
@@ -10,31 +12,8 @@ Pulls data from inputted UnitData scriptable object
 
 */
 
-public class Unit : LTacticsMove
+public class Unit : TacticalUnitBase
 {
-
-    public UnitData data; // Pass in the UnitData scriptableobject
-    public Animator animator;
-
-    public string characterName, characterClass;
-
-
-    private int currentHealth;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-        animator = GetComponent<Animator>();
-
-        init(data, animator);
-        currentHealth = data.maxHealth;
-        characterName = data.characterName;
-        characterClass = data.characterClass;
-
-        print($"Loaded character: {characterName}, {characterClass}");
-    }
-
     // Update is called once per frame
     void Update()
     {
