@@ -1,33 +1,39 @@
 using UnityEngine;
-using System.Collections.Generic; // For List
+using System.Collections.Generic;
 
 public class UnitStats : MonoBehaviour
 {
-    public string unitName = "Rogue";
+    public string unitName = "Mage";
     public int health = 100;
     public int attack = 20;
     public float speed = 10f;
-    [SerializeField] private List<string> skills = new List<string>(); // Editable in Inspector
+    [SerializeField] private List<string> actions = new List<string>();
 
     void Awake()
     {
-        // Default skills if none set in Inspector
-        if (skills.Count == 0)
+        // Set default actions
+        if (actions.Count == 0)
         {
             if (unitName == "Mage")
             {
-                skills.Add("Fireball: 30 damage, single target");
-                skills.Add("Heal: Restore 20 health");
+                actions.Add("Attack");
+                actions.Add("Fireball");
+                actions.Add("Heal");
+                actions.Add("Move");
             }
             else if (unitName == "Fighter")
             {
-                skills.Add("Slash: 25 damage, single target");
-                skills.Add("Block: Reduce next damage by 50%");
+                actions.Add("Attack");
+                actions.Add("Slash");
+                actions.Add("Block");
+                actions.Add("Move");
             }
             else if (unitName == "Rogue")
             {
-                skills.Add("Backstab: 40 damage, high crit chance");
-                skills.Add("Stealth: Avoid next attack");
+                actions.Add("Attack");
+                actions.Add("Backstab");
+                actions.Add("Stealth");
+                actions.Add("Move");
             }
         }
     }
@@ -37,10 +43,8 @@ public class UnitStats : MonoBehaviour
         return $"Unit: {unitName}\nHealth: {health} Attack: {attack} Speed: {speed}";
     }
 
-    public string GetSkills()
+    public List<string> GetActions()
     {
-        if (skills.Count == 0)
-            return "No skills available";
-        return $"Skills:\n- {string.Join("\n- ", skills)}";
+        return actions.Count > 0 ? actions : new List<string> { "No actions available" };
     }
 }

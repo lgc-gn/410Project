@@ -1,14 +1,21 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI; // For Image
+using UnityEngine.UI;
 
 public class UnitSelector : MonoBehaviour
 {
     private UnitStats stats;
-    public TextMeshProUGUI statsText; // Bottom screen stats
-    public TextMeshProUGUI skillsText; // Right side skills
-    public Image statsBackground; // Background for stats
-    public Image skillsBackground; // Background for skills
+    public TextMeshProUGUI statsText;
+    public Image statsBackground;
+    public GameObject actionPanel;
+    public Button attackButton;
+    public Button skill1Button;
+    public Button skill2Button;
+    public Button moveButton;
+    public TextMeshProUGUI attackText;
+    public TextMeshProUGUI skill1Text;
+    public TextMeshProUGUI skill2Text;
+    public TextMeshProUGUI moveText;
     private static UnitSelector selectedUnit;
 
     void Start()
@@ -22,23 +29,18 @@ public class UnitSelector : MonoBehaviour
         {
             Debug.LogWarning("StatsText not assigned on " + gameObject.name);
         }
-        if (skillsText == null)
-        {
-            Debug.LogWarning("SkillsText not assigned on " + gameObject.name);
-        }
         if (statsBackground == null)
         {
             Debug.LogWarning("StatsBackground not assigned on " + gameObject.name);
         }
-        if (skillsBackground == null)
+        if (actionPanel == null)
         {
-            Debug.LogWarning("SkillsBackground not assigned on " + gameObject.name);
+            Debug.LogWarning("ActionPanel not assigned on " + gameObject.name);
         }
-        // Clear texts and hide backgrounds initially
+        // Ensure initial state
         if (statsText != null) statsText.text = "";
-        if (skillsText != null) skillsText.text = "";
         if (statsBackground != null) statsBackground.enabled = false;
-        if (skillsBackground != null) skillsBackground.enabled = false;
+        if (actionPanel != null) actionPanel.SetActive(false);
     }
 
     void OnMouseEnter()
@@ -61,27 +63,27 @@ public class UnitSelector : MonoBehaviour
 
     void OnMouseDown()
     {
-        // Deselect previous unit
         if (selectedUnit != null && selectedUnit != this)
         {
-            if (selectedUnit.skillsText != null)
+            if (selectedUnit.actionPanel != null)
             {
-                selectedUnit.skillsText.text = "";
-                if (selectedUnit.skillsBackground != null) selectedUnit.skillsBackground.enabled = false;
+                selectedUnit.actionPanel.SetActive(false);
             }
         }
-        // Select this unit
         selectedUnit = this;
-        if (stats != null && skillsText != null)
+        if (stats != null && actionPanel != null)
         {
-            skillsText.text = stats.GetSkills();
-            if (skillsBackground != null) skillsBackground.enabled = true;
+            actionPanel.SetActive(true);
+            var actions = stats.GetActions();
+            if (attackText != null) attackText.text = actions.Contains("Attack") ? "Attack" : "";
+            if (skill1Text != null) skill1Text.text = actions.Count > 1 ? actions[1] : "";
+            if (skill2Text != null) skill2Text.text = actions.Count > 2 ? actions[2] : "";
+            if (moveText != null) moveText.text = actions.Contains("Move") ? "Move" : "";
         }
     }
 
     void Update()
     {
-        // Deselect if clicking elsewhere
         if (Input.GetMouseButtonDown(0) && selectedUnit == this)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -90,20 +92,18 @@ public class UnitSelector : MonoBehaviour
             {
                 if (hit.transform.gameObject != gameObject)
                 {
-                    if (skillsText != null)
+                    if (actionPanel != null)
                     {
-                        skillsText.text = "";
-                        if (skillsBackground != null) skillsBackground.enabled = false;
+                        actionPanel.SetActive(false);
                     }
                     selectedUnit = null;
                 }
             }
             else
             {
-                if (skillsText != null)
+                if (actionPanel != null)
                 {
-                    skillsText.text = "";
-                    if (skillsBackground != null) skillsBackground.enabled = false;
+                    actionPanel.SetActive(false);
                 }
                 selectedUnit = null;
             }
