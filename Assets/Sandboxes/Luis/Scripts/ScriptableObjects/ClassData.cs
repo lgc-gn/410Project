@@ -10,7 +10,8 @@ Defines variables for character classes
 public class ClassData : ScriptableObject
 {
 
-    public string className, classDescription, subclassName;
+    public string className, classDescription, classAction, resourceType;
+    public Color resourceColor;
     public Sprite classIcon;
 
 

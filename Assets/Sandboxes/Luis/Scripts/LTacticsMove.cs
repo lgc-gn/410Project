@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class LTacticsMove : MonoBehaviour
 {
@@ -10,38 +9,32 @@ public class LTacticsMove : MonoBehaviour
     Stack<Tile> path = new Stack<Tile>();
     Tile currTile;
 
-    private UnitData unitData;
-    private Animator unitAnimator;
-
-    public bool moving=false;
-    public int move;
-    //public float jumpH=2;
-    public int moveSpeed;
+    int move;
+    int moveSpeed;
 
     Vector3 velo=new Vector3();
     Vector3 compass = new Vector3();
 
     float halfHeight=0;
 
-    public bool turn = false;
-
-    public Turn turnManager;
-
     public Tile TargAdjTile;
 
+    Unit currentUnit;
+    Animator currentAnimator;
 
-    public void init(UnitData data, Animator animator)
+
+    public void init(Unit passedUnit, Animator passedAnimator)
     {
         //dev note: move line directly below into top of CompAdjLists() for 
         //manipulated tiles
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
-        unitData = data;
-        unitAnimator = animator;
+        currentUnit = passedUnit;
+        currentAnimator = passedAnimator;
 
-        move = unitData.moveDistance;
-        moveSpeed = unitData.moveSpeed;
+        move = currentUnit.unitData.moveDistance;
+        moveSpeed = currentUnit.unitData.moveSpeed;
 
 
     }
@@ -81,7 +74,7 @@ public class LTacticsMove : MonoBehaviour
         Queue<Tile> process = new Queue<Tile>();
         process.Enqueue(currTile);
         currTile.visited=true;
-        //change parent maybe????? may lead to itself
+
         while(process.Count > 0)
         {
             Tile t = process.Dequeue();
@@ -108,8 +101,8 @@ public class LTacticsMove : MonoBehaviour
     {
         path.Clear();
         tile.target = true;
-        moving = true;
-        unitAnimator.SetBool("isMoving", true);
+        currentUnit.unitData.isMoving = true;
+        currentAnimator.SetBool("isMoving", true);
 
         Tile next = tile;
         while(next!=null)
@@ -117,7 +110,7 @@ public class LTacticsMove : MonoBehaviour
             path.Push(next);
             next = next.par;
         }
-        Debug.Log("MoveToTile triggered, path length: " + path.Count);
+        //Debug.Log("MoveToTile triggered, path length: " + path.Count);
     }
 
     public void Move()
@@ -136,23 +129,23 @@ public class LTacticsMove : MonoBehaviour
 
                 transform.forward=compass;
                 transform.position+=velo* Time.deltaTime;
-                Debug.Log("Moving towards: " + target);
+                //Debug.Log("Moving towards: " + target);
             }
             else
             {
                 //center reached
                 transform.position = target;
                 path.Pop();
-                Debug.Log("Arrived at tile: " + target);
+                //Debug.Log("Arrived at tile: " + target);
             }
         }
         else
         {
             RemoveSelcTiles();
-            moving = false;
-            unitAnimator.SetBool("isMoving", false);
+            currentUnit.unitData.isMoving = false;
+            currentAnimator.SetBool("isMoving", false);
             //ToDo, move below to action function. later.
-            EndTurn();
+            currentUnit.EndTurn();
         }
     }
 
@@ -244,7 +237,7 @@ public class LTacticsMove : MonoBehaviour
             if(t==target)
             {
                 TargAdjTile = FindEndTile(t);
-                Debug.Log("Path found, target tile: " + TargAdjTile.name);
+                //Debug.Log("Path found, target tile: " + TargAdjTile.name);
                 MoveToTile(TargAdjTile);
                 return;
             }
@@ -277,27 +270,11 @@ public class LTacticsMove : MonoBehaviour
             }
 
         }
-        Debug.LogWarning("Path to target not found.");
-        EndTurn();
+        //Debug.LogWarning("Path to target not found.");
+        currentUnit.EndTurn();
         //if no path, do stuff here
     }
 
-    public void BeginTurn()
-    {
-        Debug.Log("Hi");
-        turn = true;
-        //Debug.Log("Enemy turn started");
-    }
-
-    public void EndTurn()
-    {
-        Debug.Log("Ending NME turn");
-        turn = false;
-        moving = false;
-        unitAnimator.SetBool("isMoving", false);
-
-        // Add additional logic if needed to reset other state variables
-    }
 
 
 }

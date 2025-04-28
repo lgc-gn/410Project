@@ -10,20 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: FighterGuy
+  m_Name: RogueGuy
   m_EditorClassIdentifier: 
-  characterName: Testing Guy
-  characterClass: Fighter
-  maxHealth: 120
+  characterName: Ally Rogue
+  Allied: 1
+  activeTurn: 0
+  isMoving: 0
+  maxHealth: 100
   currentHealth: 0
+  maxResource: 100
+  currentResource: 0
+  currentLevel: 0
   xpNeeded: 0
   xpCurrent: 0
-  currentLevel: 1
-  moveDistance: 4
-  moveSpeed: 3
+  Initiative: 10
+  moveDistance: 6
+  moveSpeed: 5
   strengthStat: 10
-  dexterityStat: 10
-  constitutionStat: 10
+  dexterityStat: 17
+  constitutionStat: 14
   intelligenceStat: 10
-  wisdomStat: 10
+  wisdomStat: 12
   charismaStat: 10
+  RightHand: {fileID: 11400000, guid: ea8149332bd80f043819e5dcf73d0d87, type: 2}
+  LeftHand: {fileID: 0}
+  Armor: {fileID: 0}

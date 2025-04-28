@@ -1,38 +1,20 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+
 /*
 
 UNIT Method Script
 
-Pulls data from inputted UnitData scriptable object
+Holds and initalizes data from passed in UnitData scriptableobject
 
-
+Does not handle any sort of Unit related actions (move, attacks)
 
 */
 
-public class TacticalUnitBase : LTacticsMove
+public class TacticalUnitBase : MonoBehaviour
 {
-    public UnitData data; // Pass in the UnitData scriptableobject
+    public UnitData unitData; // Pass in the UnitData scriptableobject
+    public ClassData classData;
     public Animator animator;
+    protected LTacticsMove movementController;
 
-    public string characterName, characterClass;
-
-
-    public int currentHealth;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-        animator = GetComponent<Animator>();
-
-        init(data, animator);
-        currentHealth = data.maxHealth;
-        characterName = data.characterName;
-        characterClass = data.characterClass;
-        Debug.Log("Unit speed set to: " + moveSpeed);
-
-        print($"Loaded character: {characterName}, {characterClass}");
-    }
 }

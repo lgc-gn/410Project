@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HoverDetector : MonoBehaviour
 {
-    Unit lastHoveredUnit;
+    [SerializeField] Unit lastHoveredUnit;
 
     void Update()
     {
@@ -46,7 +46,7 @@ public class HoverDetector : MonoBehaviour
 
     void OnUnitClicked(Unit unit)
     {
-        Debug.Log($"Unit clicked: {unit.data.characterName}");
+        //Debug.Log($"Unit clicked: {unit.unitData.characterName}");
 
     }
 

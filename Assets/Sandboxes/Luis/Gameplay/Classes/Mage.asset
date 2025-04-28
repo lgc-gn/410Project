@@ -15,5 +15,7 @@ MonoBehaviour:
   className: Mage
   classDescription: 'Mages are supreme magic-users, defined and united as a class
     by the spells they cast. '
-  subclassName: 
-  classIcon: {fileID: 0}
+  classAction: Arcana
+  resourceType: Mana
+  resourceColor: {r: 0.19379672, g: 0.42467937, b: 0.6132076, a: 1}
+  classIcon: {fileID: 21300000, guid: 07e1e9e71ac6e114eb789f5e4d1d97fa, type: 3}

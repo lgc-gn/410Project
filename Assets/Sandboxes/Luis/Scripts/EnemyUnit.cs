@@ -1,32 +1,42 @@
-/*
-
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class NME : TacticalUnitBase
+/*
+ Handles enemy AI, derives from TacticalUnitBase
+ */
+
+public class EnemyUnit : Unit
 {
     GameObject target2;
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log($"NME Update is running: turn = {movementController.turn}");
 
-        if (!movementController.turn)
+    private void Awake()
+    {
+
+        movementController = GetComponent<LTacticsMove>();
+        animator = GetComponent<Animator>();
+
+        movementController.init(this, animator);
+    }
+
+    override public void HandleMoveCommand()
+    {
+
+        //Debug.Log($"Update is running: turn = {unitData.activeTurn}");
+
+        if (unitData.activeTurn == false)
         {
             return;
-        } // If it's not the enemy's turn, do nothing.
+        } 
 
-        if (!movementController.moving)
+        if (!unitData.isMoving)
         {
             if (target2 == null)
             {
                 //Debug.Log("Finding target...");
-                FindNearTarg(); // Find a new target if there is none.
+                FindNearTarg(); 
             }
 
             //Debug.Log("Attempting to calculate path...");
-            CalcPath(); // Try to calculate the path to the target.
+            CalcPath(); 
 
             if (movementController.TargAdjTile != null)
             {
@@ -36,15 +46,22 @@ public class NME : TacticalUnitBase
             else
             {
                 //Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
-                movementController.EndTurn(); // End the turn if no path is found.
+                this.EndTurn(); 
             }
         }
         else
         {
-           // Debug.Log("Moving...");
-            movementController.Move(); // Move towards the target if moving is true.
+            //Debug.Log("Moving...");
+            movementController.Move();
         }
     }
+
+    void Update()
+    {
+        HandleMoveCommand();
+    }
+
+    #region Helper Functions
 
     void CalcPath()
     {
@@ -52,16 +69,16 @@ public class NME : TacticalUnitBase
         if (targetTile == null)
         {
             //Debug.LogWarning("Target tile not found! Ending turn.");
-            movementController.EndTurn();
+            this.EndTurn();
             return;
         }
 
         movementController.FindPath(targetTile); // Find the path to the target tile.
 
         if (movementController.TargAdjTile == null)
-        {
+        { 
             //Debug.LogWarning("No path to target! Ending turn.");
-            movementController.EndTurn(); // End the turn if no path exists.
+            this.EndTurn(); 
         }
     }
 
@@ -69,20 +86,26 @@ public class NME : TacticalUnitBase
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Unit");
         GameObject nearest = null;
-        float distan = Mathf.Infinity;
+        float minDist = Mathf.Infinity;
 
         foreach (GameObject obj in targets)
         {
-            float d = Vector3.Distance(transform.position, obj.transform.position);
-            if (d < distan)
+            if (obj.TryGetComponent<Unit>(out var unitComponent)
+                && !obj.TryGetComponent<EnemyUnit>(out _))
             {
-                distan = d;
-                nearest = obj;
+                float d = Vector3.Distance(transform.position, obj.transform.position);
+                if (d < minDist)
+                {
+                    minDist = d;
+                    nearest = obj;
+                }
             }
         }
+
         target2 = nearest;
         //Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
     }
 
+
+    #endregion
 }
-*/

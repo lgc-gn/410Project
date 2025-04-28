@@ -1,9 +1,9 @@
+/*
 using UnityEngine;  // Make sure to include this namespace
 
 using System.Collections.Generic;
-using System.Collections;
 
-public class Turn : Unit
+public class Turn : TacticalUnitBase
 {
     Queue<LTacticsMove> turnQueue = new Queue<LTacticsMove>();
     List<GameObject> unitList = new List<GameObject>();  // Use List instead of array for dynamic additions
@@ -11,10 +11,12 @@ public class Turn : Unit
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        print("Starting function");
+
         CreateAQueue();
         foreach (LTacticsMove unit in turnQueue)
         {
-            Debug.Log(unit.moveSpeed);
+            //Debug.Log(unit.moveSpeed);
         }
         StartTurn();
     }
@@ -41,6 +43,7 @@ public class Turn : Unit
         
         foreach (GameObject obj in playList)
         {
+            print($"Unit: {obj} in queue");
             LTacticsMove unit = obj.GetComponent<LTacticsMove>();
             if (unit != null)
             {
@@ -61,6 +64,12 @@ public class Turn : Unit
 
         // Sort the unitList by moveSpeed of LTacticsMove components
         unitList.Sort((a, b) => b.GetComponent<LTacticsMove>().moveSpeed.CompareTo(a.GetComponent<LTacticsMove>().moveSpeed));
+
+        turnQueue.Clear();
+        foreach (GameObject obj in unitList)
+        {
+            turnQueue.Enqueue(obj.GetComponent<LTacticsMove>());
+        }
     }
 
     // Check if turn is done
@@ -170,3 +179,4 @@ public class Turn : Unit
 
 }
 
+*/

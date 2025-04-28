@@ -20,17 +20,26 @@ public class UnitData : ScriptableObject
 
     [Header("Unit Info")]
     public string characterName; // name of the character
-    public string characterClass; // class of the character
+    // public ClassData characterClass; // class of the character
 
+    public bool Allied;
+
+    [Header("Turn Info")]
+    public bool activeTurn = false;
+    public bool isMoving;
+
+    [Header("Resource Info")]
     public int maxHealth;
     public int currentHealth;
+    public int maxResource;
+    public int currentResource;
 
+    [Header("Level/XP Info")]
+    public int currentLevel;
     public float xpNeeded;
     public float xpCurrent;
 
-    public int currentLevel;
-
-    
+    public int Initiative; // Testing, determines the unit's position in the turn order
 
     public int moveDistance = 5; // How many tiles the unit can move in a turn.
     public int moveSpeed = 5; // How fast the unit moves
