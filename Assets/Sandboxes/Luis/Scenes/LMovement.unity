@@ -14763,7 +14763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnUnit: {fileID: 0}
-  cursor: {fileID: 0}
+  cursor: {fileID: 597344996}
 --- !u!114 &1551845474
 MonoBehaviour:
   m_ObjectHideFlags: 0

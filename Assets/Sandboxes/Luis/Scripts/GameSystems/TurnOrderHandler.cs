@@ -4,28 +4,31 @@ using System.Collections.Generic;
 
 public class TurnOrderHandler : MonoBehaviour
 {
-    Queue<Unit> turnOrderQueue = new Queue<Unit>();
-    List<GameObject> unitList = new List<GameObject>();  // Use List instead of array for dynamic additions
+    public Queue<Unit> turnOrderQueue = new Queue<Unit>();
+    public List<GameObject> unitList = new List<GameObject>();  // Use List instead of array for dynamic additions
 
     public Unit turnUnit;
     public UnitCursor cursor;
+    public TurnRecord record;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         CreateAQueue();
+        record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
 
         //DEBUGReturnQueue(turnOrderQueue);
 
         StartTurn();
-        cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<UnitCursor>();
+        //cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<UnitCursor>();
     }
 
     
     // Update is called once per frame
     void Update()
     {
+
         if (turnOrderQueue.Count == 0)
         {
             return;
@@ -33,6 +36,10 @@ public class TurnOrderHandler : MonoBehaviour
 
         Unit current = turnOrderQueue.Peek();
         cursor.SetActiveUnit(current);
+        if (Input.GetKey(KeyCode.Space))
+        {
+            record.UndoMove(turnUnit);
+        }
 
 
         if (current != null && current.unitData.activeTurn == false)
@@ -119,6 +126,8 @@ public class TurnOrderHandler : MonoBehaviour
             Debug.LogWarning("No units left in the turn queue!");
             return;
         }
+
+        record.RecordPositions(unitList);
 
         //Unit finished = turnOrderQueue.Dequeue(); // Remove the unit from the front of the queue
         Debug.Log("Finished turn for: " + turnUnit.name);
