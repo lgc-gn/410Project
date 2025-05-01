@@ -96,7 +96,7 @@ public class TurnOrderHandler : MonoBehaviour
 
         Unit currentUnit = turnOrderQueue.Peek();
         //currentUnit.unitData.activeTurn = true;
-
+        
         if (currentUnit != null)
         {
             //Debug.Log("Starting turn for: " + currentUnit.name);
