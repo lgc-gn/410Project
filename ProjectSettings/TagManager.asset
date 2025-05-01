@@ -8,6 +8,7 @@ TagManager:
   - row
   - Unit
   - NME
+  - Cursor
   layers:
   - Default
   - TransparentFX

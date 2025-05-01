@@ -1,5 +1,6 @@
 using UnityEngine; 
 using System.Collections.Generic;
+[RequireComponent(typeof(UnitCursor))]
 
 public class TurnOrderHandler : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class TurnOrderHandler : MonoBehaviour
     List<GameObject> unitList = new List<GameObject>();  // Use List instead of array for dynamic additions
 
     public Unit turnUnit;
+    public UnitCursor cursor;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +19,7 @@ public class TurnOrderHandler : MonoBehaviour
         //DEBUGReturnQueue(turnOrderQueue);
 
         StartTurn();
+        cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<UnitCursor>();
     }
 
     
@@ -29,6 +32,8 @@ public class TurnOrderHandler : MonoBehaviour
         }
 
         Unit current = turnOrderQueue.Peek();
+        cursor.SetActiveUnit(current);
+
 
         if (current != null && current.unitData.activeTurn == false)
         {
