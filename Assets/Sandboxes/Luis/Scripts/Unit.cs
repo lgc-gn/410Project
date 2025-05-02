@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections.Generic;
+using System.Collections;
 /*
 
 UNIT Method Script
@@ -46,8 +47,8 @@ public class Unit : TacticalUnitBase
 
         if (!unitData.isMoving)
         {
-            movementController.FindTilesBST();
-            CheckMouse();
+            movementController.FindTilesBST(unitData.moveDistance);
+            CheckMouseMov();
         }
 
         else
@@ -55,6 +56,20 @@ public class Unit : TacticalUnitBase
             movementController.Move();
         }
     }
+//adjusted check for attack range
+    /*public virtual void HandleActionCommand()
+    {
+        if (!unitData.activeTurn)
+        {
+            return;
+        }
+
+        if (!unitData.isMoving)
+        {
+            movementController.FindTilesBST(unitData.range);
+            CheckMouseAct();
+        }
+    }*/
 
     void Update()
     {
@@ -65,7 +80,7 @@ public class Unit : TacticalUnitBase
     #region Helper Functions
 
 
-    void CheckMouse()
+    void CheckMouseMov()
     {
         if (Input.GetMouseButtonUp(0))
         {
@@ -79,13 +94,44 @@ public class Unit : TacticalUnitBase
                     Tile t = hit.collider.GetComponent<Tile>();
                     if (t.selectable)
                     {
-
                         movementController.MoveToTile(t);
                     }
                 }
             }
         }
     }
+
+//needs to check if selected tile has a unit
+ /*   void CheckMouseAct()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.tag == "Tile")
+                {
+                    Tile t = hit.collider.GetComponent<Tile>();
+                    if (t.selectable)
+                    {
+                        
+                    }
+                }
+            }
+        }
+    } */
+
+    void Wait()
+    {
+        unitData.activeTurn = false;
+    }
+
+  /*  void CheckAction()
+    {
+        
+    }*/
 
     #endregion
 

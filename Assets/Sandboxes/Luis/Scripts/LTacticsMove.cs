@@ -66,7 +66,7 @@ public class LTacticsMove : MonoBehaviour
         }
     }
 
-    public void FindTilesBST()
+    public void FindTilesBST(int range)
     {
         GetCurrTile();
         CompAdjLists(currTile); // use the actual tile under the unit
@@ -81,7 +81,7 @@ public class LTacticsMove : MonoBehaviour
 
             selectTiles.Add(t);
             t.selectable = true;
-            if(t.dist<move)
+            if(t.dist<range)
             {
                 foreach (Tile ttile in t.adjList)
                 {

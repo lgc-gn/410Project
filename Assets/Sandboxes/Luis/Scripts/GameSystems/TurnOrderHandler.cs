@@ -120,7 +120,6 @@ public class TurnOrderHandler : MonoBehaviour
 
     public void End_of_Turn()
     {
-        // If the turn queue is empty, just return.
         if (turnOrderQueue.Count == 0)
         {
             Debug.LogWarning("No units left in the turn queue!");
@@ -129,29 +128,26 @@ public class TurnOrderHandler : MonoBehaviour
 
         record.RecordPositions(unitList);
 
-        //Unit finished = turnOrderQueue.Dequeue(); // Remove the unit from the front of the queue
         Debug.Log("Finished turn for: " + turnUnit.name);
-    
-        turnUnit.EndTurn();  // Mark the unit as finished
-
-        // Re-enqueue the unit for the next turn cycle.
-        // turnOrderQueue.Enqueue(finished);  // Add the finished unit back to the queue
+        turnUnit.EndTurn();
 
         RequeueUnit();
 
         DEBUGReturnQueue(turnOrderQueue);
-        
+
         if (turnOrderQueue.Count > 0)
         {
             Unit next = turnOrderQueue.Peek();  // Peek at the next unit
+            turnUnit = next;                    // 🔁 Update turnUnit here!
             Debug.Log("Starting turn for: " + next.name);
-            next.BeginTurn();  // Begin the next unit's turn
+            next.BeginTurn();
         }
         else
         {
             Debug.LogWarning("The turn queue is empty!");
         }
     }
+
 
 
 
