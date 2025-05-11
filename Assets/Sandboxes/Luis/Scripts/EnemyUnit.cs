@@ -15,6 +15,8 @@ public class EnemyUnit : Unit
         animator = GetComponent<Animator>();
 
         movementController.init(this, animator);
+
+        InitalizeStats();
     }
 
     override public void HandleMoveCommand()

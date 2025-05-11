@@ -19,6 +19,18 @@ public class Unit : TacticalUnitBase
         animator = GetComponent<Animator>();
 
         movementController.init(this, animator);
+
+
+
+        InitalizeStats();
+
+    }
+
+    public void InitalizeStats()
+    {
+        unitData.activeTurn = false;
+        unitData.currentHealth = unitData.maxHealth;
+        unitData.currentResource = unitData.maxResource;
     }
 
     public void BeginTurn()

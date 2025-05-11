@@ -1,0 +1,82 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "e6d755f3-2c81-4b1e-aa8d-e0d7858cbdd2",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "e97296a8-ef84-4d74-b9aa-5b6064ea2f7e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "dc356806-35fc-496f-9d38-7e86e74f8a4c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "f6cc2756-8315-45f8-952c-fa0ff3b6c106",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "Scale(factor=150)",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "cb456d74-a27a-48b3-a6ab-b2133743aa02",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8dce3ce8-bae0-4d69-a284-df95c87c0361",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fa58ad92-d493-424a-819e-1b5de924bfa9",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "aa4f9391-a113-404f-926f-f298efd3a978",
+            "actions": [],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}

@@ -52,7 +52,11 @@ public class UnitData : ScriptableObject
     public WeaponData RightHand;
     public WeaponData LeftHand;
 
+    public ArmorData HeadPiece;
     public ArmorData Armor;
+
+    public ArmorData Accessory1;
+    public ArmorData Accessory2;
 
     
 

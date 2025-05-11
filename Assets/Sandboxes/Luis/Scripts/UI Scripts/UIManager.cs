@@ -9,8 +9,8 @@ public class UIManager : MonoBehaviour
 
     public Canvas playerHUD;
     public RectTransform unitInfoTransformDefault; 
-    public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, affiliationText;
-    public Image classIcon, resourceBar, hpBar;
+    public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText, turnOrderList;
+    public Image classIcon, resourceBar, hpBar, xpBar;
     public GameObject actionMenu;
 
     void Awake()
@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
 
         resourceText.SetText($"{unit.classData.resourceType}: {unit.unitData.currentResource}/{unit.unitData.maxResource}");
         hpText.SetText($"Health: {unit.unitData.currentHealth}/{unit.unitData.maxHealth}");
+        xpText.SetText($"Experience: {unit.unitData.xpCurrent}/{unit.unitData.xpNeeded}");
+        lvlText.SetText($"Level: {unit.unitData.currentLevel}");
+
+
         resourceBar.color = unit.classData.resourceColor;
 
         if (unit.unitData.Allied == true)
@@ -56,6 +60,11 @@ public class UIManager : MonoBehaviour
         //infoPanel.SetActive(false);
         //StartCoroutine(SmoothMoveInfoUI(unitInfoTransformDefault, -200f, .5f, "down"));
 
+    }
+
+    public void UpdateTurnOrderList(string newList)
+    {
+        turnOrderList.SetText(newList);
     }
 
     public IEnumerator SmoothMoveInfoUI(RectTransform panel, float distance, float duration, string direction)
