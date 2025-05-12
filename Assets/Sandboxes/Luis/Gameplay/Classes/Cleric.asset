@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 656d55f72fc0f21418ea38db1a0f21d2, type: 3}
-  m_Name: Rogue
+  m_Name: Cleric
   m_EditorClassIdentifier: 
-  className: Rogue
-  classDescription: Rogues rely on skill, stealth, and their foes' vulnerabilities
-    to get the upper hand in any situation.
-  classAction: Techniques
-  resourceType: Stamina
+  className: Cleric
+  classDescription: Clerics are intermediaries between the mortal world and the distant
+    planes of the gods. As varied as the gods they serve, clerics strive to embody
+    the handiwork of their deities.
+  classAction: Divination
+  resourceType: Mana
   resourceColor: {r: 0.13477044, g: 0.4811321, b: 0.12936097, a: 1}
   classIcon: {fileID: 21300000, guid: 88435e9c5aacf4945b03b12b7baf80d2, type: 3}

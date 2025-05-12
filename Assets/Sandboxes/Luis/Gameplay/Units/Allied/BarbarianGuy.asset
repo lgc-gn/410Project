@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: FighterGuy
+  m_Name: BarbarianGuy
   m_EditorClassIdentifier: 
-  characterName: Ally Fighter
+  characterName: Ally Barbarian
   Allied: 1
-  activeTurn: 0
+  activeTurn: 1
   isMoving: 0
-  maxHealth: 120
-  currentHealth: 0
+  maxHealth: 140
+  currentHealth: 140
   maxResource: 100
-  currentResource: 0
+  currentResource: 100
   currentLevel: 1
-  xpNeeded: 0
+  xpNeeded: 100
   xpCurrent: 0
   Initiative: 4
-  moveDistance: 4
+  moveDistance: 3
   moveSpeed: 3
-  strengthStat: 10
+  strengthStat: 16
   dexterityStat: 10
   constitutionStat: 10
   intelligenceStat: 10

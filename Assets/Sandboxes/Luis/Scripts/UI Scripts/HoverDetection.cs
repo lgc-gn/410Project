@@ -2,62 +2,72 @@ using UnityEngine;
 
 public class HoverDetector : MonoBehaviour
 {
-    [SerializeField] Unit lastHoveredUnit;
+    //[SerializeField] private Unit lastHoveredUnit;
 
-    void Update()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+    //private void Start()
+    //{
+    //    private Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    private RaycastHit hit;
+    //}
 
-        if (Physics.Raycast(ray, out hit))
-        {
+    //void Update()
+    //{
 
-            if (hit.collider.CompareTag("Unit"))
-            {
-                Unit unit = hit.collider.GetComponent<Unit>();
-                if (unit != null)
-                {
+    //}
 
-                    if (unit != lastHoveredUnit)
-                    {
-                        lastHoveredUnit = unit;
-                        lastHoveredUnit.animator.SetBool("isSelected", true);
-
-                        UIManager.Instance.ShowUnitInfo(unit);
-                    }
+//    void HoverDetect()
+//    {
 
 
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        OnUnitClicked(unit);
-                    }
-                }
-            }
-            else
-            {
-                ClearHover();
-            }
-        }
-        else
-        {
-            ClearHover();
-        }
-    }
+//        if (Physics.Raycast(ray, out hit))
+//        {
 
-    void OnUnitClicked(Unit unit)
-    {
-        //Debug.Log($"Unit clicked: {unit.unitData.characterName}");
+//            if (hit.collider.CompareTag("Unit"))
+//            {
+//                Unit unit = hit.collider.GetComponent<Unit>();
+//                if (unit != null)
+//                {
 
-    }
+//                    if (unit != lastHoveredUnit)
+//                    {
+//                        lastHoveredUnit = unit;
+//                        lastHoveredUnit.animator.SetBool("isSelected", true);
 
-    void ClearHover()
-    {
-        if (lastHoveredUnit != null)
-        {
-            lastHoveredUnit.animator.SetBool("isSelected", false);
+//                        UIManager.Instance.ShowUnitInfo(unit);
+//                    }
 
-            lastHoveredUnit = null;
-            UIManager.Instance.HideUnitInfo();
-        }
-    }
+
+//                    if (Input.GetMouseButtonDown(0))
+//                    {
+//                        OnUnitClicked(unit);
+//                    }
+//                }
+//            }
+//            else
+//            {
+//                ClearHover();
+//            }
+//        }
+//        else
+//        {
+//            ClearHover();
+//        }
+//    }
+
+//    void OnUnitClicked(Unit unit)
+//    {
+//        //Debug.Log($"Unit clicked: {unit.unitData.characterName}");
+
+//    }
+
+//    void ClearHover()
+//    {
+//        if (lastHoveredUnit != null)
+//        {
+//            lastHoveredUnit.animator.SetBool("isSelected", false);
+
+//            lastHoveredUnit = null;
+//            UIManager.Instance.HideUnitInfo();
+//        }
+//    }
 }
