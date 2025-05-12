@@ -24,12 +24,14 @@ public class Tile : MonoBehaviour
     public float g = 0;
     public float h =0;
 
+    Color newTileColor;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (ColorUtility.TryParseHtmlString("#43A7CC", out newTileColor)){ }
+
     }
 
     // Update is called once per frame, manually loaded or fixed on tile type
@@ -37,7 +39,7 @@ public class Tile : MonoBehaviour
     {
         if (current)
         {
-            GetComponent<Renderer>().material.color = Color.blue;
+            GetComponent<Renderer>().material.color = Color.black;
         }
         else if (target)
         {
@@ -45,7 +47,7 @@ public class Tile : MonoBehaviour
         }
         else if (selectable)
         {
-            GetComponent<Renderer>().material.color=Color.red;
+            GetComponent<Renderer>().material.color= newTileColor;
         }
         else
         {

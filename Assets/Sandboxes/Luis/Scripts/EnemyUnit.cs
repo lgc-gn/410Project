@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /*
@@ -19,10 +20,9 @@ public class EnemyUnit : Unit
         InitalizeStats();
     }
 
+
     override public void HandleMoveCommand()
     {
-
-        //Debug.Log($"Update is running: turn = {unitData.activeTurn}");
 
         if (unitData.activeTurn == false)
         {

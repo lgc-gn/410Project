@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
   m_Name: EnemyRogue
   m_EditorClassIdentifier: 
-  characterName: Enemy Rogue
+  characterName: Enemy 1
   Allied: 0
   activeTurn: 0
   isMoving: 0
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   maxResource: 100
-  currentResource: 0
-  currentLevel: 0
+  currentResource: 100
+  currentLevel: 1
   xpNeeded: 0
   xpCurrent: 0
   Initiative: 10
@@ -34,4 +34,7 @@ MonoBehaviour:
   charismaStat: 10
   RightHand: {fileID: 11400000, guid: ea8149332bd80f043819e5dcf73d0d87, type: 2}
   LeftHand: {fileID: 0}
+  HeadPiece: {fileID: 0}
   Armor: {fileID: 0}
+  Accessory1: {fileID: 0}
+  Accessory2: {fileID: 0}

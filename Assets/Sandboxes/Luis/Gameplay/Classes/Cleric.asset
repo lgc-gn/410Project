@@ -18,5 +18,5 @@ MonoBehaviour:
     the handiwork of their deities.
   classAction: Divination
   resourceType: Mana
-  resourceColor: {r: 0.13477044, g: 0.4811321, b: 0.12936097, a: 1}
-  classIcon: {fileID: 21300000, guid: 88435e9c5aacf4945b03b12b7baf80d2, type: 3}
+  resourceColor: {r: 0.12941179, g: 0.40550604, b: 0.48235294, a: 1}
+  classIcon: {fileID: 21300000, guid: a5cac88b612230c4787bee61bdd38e6e, type: 3}

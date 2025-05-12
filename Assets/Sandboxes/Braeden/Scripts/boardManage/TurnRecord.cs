@@ -37,7 +37,7 @@ public class TurnRecord : MonoBehaviour
                 history.RemoveAt(0); // Remove the oldest entry
             }
 
-            Debug.Log($"Recorded position for {unit.unitData.characterName}: {unit.transform.position}");
+            //Debug.Log($"Recorded position for {unit.unitData.characterName}: {unit.transform.position}");
         }
     }
 

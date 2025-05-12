@@ -1,5 +1,6 @@
 using UnityEngine; 
 using System.Collections.Generic;
+using Unity.Cinemachine;
 [RequireComponent(typeof(UnitCursor))]
 
 public class TurnOrderHandler : MonoBehaviour
@@ -10,15 +11,22 @@ public class TurnOrderHandler : MonoBehaviour
     public Unit turnUnit;
     public UnitCursor cursor;
     public TurnRecord record;
+
+    public UIManager UIManagerScript;
+    public CameraManager CameraManagerScript;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         CreateAQueue();
-        record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
+        //record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
 
-        //DEBUGReturnQueue(turnOrderQueue);
+        UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
+        UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
+        CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
+
+        ReturnQueue(turnOrderQueue);
 
         StartTurn();
         //cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<UnitCursor>();
@@ -128,17 +136,30 @@ public class TurnOrderHandler : MonoBehaviour
 
         record.RecordPositions(unitList);
 
-        Debug.Log("Finished turn for: " + turnUnit.name);
+        //Debug.Log("Finished turn for: " + turnUnit.name);
         turnUnit.EndTurn();
 
         RequeueUnit();
 
-        DEBUGReturnQueue(turnOrderQueue);
+        //DEBUGReturnQueue(turnOrderQueue);
+
+        UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
+        UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
+
+        if (turnOrderQueue.Peek().unitData.Allied == true) { 
+            CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
+            StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
+        }
+        else
+        {
+            StartCoroutine(UIManagerScript.SmoothMoveActionUI("right", .05f));
+
+        }
 
         if (turnOrderQueue.Count > 0)
         {
-            Unit next = turnOrderQueue.Peek();  // Peek at the next unit
-            turnUnit = next;                    // 🔁 Update turnUnit here!
+            Unit next = turnOrderQueue.Peek();  
+            turnUnit = next;                    
             Debug.Log("Starting turn for: " + next.name);
             next.BeginTurn();
         }
@@ -149,23 +170,22 @@ public class TurnOrderHandler : MonoBehaviour
     }
 
 
-
-
-    #region debug
-
-    public void DEBUGReturnQueue(Queue<Unit> queuetocheck)
+    public string ReturnQueue(Queue<Unit> queuetocheck)
     {
-        string result = "Turn order: ";
+        string result = "";
 
         foreach (Unit unit in queuetocheck)
         {
-            result += unit.unitData.characterName + ", ";
+            result += unit.unitData.characterName + "\n";
         }
 
-        print(result);
+        return result;
     }
 
-    #endregion
+    public Queue<Unit> ReturnCurrentQueue()
+    {
+        return turnOrderQueue;
+    }
 
 }
 
