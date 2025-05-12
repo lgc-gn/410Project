@@ -56,7 +56,7 @@
                     }
                 }
             }
-
+/*
             for (int i = 0; i < boardWidth; i++)
             {
                 for (int j = 0; j < boardLength; j++)
@@ -71,6 +71,7 @@
 
                 }
             }
+            */
             /*
             GameObject firstCube = Instantiate(cubeList[0]);
             GameObject secondCube = Instantiate(cubeList[1]);
