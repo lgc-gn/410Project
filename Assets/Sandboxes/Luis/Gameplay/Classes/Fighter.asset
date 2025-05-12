@@ -18,4 +18,4 @@ MonoBehaviour:
   classAction: Arts of War
   resourceType: Stamina
   resourceColor: {r: 0.745283, g: 0.6784888, b: 0.6784888, a: 1}
-  classIcon: {fileID: 21300000, guid: c54b697a121feeb43b161056bebe5265, type: 3}
+  classIcon: {fileID: 21300000, guid: 660d7f0fc58dce847992b2aef697d1b5, type: 3}

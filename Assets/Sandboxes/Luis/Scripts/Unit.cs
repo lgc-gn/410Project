@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 /*
 
 UNIT Method Script
@@ -68,7 +69,34 @@ public class Unit : TacticalUnitBase
             movementController.Move();
         }
     }
-//adjusted check for attack range
+
+    //public IEnumerator HandleMoveRoutine()
+    //{
+    //    if (!unitData.isMoving)
+    //    {
+    //        movementController.FindTilesBST(unitData.moveDistance);
+
+    //        while (!unitData.isMoving)
+    //        {
+    //            CheckMouseMov();
+
+    //            // Cancel if Escape is pressed
+    //            if (Input.GetKeyDown(KeyCode.Escape))
+    //            {
+    //                movementController.RemoveSelcTiles();
+    //                yield break;
+    //            }
+
+    //            yield return null; // Wait for next frame
+    //        }
+    //    }
+
+    //    print("moving");
+    //    movementController.Move();
+    //}
+
+
+    //adjusted check for attack range
     /*public virtual void HandleActionCommand()
     {
         if (!unitData.activeTurn)

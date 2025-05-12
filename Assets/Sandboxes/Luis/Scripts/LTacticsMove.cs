@@ -160,7 +160,7 @@ public class LTacticsMove : MonoBehaviour
         velo=compass*moveSpeed;
     }
 
-    protected void RemoveSelcTiles()
+    public void RemoveSelcTiles()
     {
         if(currTile!=null)
         {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnitCursor : MonoBehaviour
 {
-    public float hoverHeight = 2f; // Height above the unit
+    public float hoverHeight = 1f; // Height above the unit
     public float moveSpeed = 5f;   // Speed at which the cursor moves
     public Color highlightColor = Color.green; // Color to highlight the active unit
 
