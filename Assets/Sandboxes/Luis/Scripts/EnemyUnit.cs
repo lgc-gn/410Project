@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class EnemyUnit : Unit
 {
+    public bool end=false;
     GameObject target2;
 
     private void Awake()
@@ -18,43 +19,47 @@ public class EnemyUnit : Unit
         movementController.init(this, animator);
 
         InitalizeStats();
+        NMEtag=true;
     }
 
 
     override public void HandleMoveCommand()
     {
-
-        if (unitData.activeTurn == false)
+        clickcheck=true;
+        if(clickcheck && hasMoved==false)
         {
-            return;
-        } 
 
-        if (!unitData.isMoving)
-        {
-            if (target2 == null)
+            if (unitData.activeTurn == false)
             {
-                //Debug.Log("Finding target...");
-                FindNearTarg(); 
-            }
+                return;
+            } 
 
-            //Debug.Log("Attempting to calculate path...");
-            CalcPath(); 
-
-            if (movementController.TargAdjTile != null)
+            if (!unitData.isMoving)
             {
-                movementController.TargAdjTile.target = true;
-                //Debug.Log("Target tile found: " + movementController.TargAdjTile.name);
+                if (target2 == null)
+                {
+                    //Debug.Log("Finding target...");
+                    FindNearTarg(); 
+                }
+
+                //Debug.Log("Attempting to calculate path...");
+                CalcPath(); 
+
+                if (movementController.TargAdjTile != null)
+                {
+                    movementController.TargAdjTile.target = true;
+                    //Debug.Log("Target tile found: " + movementController.TargAdjTile.name);
+                }
+                else
+                {
+                    //Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
+                    this.EndTurn(); 
+                }
             }
             else
             {
-                //Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
-                this.EndTurn(); 
+                movementController.Move();   
             }
-        }
-        else
-        {
-            //Debug.Log("Moving...");
-            movementController.Move();
         }
     }
 

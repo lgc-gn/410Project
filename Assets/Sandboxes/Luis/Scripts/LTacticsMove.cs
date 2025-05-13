@@ -30,8 +30,15 @@ public class LTacticsMove : MonoBehaviour
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
+
         currentUnit = passedUnit;
         currentAnimator = passedAnimator;
+
+        RaycastHit tiler;
+        if(Physics.Raycast(currentUnit.transform.position, Vector3.down, out tiler, 1))
+        {
+            currTile = tiler.collider.GetComponent<Tile>();
+        }
 
         move = currentUnit.unitData.moveDistance;
         moveSpeed = currentUnit.unitData.moveSpeed;
@@ -41,6 +48,7 @@ public class LTacticsMove : MonoBehaviour
 
     public void GetCurrTile()
     {
+        currTile.occupied=null;
         currTile = GetTargTile(this.gameObject);
         currTile.current = true;
     }
@@ -62,6 +70,7 @@ public class LTacticsMove : MonoBehaviour
         foreach (GameObject ttile in tiles)
         {
             Tile t = ttile.GetComponent<Tile>();
+            t.attackstate=currentUnit.attack_state;
             t.Neighbors(target);
         }
     }
@@ -145,7 +154,13 @@ public class LTacticsMove : MonoBehaviour
             currentUnit.unitData.isMoving = false;
             currentAnimator.SetBool("isMoving", false);
             //ToDo, move below to action function. later.
-            currentUnit.EndTurn();
+            currentUnit.clickcheck = false;
+            currentUnit.hasMoved=true;
+            currTile.occupied = currentUnit.GetComponent<Unit>();
+            if(currentUnit.NMEtag)
+            {
+                currentUnit.EndTurn();
+            }
         }
     }
 

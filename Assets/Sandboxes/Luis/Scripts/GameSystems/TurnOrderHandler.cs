@@ -20,7 +20,7 @@ public class TurnOrderHandler : MonoBehaviour
     {
 
         CreateAQueue();
-        //record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
+        record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
 
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());

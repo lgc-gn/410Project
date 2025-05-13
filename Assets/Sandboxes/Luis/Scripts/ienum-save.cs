@@ -1,4 +1,37 @@
-using UnityEngine;
+    //public IEnumerator HandleMoveRoutine()
+    //{
+    //    if (!unitData.isMoving)
+    //    {
+    //        movementController.FindTilesBST(unitData.moveDistance);
+
+    //        while (!unitData.isMoving)
+    //        {
+    //            CheckMouseMov();
+
+    //            // Cancel if Escape is pressed
+    //            if (Input.GetKeyDown(KeyCode.Escape))
+    //            {
+    //                movementController.RemoveSelcTiles();
+    //                yield break;
+    //            }
+
+    //            yield return null; // Wait for next frame
+    //        }
+    //    }
+
+    //    print("moving");
+    //    movementController.Move();
+    //}
+
+/*    public void InitalizeStats()
+    {
+        unitData.activeTurn = false;
+        unitData.currentHealth = unitData.maxHealth;
+        unitData.currentResource = unitData.maxResource;
+    }
+
+    -----------------------------------
+    using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -23,10 +56,6 @@ public class Tile : MonoBehaviour
     public float f =0;
     public float g = 0;
     public float h =0;
-
-    public Unit occupied=null;
-
-    public bool attackstate=false;
 
     Color newTileColor;
 
@@ -89,7 +118,7 @@ public class Tile : MonoBehaviour
         CheckTile(-Vector3.right, target);
     }
     //checks tile type, tag, and contents
-    public void CheckTile(Vector3 direction, Tile target /*jumpheight*/)
+    public void CheckTile(Vector3 direction, Tile target /*jumpheight*)
     {
         Vector3 halfEx = new Vector3(0.25f, 0.25f, 0.25f);
         Collider[] colliders = Physics.OverlapBox(transform.position+direction, halfEx);
@@ -108,4 +137,4 @@ public class Tile : MonoBehaviour
         }
     }
 
-}
+}*/

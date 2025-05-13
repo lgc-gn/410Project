@@ -12,6 +12,12 @@ Handles player control of units
 
 public class Unit : TacticalUnitBase
 {
+    public bool clickcheck;
+    public bool NMEtag=false;
+    public bool hasMoved;
+    public bool hasAttack;
+    public bool attack_state;
+
 
     private void Awake()
     {
@@ -38,6 +44,9 @@ public class Unit : TacticalUnitBase
     {
 
         unitData.activeTurn = true;
+        clickcheck=false;
+        hasAttack=false;
+        hasMoved=false;
 
     }
 
@@ -53,51 +62,28 @@ public class Unit : TacticalUnitBase
     
     public virtual void HandleMoveCommand()
     {
-        if (!unitData.activeTurn)
+        if(clickcheck&&hasMoved==false)
         {
-            return;
-        }
+            if (!unitData.activeTurn)
+            {
+                return;
+            }
 
-        if (!unitData.isMoving)
-        {
-            movementController.FindTilesBST(unitData.moveDistance);
-            CheckMouseMov();
-        }
+            if (!unitData.isMoving)
+            {
+                movementController.FindTilesBST(unitData.moveDistance);
+                CheckMouseMov();
+            }
 
-        else
-        {
-            movementController.Move();
+            else
+            {
+                movementController.Move();
+            }
         }
     }
 
-    //public IEnumerator HandleMoveRoutine()
-    //{
-    //    if (!unitData.isMoving)
-    //    {
-    //        movementController.FindTilesBST(unitData.moveDistance);
-
-    //        while (!unitData.isMoving)
-    //        {
-    //            CheckMouseMov();
-
-    //            // Cancel if Escape is pressed
-    //            if (Input.GetKeyDown(KeyCode.Escape))
-    //            {
-    //                movementController.RemoveSelcTiles();
-    //                yield break;
-    //            }
-
-    //            yield return null; // Wait for next frame
-    //        }
-    //    }
-
-    //    print("moving");
-    //    movementController.Move();
-    //}
-
-
     //adjusted check for attack range
-    /*public virtual void HandleActionCommand()
+    public virtual void HandleActionCommand()
     {
         if (!unitData.activeTurn)
         {
@@ -106,14 +92,24 @@ public class Unit : TacticalUnitBase
 
         if (!unitData.isMoving)
         {
-            movementController.FindTilesBST(unitData.range);
+            movementController.FindTilesBST(1);
             CheckMouseAct();
         }
-    }*/
+    }
+
 
     void Update()
     {
-
+        if(Input.GetKey(KeyCode.F))
+        {
+            attack_state=true;
+            clickcheck=false;
+            HandleActionCommand();
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            clickcheck=true;
+        }
         HandleMoveCommand();
     }
 
@@ -141,8 +137,8 @@ public class Unit : TacticalUnitBase
         }
     }
 
-//needs to check if selected tile has a unit
- /*   void CheckMouseAct()
+    //needs to check if selected tile has a unit
+    void CheckMouseAct()
     {
         if (Input.GetMouseButtonUp(0))
         {
@@ -154,14 +150,16 @@ public class Unit : TacticalUnitBase
                 if (hit.collider.tag == "Tile")
                 {
                     Tile t = hit.collider.GetComponent<Tile>();
-                    if (t.selectable)
+                    Debug.Log(t.occupied);
+                    if (t.selectable&&t.occupied!=null)
                     {
-                        
+                        Debug.Log("hit success");
+                        Wait();
                     }
                 }
             }
         }
-    } */
+    }
 
     void Wait()
     {
