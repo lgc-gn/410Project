@@ -942,11 +942,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7c1721195bf5a40a8cc03670fcbb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moving: 0
-  move: 5
-  moveSpeed: 2
-  data: {fileID: 11400000, guid: 938f8f8a2a2925740855024be2f5d4c3, type: 2}
-  tacticsMove: {fileID: 0}
+  ActList: []
+  unitData: {fileID: 0}
+  classData: {fileID: 0}
+  animator: {fileID: 0}
+  TargUnit: {fileID: 0}
 --- !u!114 &1498854930
 MonoBehaviour:
   m_ObjectHideFlags: 0
