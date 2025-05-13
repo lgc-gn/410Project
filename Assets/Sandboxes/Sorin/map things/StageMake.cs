@@ -43,8 +43,8 @@
                 }
             }
 
-            int lastHeight = 0;
-            int newHeight = 0;
+            //int lastHeight = 0;
+            //int newHeight = 0;
 
             for (int i = 0; i < boardWidth; i++)
             {
