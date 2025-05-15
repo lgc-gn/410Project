@@ -18,6 +18,9 @@ public class Unit : TacticalUnitBase
     public bool hasAttack;
     public bool attack_state;
 
+    private bool isHandlingMove = false;
+    private bool isHandlingAction = false;
+
 
     private void Awake()
     {
@@ -56,62 +59,85 @@ public class Unit : TacticalUnitBase
         unitData.activeTurn = false;
         unitData.isMoving = false;
         animator.SetBool("isMoving", false);
-
-        // Add additional logic if needed to reset other state variables
     }
-    
+
     public virtual void HandleMoveCommand()
     {
-        if(clickcheck&&hasMoved==false)
-        {
-            if (!unitData.activeTurn)
-            {
-                return;
-            }
+        if (isHandlingMove || hasMoved || !unitData.activeTurn) return;
 
-            if (!unitData.isMoving)
-            {
-                movementController.FindTilesBST(unitData.moveDistance);
-                CheckMouseMov();
-            }
-
-            else
-            {
-                movementController.Move();
-            }
-        }
+        StartCoroutine(HandleMoveRoutine());
     }
 
-    //adjusted check for attack range
     public virtual void HandleActionCommand()
     {
-        if (!unitData.activeTurn)
-        {
+        if (isHandlingAction || !unitData.activeTurn || unitData.isMoving)
             return;
+
+        StartCoroutine(HandleActionRoutine());
+    }
+
+
+    #region Action and Movement Coroutines
+
+    private IEnumerator HandleActionRoutine()
+    {
+        isHandlingAction = true;
+        attack_state = true;
+        clickcheck = false;
+
+        // Highlight attack range
+        movementController.FindTilesBST(unitData.attackRange);
+
+        while (!unitData.isMoving && attack_state)
+        {
+            CheckMouseAct(); // this should check mouse input and set unitData.isMoving = true when clicked
+            yield return null;
         }
+
+        // If the attack causes movement (like jumping to a target), wait for it to finish
+        while (unitData.isMoving)
+        {
+            movementController.Move();
+            yield return null;
+        }
+
+        // Cleanup
+        attack_state = false;
+        isHandlingAction = false;
+        Debug.Log("Action completed.");
+    }
+
+    private IEnumerator HandleMoveRoutine()
+    {
+        isHandlingMove = true;
+        clickcheck = true;
 
         if (!unitData.isMoving)
         {
-            movementController.FindTilesBST(1);
-            CheckMouseAct();
+            movementController.FindTilesBST(unitData.moveDistance);
+
+            // Wait until player clicks a valid tile
+            while (!unitData.isMoving)
+            {
+                CheckMouseMov(); // Your method that checks if player clicked a tile
+                yield return null; // Wait 1 frame
+            }
         }
+
+        // Once isMoving is true, wait for movement to complete
+        while (unitData.isMoving)
+        {
+            movementController.Move();
+            yield return null;
+        }
+
+        hasMoved = true;
+        isHandlingMove = false;
+        Debug.Log("Unit finished moving.");
     }
 
+    #endregion
 
-    void Update()
-    {
-        if(Input.GetKey(KeyCode.F))
-        {
-            attack_state=true;
-            clickcheck=false;
-            HandleActionCommand();
-        }
-        if(Input.GetKey(KeyCode.A))
-        {
-            clickcheck=true;
-        }
-        HandleMoveCommand();
-    }
 
     #region Helper Functions
 

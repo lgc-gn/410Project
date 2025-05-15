@@ -20,7 +20,6 @@ public class UnitData : ScriptableObject
 
     [Header("Unit Info")]
     public string characterName; // name of the character
-    // public ClassData characterClass; // class of the character
 
     public bool Allied;
 
@@ -41,8 +40,12 @@ public class UnitData : ScriptableObject
 
     public int Initiative; // Testing, determines the unit's position in the turn order
 
+    [Header("Combat Information")]
+
     public int moveDistance = 5; // How many tiles the unit can move in a turn.
     public int moveSpeed = 5; // How fast the unit moves
+
+    public int attackRange = 1;
 
     [Header("Ability Scores")]
     public int strengthStat;

@@ -26,6 +26,17 @@ public class TurnOrderHandler : MonoBehaviour
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
         CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
 
+        if (turnOrderQueue.Peek().unitData.Allied == true)
+        {
+            CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
+            StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
+        }
+        else
+        {
+            StartCoroutine(UIManagerScript.SmoothMoveActionUI("right", .05f));
+
+        }
+
         ReturnQueue(turnOrderQueue);
 
         StartTurn();

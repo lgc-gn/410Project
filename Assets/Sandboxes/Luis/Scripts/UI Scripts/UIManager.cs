@@ -56,7 +56,8 @@ public class UIManager : MonoBehaviour
 
     void OnAttackClicked()
     {
-        DisplayConfirm(WarningType.Attack);
+        //DisplayConfirm(WarningType.Attack);
+        TurnOrderScript.ReturnCurrentQueue().Peek().HandleActionCommand();
         //StartCoroutine(SmoothMoveActionHelperUI("down", .1f));
 
 
@@ -65,8 +66,10 @@ public class UIManager : MonoBehaviour
     void OnMoveClicked()
     {
         DisplayConfirm(WarningType.Move);
-        //StartCoroutine(TurnOrderScript.ReturnCurrentQueue().Peek().HandleMoveRoutine());
+        TurnOrderScript.ReturnCurrentQueue().Peek().HandleMoveCommand();
         //StartCoroutine(SmoothMoveActionHelperUI("down", .1f));
+
+
 
     }
 

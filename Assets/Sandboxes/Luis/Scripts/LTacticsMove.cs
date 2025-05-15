@@ -90,7 +90,7 @@ public class LTacticsMove : MonoBehaviour
 
             selectTiles.Add(t);
             t.selectable = true;
-            if(t.dist<range)
+            if (t.dist<range)
             {
                 foreach (Tile ttile in t.adjList)
                 {
