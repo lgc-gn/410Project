@@ -11,6 +11,7 @@ public class TurnOrderHandler : MonoBehaviour
     public Unit turnUnit;
     public UnitCursor cursor;
     public TurnRecord record;
+    public TileUpkeep upkeep;
 
     public UIManager UIManagerScript;
     public CameraManager CameraManagerScript;
@@ -21,6 +22,7 @@ public class TurnOrderHandler : MonoBehaviour
 
         CreateAQueue();
         record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
+        upkeep.Start();
 
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
@@ -149,6 +151,7 @@ public class TurnOrderHandler : MonoBehaviour
 
         //Debug.Log("Finished turn for: " + turnUnit.name);
         turnUnit.EndTurn();
+        upkeep.UpdateTileOccupancy();
 
         RequeueUnit();
 

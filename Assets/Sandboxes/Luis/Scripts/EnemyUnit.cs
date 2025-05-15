@@ -25,8 +25,8 @@ public class EnemyUnit : Unit
 
     override public void HandleMoveCommand()
     {
-        clickcheck=true;
-        if(clickcheck && hasMoved==false)
+        clickcheckM=true;
+        if(clickcheckM && hasMoved==false)
         {
 
             if (unitData.activeTurn == false)

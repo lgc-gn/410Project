@@ -12,8 +12,9 @@ Handles player control of units
 
 public class Unit : TacticalUnitBase
 {
-    public bool clickcheck;
-    public bool NMEtag=false;
+    public bool clickcheckM;
+    public bool clickcheckA;
+    public bool NMEtag = false;
     public bool hasMoved;
     public bool hasAttack;
     public bool attack_state;
@@ -47,9 +48,11 @@ public class Unit : TacticalUnitBase
     {
 
         unitData.activeTurn = true;
-        clickcheck=false;
-        hasAttack=false;
-        hasMoved=false;
+        clickcheckM = false;
+        hasAttack = false;
+        hasMoved = false;
+        attack_state = false;
+        clickcheckA = false;
 
     }
 
@@ -83,7 +86,6 @@ public class Unit : TacticalUnitBase
     {
         isHandlingAction = true;
         attack_state = true;
-        clickcheck = false;
 
         // Highlight attack range
         movementController.FindTilesBST(unitData.attackRange);
@@ -110,7 +112,6 @@ public class Unit : TacticalUnitBase
     private IEnumerator HandleMoveRoutine()
     {
         isHandlingMove = true;
-        clickcheck = true;
 
         if (!unitData.isMoving)
         {
@@ -133,6 +134,7 @@ public class Unit : TacticalUnitBase
 
         hasMoved = true;
         isHandlingMove = false;
+        clickcheckM = true;
         Debug.Log("Unit finished moving.");
     }
 
@@ -177,10 +179,11 @@ public class Unit : TacticalUnitBase
                 {
                     Tile t = hit.collider.GetComponent<Tile>();
                     Debug.Log(t.occupied);
-                    if (t.selectable&&t.occupied!=null)
+                    if (t.selectable && t.occupied != null)
                     {
                         Debug.Log("hit success");
-                        Wait();
+                        clickcheckA = true;
+                        unitData.isMoving = false;
                     }
                 }
             }

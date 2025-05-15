@@ -99,10 +99,17 @@ public class Tile : MonoBehaviour
             Tile tile = item.GetComponent<Tile>();
             if (tile!=null && tile.walk)
             {
-                RaycastHit hit;
-                if(!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1)||(tile == target))
+                if(attackstate)
                 {
                     adjList.Add(tile);
+                }
+                else
+                {
+                    RaycastHit hit;
+                    if (!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1) || (tile == target))
+                    {
+                        adjList.Add(tile);
+                    }
                 }
             }
         }

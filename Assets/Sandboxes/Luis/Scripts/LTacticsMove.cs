@@ -14,6 +14,8 @@ public class LTacticsMove : MonoBehaviour
 
     Vector3 velo=new Vector3();
     Vector3 compass = new Vector3();
+    public List<Tile> Movable = new List<Tile>();
+    public List<Tile> Attackable = new List<Tile>();
 
     float halfHeight=0;
 
@@ -77,29 +79,43 @@ public class LTacticsMove : MonoBehaviour
 
     public void FindTilesBST(int range)
     {
+    // Prepare
         GetCurrTile();
-        CompAdjLists(currTile); // use the actual tile under the unit
+        CompAdjLists(currTile); // builds adjacency for all tiles
+
+    // Reset lists
+        selectTiles.Clear();
+        Movable.Clear();
+        Attackable.Clear();
 
         Queue<Tile> process = new Queue<Tile>();
+        currTile.visited = true;
         process.Enqueue(currTile);
-        currTile.visited=true;
 
-        while(process.Count > 0)
+        while (process.Count > 0)
         {
             Tile t = process.Dequeue();
-
-            selectTiles.Add(t);
+            selectTiles.Add(t);  // All reachable tiles for this range
             t.selectable = true;
-            if (t.dist<range)
+
+        // Categorize
+            if (t.occupied == null)
+                Movable.Add(t);
+            else
+                Attackable.Add(t);
+                t.selectable = true;
+
+        // Expand neighbors if within range
+            if (t.dist < range)
             {
-                foreach (Tile ttile in t.adjList)
+                foreach (Tile neighbor in t.adjList)
                 {
-                    if(!ttile.visited)
+                    if (!neighbor.visited)
                     {
-                        ttile.par = t;
-                        ttile.visited=true;
-                        ttile.dist = 1 + t.dist;
-                        process.Enqueue(ttile);
+                        neighbor.visited = true;
+                        neighbor.par = t;
+                        neighbor.dist = t.dist + 1;
+                        process.Enqueue(neighbor);
                     }
                 }
             }
@@ -154,7 +170,7 @@ public class LTacticsMove : MonoBehaviour
             currentUnit.unitData.isMoving = false;
             currentAnimator.SetBool("isMoving", false);
             //ToDo, move below to action function. later.
-            currentUnit.clickcheck = false;
+            currentUnit.clickcheckM = false;
             currentUnit.hasMoved=true;
             currTile.occupied = currentUnit.GetComponent<Unit>();
             if(currentUnit.NMEtag)

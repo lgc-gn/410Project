@@ -562,6 +562,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &86438835
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +696,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &106637173
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +951,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &153519566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1085,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &157508216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,6 +1219,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &159953622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,6 +1353,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &161614378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1487,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &183871563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,6 +1621,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &185200466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,6 +1755,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &189049872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,6 +1889,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &191374654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2023,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &199176901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +2293,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &206805489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,6 +2427,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &212891783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,6 +2561,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &218173747
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,6 +3076,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &304880551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,6 +3210,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &305338959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3423,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &339735596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3523,6 +3557,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &341022594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,6 +3691,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1001 &342339497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3937,6 +3975,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &353993950
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,6 +4230,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &394335410
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,6 +4364,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &412473429
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,6 +4726,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &473946866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4814,6 +4860,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &475537512
 GameObject:
   m_ObjectHideFlags: 0
@@ -4946,6 +4994,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &490538608
 GameObject:
   m_ObjectHideFlags: 0
@@ -5078,6 +5128,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &494345962
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,6 +5262,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &519579534
 GameObject:
   m_ObjectHideFlags: 0
@@ -5342,6 +5396,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &525013697
 GameObject:
   m_ObjectHideFlags: 0
@@ -5595,6 +5651,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &573812663
 GameObject:
   m_ObjectHideFlags: 0
@@ -5727,6 +5785,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1001 &582247519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5928,6 +5988,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &597344995
 GameObject:
   m_ObjectHideFlags: 0
@@ -6184,6 +6246,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &628027483
 GameObject:
   m_ObjectHideFlags: 0
@@ -6316,6 +6380,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &632827538
 GameObject:
   m_ObjectHideFlags: 0
@@ -6479,6 +6545,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &658205293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6611,6 +6679,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &678599894
 GameObject:
   m_ObjectHideFlags: 0
@@ -6743,6 +6813,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &685338983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7011,6 +7083,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &690181201
 GameObject:
   m_ObjectHideFlags: 0
@@ -7143,6 +7217,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &697595400
 GameObject:
   m_ObjectHideFlags: 0
@@ -7275,6 +7351,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &704274047
 GameObject:
   m_ObjectHideFlags: 0
@@ -7407,6 +7485,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &719255692
 GameObject:
   m_ObjectHideFlags: 0
@@ -7539,6 +7619,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &720462393
 GameObject:
   m_ObjectHideFlags: 0
@@ -7671,6 +7753,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &722146032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7880,6 +7964,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &745030844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8054,6 +8140,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &762051775
 GameObject:
   m_ObjectHideFlags: 0
@@ -8186,6 +8274,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &767004820
 GameObject:
   m_ObjectHideFlags: 0
@@ -8454,6 +8544,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &803380860
 GameObject:
   m_ObjectHideFlags: 0
@@ -8586,6 +8678,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &807923561
 GameObject:
   m_ObjectHideFlags: 0
@@ -8879,6 +8973,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &836829837
 GameObject:
   m_ObjectHideFlags: 0
@@ -9174,6 +9270,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &869652915
 GameObject:
   m_ObjectHideFlags: 0
@@ -9306,6 +9404,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &872235923
 GameObject:
   m_ObjectHideFlags: 0
@@ -9438,6 +9538,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &881337379
 GameObject:
   m_ObjectHideFlags: 0
@@ -9570,6 +9672,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &886575183
 GameObject:
   m_ObjectHideFlags: 0
@@ -9702,6 +9806,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &889903778
 GameObject:
   m_ObjectHideFlags: 0
@@ -9834,6 +9940,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &891796492
 GameObject:
   m_ObjectHideFlags: 0
@@ -10102,6 +10210,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &904982278
 GameObject:
   m_ObjectHideFlags: 0
@@ -10234,6 +10344,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &920874604
 GameObject:
   m_ObjectHideFlags: 0
@@ -10366,6 +10478,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &945141725
 GameObject:
   m_ObjectHideFlags: 0
@@ -10540,6 +10654,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &963790666
 GameObject:
   m_ObjectHideFlags: 0
@@ -10672,6 +10788,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &986579958
 GameObject:
   m_ObjectHideFlags: 0
@@ -10804,6 +10922,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1004447454
 GameObject:
   m_ObjectHideFlags: 0
@@ -10936,6 +11056,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1017645935
 GameObject:
   m_ObjectHideFlags: 0
@@ -11068,6 +11190,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1022547591
 GameObject:
   m_ObjectHideFlags: 0
@@ -11457,6 +11581,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1085992686
 GameObject:
   m_ObjectHideFlags: 0
@@ -11679,6 +11805,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1108789145
 GameObject:
   m_ObjectHideFlags: 0
@@ -11811,6 +11939,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1149869672
 GameObject:
   m_ObjectHideFlags: 0
@@ -11943,6 +12073,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1150604105
 GameObject:
   m_ObjectHideFlags: 0
@@ -12249,6 +12381,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1181882606
 GameObject:
   m_ObjectHideFlags: 0
@@ -12381,6 +12515,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1182548539
 GameObject:
   m_ObjectHideFlags: 0
@@ -12513,6 +12649,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1226577676
 GameObject:
   m_ObjectHideFlags: 0
@@ -12645,6 +12783,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1257190976
 GameObject:
   m_ObjectHideFlags: 0
@@ -12918,6 +13058,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1302617101
 GameObject:
   m_ObjectHideFlags: 0
@@ -13050,6 +13192,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1320531324
 GameObject:
   m_ObjectHideFlags: 0
@@ -13182,6 +13326,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1320908149
 GameObject:
   m_ObjectHideFlags: 0
@@ -13356,6 +13502,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1328251412
 GameObject:
   m_ObjectHideFlags: 0
@@ -13488,6 +13636,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1337277739
 GameObject:
   m_ObjectHideFlags: 0
@@ -13662,6 +13812,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1358177607
 GameObject:
   m_ObjectHideFlags: 0
@@ -13794,6 +13946,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1363010306
 GameObject:
   m_ObjectHideFlags: 0
@@ -14028,6 +14182,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1391470519
 GameObject:
   m_ObjectHideFlags: 0
@@ -14202,6 +14358,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1436256955
 GameObject:
   m_ObjectHideFlags: 0
@@ -14455,6 +14613,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1451157371
 GameObject:
   m_ObjectHideFlags: 0
@@ -14587,6 +14747,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1486936095
 GameObject:
   m_ObjectHideFlags: 0
@@ -14719,6 +14881,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1488348327
 GameObject:
   m_ObjectHideFlags: 0
@@ -14851,6 +15015,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1489996197
 GameObject:
   m_ObjectHideFlags: 0
@@ -14983,6 +15149,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1491234133
 GameObject:
   m_ObjectHideFlags: 0
@@ -15115,6 +15283,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1493797732
 GameObject:
   m_ObjectHideFlags: 0
@@ -15247,6 +15417,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1528124157
 GameObject:
   m_ObjectHideFlags: 0
@@ -15515,6 +15687,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1551845469
 GameObject:
   m_ObjectHideFlags: 0
@@ -15530,6 +15704,7 @@ GameObject:
   - component: {fileID: 1551845474}
   - component: {fileID: 1551845475}
   - component: {fileID: 1551845477}
+  - component: {fileID: 1551845478}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -15622,6 +15797,7 @@ MonoBehaviour:
   turnUnit: {fileID: 0}
   cursor: {fileID: 597344996}
   record: {fileID: 1551845475}
+  upkeep: {fileID: 1551845478}
   UIManagerScript: {fileID: 1551845471}
   CameraManagerScript: {fileID: 1551845477}
 --- !u!114 &1551845474
@@ -15664,6 +15840,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitCamera: {fileID: 218173752}
+--- !u!114 &1551845478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551845469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a484dac70655a4eaf6930fa4f5d91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileList: []
 --- !u!1 &1558067165
 GameObject:
   m_ObjectHideFlags: 0
@@ -15967,6 +16156,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1616398682
 GameObject:
   m_ObjectHideFlags: 0
@@ -16338,6 +16529,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1654130989
 GameObject:
   m_ObjectHideFlags: 0
@@ -16470,6 +16663,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1656207438
 GameObject:
   m_ObjectHideFlags: 0
@@ -16679,6 +16874,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1662201570
 GameObject:
   m_ObjectHideFlags: 0
@@ -16811,6 +17008,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1706546609
 GameObject:
   m_ObjectHideFlags: 0
@@ -16943,6 +17142,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1707901976
 GameObject:
   m_ObjectHideFlags: 0
@@ -17117,6 +17318,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1723522114
 GameObject:
   m_ObjectHideFlags: 0
@@ -17326,6 +17529,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1742507118
 GameObject:
   m_ObjectHideFlags: 0
@@ -17458,6 +17663,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1750343995
 GameObject:
   m_ObjectHideFlags: 0
@@ -17590,6 +17797,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1751908471
 GameObject:
   m_ObjectHideFlags: 0
@@ -17722,6 +17931,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1811114447
 GameObject:
   m_ObjectHideFlags: 0
@@ -17854,6 +18065,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1831469972
 GameObject:
   m_ObjectHideFlags: 0
@@ -17986,6 +18199,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1834186493
 GameObject:
   m_ObjectHideFlags: 0
@@ -18160,6 +18375,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1850822297
 GameObject:
   m_ObjectHideFlags: 0
@@ -18292,6 +18509,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1857940926
 GameObject:
   m_ObjectHideFlags: 0
@@ -18424,6 +18643,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1859984790
 GameObject:
   m_ObjectHideFlags: 0
@@ -18556,6 +18777,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1861511782
 GameObject:
   m_ObjectHideFlags: 0
@@ -18688,6 +18911,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1869715855
 GameObject:
   m_ObjectHideFlags: 0
@@ -18820,6 +19045,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1878315408
 GameObject:
   m_ObjectHideFlags: 0
@@ -18952,6 +19179,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1893695878
 GameObject:
   m_ObjectHideFlags: 0
@@ -19295,6 +19524,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1935260616
 GameObject:
   m_ObjectHideFlags: 0
@@ -19565,6 +19796,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1953035510
 GameObject:
   m_ObjectHideFlags: 0
@@ -19910,6 +20143,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &1994246449
 GameObject:
   m_ObjectHideFlags: 0
@@ -20121,6 +20356,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2003517802
 GameObject:
   m_ObjectHideFlags: 0
@@ -20253,6 +20490,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2021530713
 GameObject:
   m_ObjectHideFlags: 0
@@ -20427,6 +20666,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2073737109
 GameObject:
   m_ObjectHideFlags: 0
@@ -20559,6 +20800,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2073927505
 GameObject:
   m_ObjectHideFlags: 0
@@ -20691,6 +20934,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2086247767
 GameObject:
   m_ObjectHideFlags: 0
@@ -20865,6 +21110,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2097636414
 GameObject:
   m_ObjectHideFlags: 0
@@ -20997,6 +21244,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2108068288
 GameObject:
   m_ObjectHideFlags: 0
@@ -21129,6 +21378,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2111228361
 GameObject:
   m_ObjectHideFlags: 0
@@ -21261,6 +21512,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2117483224
 GameObject:
   m_ObjectHideFlags: 0
@@ -21393,6 +21646,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2121709849
 GameObject:
   m_ObjectHideFlags: 0
@@ -21525,6 +21780,8 @@ MonoBehaviour:
   f: 0
   g: 0
   h: 0
+  occupied: {fileID: 0}
+  attackstate: 0
 --- !u!1 &2123614714
 GameObject:
   m_ObjectHideFlags: 0
