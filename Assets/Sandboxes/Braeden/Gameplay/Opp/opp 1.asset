@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: EnemyFighter
+  m_Name: opp 1
   m_EditorClassIdentifier: 
-  characterName: Enemy 3
-  Allied: 0
+  characterName: scrunkie
+  Allied: 1
   activeTurn: 0
   isMoving: 0
   Lord: 1
-  maxHealth: 120
-  currentHealth: 120
-  maxResource: 0
-  currentResource: 0
+  maxHealth: 142
+  currentHealth: 142
+  maxResource: 52
+  currentResource: 52
   currentLevel: 2
-  xpNeeded: 0
-  xpCurrent: 0
-  Initiative: 8
-  moveDistance: 4
-  moveSpeed: 3
-  attackRange: 1
-  strengthStat: 10
-  dexterityStat: 10
-  constitutionStat: 10
-  intelligenceStat: 10
-  wisdomStat: 10
-  charismaStat: 10
+  xpNeeded: 200
+  xpCurrent: 162.58617
+  Initiative: 2
+  moveDistance: 5
+  moveSpeed: 7
+  attackRange: 3
+  strengthStat: 15
+  dexterityStat: 9
+  constitutionStat: 4
+  intelligenceStat: 18
+  wisdomStat: 5
+  charismaStat: 3
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}

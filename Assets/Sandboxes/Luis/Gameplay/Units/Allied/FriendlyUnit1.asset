@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Ally 1
   Allied: 1
-  activeTurn: 1
+  activeTurn: 0
   isMoving: 0
+  Lord: 1
   maxHealth: 140
   currentHealth: 140
   maxResource: 100
@@ -26,6 +27,7 @@ MonoBehaviour:
   Initiative: 4
   moveDistance: 3
   moveSpeed: 3
+  attackRange: 1
   strengthStat: 16
   dexterityStat: 10
   constitutionStat: 10

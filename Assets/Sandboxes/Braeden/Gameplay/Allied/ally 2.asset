@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: EnemyFighter
+  m_Name: ally 2
   m_EditorClassIdentifier: 
-  characterName: Enemy 3
+  characterName: bungle
   Allied: 0
   activeTurn: 0
   isMoving: 0
-  Lord: 1
-  maxHealth: 120
-  currentHealth: 120
-  maxResource: 0
-  currentResource: 0
+  Lord: 0
+  maxHealth: 146
+  currentHealth: 146
+  maxResource: 32
+  currentResource: 32
   currentLevel: 2
-  xpNeeded: 0
-  xpCurrent: 0
-  Initiative: 8
-  moveDistance: 4
-  moveSpeed: 3
+  xpNeeded: 200
+  xpCurrent: 48.555447
+  Initiative: 11
+  moveDistance: 8
+  moveSpeed: 6
   attackRange: 1
-  strengthStat: 10
-  dexterityStat: 10
-  constitutionStat: 10
-  intelligenceStat: 10
-  wisdomStat: 10
-  charismaStat: 10
+  strengthStat: 15
+  dexterityStat: 18
+  constitutionStat: 9
+  intelligenceStat: 5
+  wisdomStat: 17
+  charismaStat: 4
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}

@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: EnemyFighter
+  m_Name: ally 1
   m_EditorClassIdentifier: 
-  characterName: Enemy 3
+  characterName: scrungle
   Allied: 0
-  activeTurn: 0
+  activeTurn: 1
   isMoving: 0
   Lord: 1
-  maxHealth: 120
-  currentHealth: 120
-  maxResource: 0
-  currentResource: 0
-  currentLevel: 2
-  xpNeeded: 0
-  xpCurrent: 0
-  Initiative: 8
-  moveDistance: 4
-  moveSpeed: 3
+  maxHealth: 124
+  currentHealth: 124
+  maxResource: 82
+  currentResource: 82
+  currentLevel: 4
+  xpNeeded: 400
+  xpCurrent: 379.39752
+  Initiative: 11
+  moveDistance: 8
+  moveSpeed: 4
   attackRange: 1
-  strengthStat: 10
+  strengthStat: 18
   dexterityStat: 10
-  constitutionStat: 10
-  intelligenceStat: 10
-  wisdomStat: 10
-  charismaStat: 10
+  constitutionStat: 1
+  intelligenceStat: 7
+  wisdomStat: 7
+  charismaStat: 14
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}
