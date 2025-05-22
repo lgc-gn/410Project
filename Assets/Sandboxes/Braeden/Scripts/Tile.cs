@@ -10,7 +10,6 @@ public class Tile : MonoBehaviour
     public bool selectable=false;
 
     //general flags
-    public bool walk = true;
 
     //BFS strategy
     public List<Tile> adjList = new List<Tile>();
@@ -28,9 +27,28 @@ public class Tile : MonoBehaviour
 
     public bool attackstate=false;
 
+    public TileData tileData;
+
     Color newTileColor;
 
     private Color baseColor;
+
+    public bool walk
+    {
+        get
+        {
+            if (tileData != null)
+                return tileData.walk;
+            else
+                return true; // default if no tileData assigned
+        }
+        set
+        {
+            if (tileData != null)
+                tileData.walk = value;
+            // else ignore or handle error
+        }
+    }
 
 
 
@@ -39,7 +57,17 @@ public class Tile : MonoBehaviour
     {
         if (ColorUtility.TryParseHtmlString("#43A7CC", out newTileColor)) { }
 
-        baseColor = GetComponent<Renderer>().material.color;
+        if (tileData != null)
+        {
+            baseColor = tileData.tileColor;
+            walk = tileData.walk;
+        }
+        else
+        {
+            baseColor = GetComponent<Renderer>().material.color;
+        }
+
+        GetComponent<Renderer>().material.color = baseColor;
     }
 
 

@@ -12,28 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
   m_Name: opp 2
   m_EditorClassIdentifier: 
-  characterName: shlumkie
+  characterName: Unit_93
   Allied: 0
   activeTurn: 0
   isMoving: 0
   Lord: 0
-  maxHealth: 93
-  currentHealth: 93
-  maxResource: 52
-  currentResource: 52
-  currentLevel: 6
-  xpNeeded: 600
-  xpCurrent: 326.58408
-  Initiative: 16
-  moveDistance: 4
-  moveSpeed: 9
+  maxHealth: 135
+  currentHealth: 135
+  maxResource: 60
+  currentResource: 60
+  currentLevel: 7
+  xpNeeded: 700
+  xpCurrent: 0
+  Initiative: 2
+  moveDistance: 6
+  moveSpeed: 2
   attackRange: 1
-  strengthStat: 2
-  dexterityStat: 13
-  constitutionStat: 6
+  strengthStat: 1
+  dexterityStat: 8
+  constitutionStat: 16
   intelligenceStat: 14
-  wisdomStat: 10
-  charismaStat: 6
+  wisdomStat: 15
+  charismaStat: 7
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}

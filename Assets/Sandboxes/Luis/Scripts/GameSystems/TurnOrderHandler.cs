@@ -18,6 +18,8 @@ public class TurnOrderHandler : MonoBehaviour
     public GameObject winScreen;
     public SceneChanger scene;
 
+    private bool winTriggered=false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,7 +54,6 @@ public class TurnOrderHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (turnOrderQueue.Count == 0)
         {
             return;
@@ -60,33 +61,54 @@ public class TurnOrderHandler : MonoBehaviour
 
         Unit current = turnOrderQueue.Peek();
         cursor.SetActiveUnit(current);
+
         if (Input.GetKey(KeyCode.Space))
         {
             record.UndoMove(turnUnit);
         }
-
 
         if (current != null && current.unitData.activeTurn == false)
         {
             End_of_Turn();
         }
 
+        if (!winTriggered)
+        {
+            CheckWinConditions();
+        }
+    }
+
+
+    private void CheckWinConditions()
+    {
+        bool lordDead = false;
+        bool anyEnemiesAlive = false;
+
         foreach (GameObject obj in unitList)
         {
             Unit uni = obj.GetComponent<Unit>();
-            if (uni.dead)
+            if (uni != null)
             {
-                if (uni.unitData.Lord)
+                if (!uni.dead)
                 {
-                    //play victory screen
-                    winScreen.SetActive(true);
-                    Invoke("MoveToNext", 5f);
+                    anyEnemiesAlive = true;
                 }
-                unitList.Clear();
-                CreateAQueue();
+                else if (uni.unitData.Lord)
+                {
+                    lordDead = true;
+                    break; // No need to check further
+                }
             }
         }
+
+        if (lordDead || !anyEnemiesAlive)
+        {
+            winTriggered = true;
+            winScreen.SetActive(true);
+            Invoke("MoveToNext", 5f);
+        }
     }
+
 
     public void CreateAQueue()
     {
