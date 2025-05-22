@@ -15,10 +15,13 @@ public class TurnOrderHandler : MonoBehaviour
 
     public UIManager UIManagerScript;
     public CameraManager CameraManagerScript;
-    
+    public GameObject winScreen;
+    public SceneChanger scene;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        winScreen.SetActive(false);
 
         CreateAQueue();
         record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
@@ -45,7 +48,7 @@ public class TurnOrderHandler : MonoBehaviour
         //cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<UnitCursor>();
     }
 
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -67,19 +70,38 @@ public class TurnOrderHandler : MonoBehaviour
         {
             End_of_Turn();
         }
+
+        foreach (GameObject obj in unitList)
+        {
+            Unit uni = obj.GetComponent<Unit>();
+            if (uni.dead)
+            {
+                if (uni.unitData.Lord)
+                {
+                    //play victory screen
+                    winScreen.SetActive(true);
+                    Invoke("MoveToNext", 5f);
+                }
+                unitList.Clear();
+                CreateAQueue();
+            }
+        }
     }
 
     public void CreateAQueue()
     {
         GameObject[] unitObjectList = GameObject.FindGameObjectsWithTag("Unit");
-        
+
         foreach (GameObject obj in unitObjectList)
         {
-          
+
             Unit unit = obj.GetComponent<Unit>();
             if (unit != null)
             {
-                unitList.Add(obj);
+                if (!unit.dead)
+                {
+                    unitList.Add(obj);
+                }
             }
         }
 
@@ -124,7 +146,7 @@ public class TurnOrderHandler : MonoBehaviour
 
         Unit currentUnit = turnOrderQueue.Peek();
         //currentUnit.unitData.activeTurn = true;
-        
+
         if (currentUnit != null)
         {
             //Debug.Log("Starting turn for: " + currentUnit.name);
@@ -160,7 +182,8 @@ public class TurnOrderHandler : MonoBehaviour
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
 
-        if (turnOrderQueue.Peek().unitData.Allied == true) { 
+        if (turnOrderQueue.Peek().unitData.Allied == true)
+        {
             CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
             StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
         }
@@ -172,8 +195,8 @@ public class TurnOrderHandler : MonoBehaviour
 
         if (turnOrderQueue.Count > 0)
         {
-            Unit next = turnOrderQueue.Peek();  
-            turnUnit = next;                    
+            Unit next = turnOrderQueue.Peek();
+            turnUnit = next;
             Debug.Log("Starting turn for: " + next.name);
             next.BeginTurn();
         }
@@ -201,7 +224,13 @@ public class TurnOrderHandler : MonoBehaviour
         return turnOrderQueue;
     }
 
+    void MoveToNext()
+    {
+        scene.ChangeSceneByIndex(2);
+    }
+
 }
+
 
 
 #region Unused Stuff

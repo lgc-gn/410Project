@@ -30,35 +30,40 @@ public class Tile : MonoBehaviour
 
     Color newTileColor;
 
+    private Color baseColor;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (ColorUtility.TryParseHtmlString("#43A7CC", out newTileColor)){ }
+        if (ColorUtility.TryParseHtmlString("#43A7CC", out newTileColor)) { }
 
+        baseColor = GetComponent<Renderer>().material.color;
     }
+
 
     // Update is called once per frame, manually loaded or fixed on tile type
     void Update()
     {
+        Color highlightColor = baseColor;
+
         if (current)
         {
-            GetComponent<Renderer>().material.color = Color.black;
+            highlightColor = Color.Lerp(baseColor, Color.black, 0.5f); // 50% toward black
         }
         else if (target)
         {
-            GetComponent<Renderer>().material.color=Color.green;
+            highlightColor = Color.Lerp(baseColor, Color.green, 0.5f);
         }
         else if (selectable)
         {
-            GetComponent<Renderer>().material.color= newTileColor;
+            highlightColor = Color.Lerp(baseColor, newTileColor, 0.5f);
         }
-        else
-        {
-            GetComponent<Renderer>().material.color = Color.white;
-        }
-        
+
+        GetComponent<Renderer>().material.color = highlightColor;
     }
+
     //clears position for new movement when selected
     public void Reset()
     {
@@ -70,7 +75,7 @@ public class Tile : MonoBehaviour
         par=null;
 
         //general flags
-        walk = true;
+        //walk = true;
 
         //BFS strategy
         visited = false;

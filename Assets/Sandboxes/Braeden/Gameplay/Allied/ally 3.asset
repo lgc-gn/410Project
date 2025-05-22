@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: EnemyFighter
+  m_Name: ally 3
   m_EditorClassIdentifier: 
-  characterName: Enemy 3
+  characterName: grungle
   Allied: 0
   activeTurn: 0
   isMoving: 0
-  Lord: 1
-  maxHealth: 120
-  currentHealth: 120
-  maxResource: 0
-  currentResource: 0
-  currentLevel: 2
-  xpNeeded: 0
-  xpCurrent: 0
-  Initiative: 8
-  moveDistance: 4
-  moveSpeed: 3
+  Lord: 0
+  maxHealth: 89
+  currentHealth: 89
+  maxResource: 71
+  currentResource: 71
+  currentLevel: 3
+  xpNeeded: 300
+  xpCurrent: 28.445328
+  Initiative: 9
+  moveDistance: 9
+  moveSpeed: 7
   attackRange: 1
-  strengthStat: 10
-  dexterityStat: 10
-  constitutionStat: 10
-  intelligenceStat: 10
-  wisdomStat: 10
-  charismaStat: 10
+  strengthStat: 5
+  dexterityStat: 19
+  constitutionStat: 15
+  intelligenceStat: 6
+  wisdomStat: 13
+  charismaStat: 4
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}

@@ -12,6 +12,7 @@ Handles player control of units
 
 public class Unit : TacticalUnitBase
 {
+    public bool dead = false;
     public bool clickcheckM;
     public bool clickcheckA;
     public bool NMEtag = false;
@@ -156,7 +157,7 @@ public class Unit : TacticalUnitBase
                 if (hit.collider.tag == "Tile")
                 {
                     Tile t = hit.collider.GetComponent<Tile>();
-                    if (t.selectable)
+                    if (t.selectable&&t.walk)
                     {
                         movementController.MoveToTile(t);
                     }
@@ -181,12 +182,23 @@ public class Unit : TacticalUnitBase
                     Debug.Log(t.occupied);
                     if (t.selectable && t.occupied != null)
                     {
+                        OnAttack(t);
                         Debug.Log("hit success");
                         clickcheckA = true;
                         unitData.isMoving = false;
                     }
                 }
             }
+        }
+    }
+
+    void OnAttack(Tile t/*Action act = Basic()*/)
+    {
+        //ToDo: play hit anim
+        t.occupied.unitData.currentHealth -= unitData.strengthStat;
+        if (t.occupied.unitData.currentHealth <= 0)
+        {
+            t.occupied.dead = true;
         }
     }
 

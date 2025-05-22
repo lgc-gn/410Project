@@ -28,6 +28,7 @@ public class UnitData : ScriptableObject
     public bool isMoving;
 
     [Header("Resource Info")]
+    public bool Lord;
     public int maxHealth;
     public int currentHealth;
     public int maxResource;

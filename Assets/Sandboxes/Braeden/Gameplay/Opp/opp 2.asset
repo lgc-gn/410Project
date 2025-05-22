@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: EnemyFighter
+  m_Name: opp 2
   m_EditorClassIdentifier: 
-  characterName: Enemy 3
+  characterName: shlumkie
   Allied: 0
   activeTurn: 0
   isMoving: 0
-  Lord: 1
-  maxHealth: 120
-  currentHealth: 120
-  maxResource: 0
-  currentResource: 0
-  currentLevel: 2
-  xpNeeded: 0
-  xpCurrent: 0
-  Initiative: 8
+  Lord: 0
+  maxHealth: 93
+  currentHealth: 93
+  maxResource: 52
+  currentResource: 52
+  currentLevel: 6
+  xpNeeded: 600
+  xpCurrent: 326.58408
+  Initiative: 16
   moveDistance: 4
-  moveSpeed: 3
+  moveSpeed: 9
   attackRange: 1
-  strengthStat: 10
-  dexterityStat: 10
-  constitutionStat: 10
-  intelligenceStat: 10
+  strengthStat: 2
+  dexterityStat: 13
+  constitutionStat: 6
+  intelligenceStat: 14
   wisdomStat: 10
-  charismaStat: 10
+  charismaStat: 6
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}
