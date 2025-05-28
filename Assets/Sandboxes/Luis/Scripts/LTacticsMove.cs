@@ -305,9 +305,6 @@ public class LTacticsMove : MonoBehaviour
             }
 
         }
-        //Debug.LogWarning("Path to target not found.");
-        //currentUnit.EndTurn();
-        //if no path, do stuff here
         RaycastHit hit;
         Unit uni = null;
         if (Physics.Raycast(target.transform.position, Vector3.up, out hit, 1))

@@ -195,6 +195,7 @@ public class Unit : TacticalUnitBase
     public void OnAttack(Tile t/*Action act = Basic()*/)
     {
         //ToDo: play hit anim
+        //ToDo: display damage done
         t.occupied.unitData.currentHealth -= unitData.strengthStat;
         if (t.occupied.unitData.currentHealth <= 0)
         {

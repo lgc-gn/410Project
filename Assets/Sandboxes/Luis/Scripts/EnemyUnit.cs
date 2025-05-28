@@ -123,6 +123,7 @@ public class EnemyUnit : Unit
         Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
     }
 
+//ToDo: animation here maybe?
     public void Attacking()
     {
         foreach (Tile tili in selectTiles)

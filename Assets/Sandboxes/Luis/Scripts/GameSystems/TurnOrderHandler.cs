@@ -89,6 +89,8 @@ public class TurnOrderHandler : MonoBehaviour
     }
 
 
+    //ToDo: make a real lose con and add fail anim
+//ToDo: update objectives UI for what is needed
     private void CheckWinConditions()
     {
         bool lordDead = false;
