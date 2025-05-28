@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ally 1
   m_EditorClassIdentifier: 
   characterName: scrungle
-  Allied: 0
-  activeTurn: 1
+  Allied: 1
+  activeTurn: 0
   isMoving: 0
   Lord: 1
   maxHealth: 124

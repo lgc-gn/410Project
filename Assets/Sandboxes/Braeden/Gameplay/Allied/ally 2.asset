@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ally 2
   m_EditorClassIdentifier: 
   characterName: bungle
-  Allied: 0
+  Allied: 1
   activeTurn: 0
   isMoving: 0
   Lord: 0

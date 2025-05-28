@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ally 3
   m_EditorClassIdentifier: 
   characterName: grungle
-  Allied: 0
+  Allied: 1
   activeTurn: 0
   isMoving: 0
   Lord: 0
