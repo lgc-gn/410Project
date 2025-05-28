@@ -68,6 +68,12 @@ public class Tile : MonoBehaviour
         }
 
         GetComponent<Renderer>().material.color = baseColor;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.up, out hit, 1))
+        {
+            occupied = hit.collider.GetComponent<Unit>();
+        }
     }
 
 

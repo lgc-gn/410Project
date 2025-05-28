@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: aqua
   walk: 0
-  tileTexture: {fileID: 2800000, guid: 9e91cd5bde426714d9f0ef165f143d7c, type: 3}
-  tileMaterial: {fileID: -876546973899608171, guid: ca2ed216f98028c4dae6c5224a952b3c, type: 3}
+  tileColor: {r: 0, g: 0.7999201, b: 1, a: 1}

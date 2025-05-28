@@ -45,7 +45,7 @@ public class Unit : TacticalUnitBase
         unitData.currentResource = unitData.maxResource;
     }
 
-    public void BeginTurn()
+    virtual public void BeginTurn()
     {
 
         unitData.activeTurn = true;
@@ -192,7 +192,7 @@ public class Unit : TacticalUnitBase
         }
     }
 
-    void OnAttack(Tile t/*Action act = Basic()*/)
+    public void OnAttack(Tile t/*Action act = Basic()*/)
     {
         //ToDo: play hit anim
         t.occupied.unitData.currentHealth -= unitData.strengthStat;

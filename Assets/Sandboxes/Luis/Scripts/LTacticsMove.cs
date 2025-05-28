@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class LTacticsMove : MonoBehaviour
 {
-    List<Tile> selectTiles = new List<Tile>();
+    public List<Tile> selectTiles = new List<Tile>();
     GameObject[] tiles;
 
     Stack<Tile> path = new Stack<Tile>();
@@ -12,12 +12,12 @@ public class LTacticsMove : MonoBehaviour
     int move;
     int moveSpeed;
 
-    Vector3 velo=new Vector3();
+    Vector3 velo = new Vector3();
     Vector3 compass = new Vector3();
     public List<Tile> Movable = new List<Tile>();
     public List<Tile> Attackable = new List<Tile>();
 
-    float halfHeight=0;
+    float halfHeight = 0;
 
     public Tile TargAdjTile;
 
@@ -37,7 +37,7 @@ public class LTacticsMove : MonoBehaviour
         currentAnimator = passedAnimator;
 
         RaycastHit tiler;
-        if(Physics.Raycast(currentUnit.transform.position, Vector3.down, out tiler, 1))
+        if (Physics.Raycast(currentUnit.transform.position, Vector3.down, out tiler, 1))
         {
             currTile = tiler.collider.GetComponent<Tile>();
         }
@@ -50,7 +50,7 @@ public class LTacticsMove : MonoBehaviour
 
     public void GetCurrTile()
     {
-        currTile.occupied=null;
+        currTile.occupied = null;
         currTile = GetTargTile(this.gameObject);
         currTile.current = true;
     }
@@ -59,7 +59,7 @@ public class LTacticsMove : MonoBehaviour
     {
         RaycastHit hit;
         Tile ttile = null;
-        if(Physics.Raycast(target.transform.position, -Vector3.up, out hit, 1))
+        if (Physics.Raycast(target.transform.position, -Vector3.up, out hit, 1))
         {
             ttile = hit.collider.GetComponent<Tile>();
         }
@@ -72,18 +72,18 @@ public class LTacticsMove : MonoBehaviour
         foreach (GameObject ttile in tiles)
         {
             Tile t = ttile.GetComponent<Tile>();
-            t.attackstate=currentUnit.attack_state;
+            t.attackstate = currentUnit.attack_state;
             t.Neighbors(target);
         }
     }
 
     public void FindTilesBST(int range)
     {
-    // Prepare
+        // Prepare
         GetCurrTile();
         CompAdjLists(currTile); // builds adjacency for all tiles
 
-    // Reset lists
+        // Reset lists
         selectTiles.Clear();
         Movable.Clear();
         Attackable.Clear();
@@ -98,14 +98,14 @@ public class LTacticsMove : MonoBehaviour
             selectTiles.Add(t);  // All reachable tiles for this range
             t.selectable = true;
 
-        // Categorize
+            // Categorize
             if (t.occupied == null)
                 Movable.Add(t);
             else
                 Attackable.Add(t);
-                t.selectable = true;
+            t.selectable = true;
 
-        // Expand neighbors if within range
+            // Expand neighbors if within range
             if (t.dist < range)
             {
                 foreach (Tile neighbor in t.adjList)
@@ -130,7 +130,7 @@ public class LTacticsMove : MonoBehaviour
         currentAnimator.SetBool("isMoving", true);
 
         Tile next = tile;
-        while(next!=null)
+        while (next != null)
         {
             path.Push(next);
             next = next.par;
@@ -140,20 +140,20 @@ public class LTacticsMove : MonoBehaviour
 
     public void Move()
     {
-        if (path.Count>0)
+        if (path.Count > 0)
         {
             Tile t = path.Peek();
             Vector3 target = t.transform.position;
             //top of cube calc
-            target.y+= halfHeight + t.GetComponent<Collider>().bounds.extents.y;
+            target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
 
-            if(Vector3.Distance(transform.position, target) >= .05f)
+            if (Vector3.Distance(transform.position, target) >= .05f)
             {
                 CalcHeading(target);
                 SetHorzVel();
 
-                transform.forward=compass;
-                transform.position+=velo* Time.deltaTime;
+                transform.forward = compass;
+                transform.position += velo * Time.deltaTime;
                 //Debug.Log("Moving towards: " + target);
             }
             else
@@ -171,11 +171,15 @@ public class LTacticsMove : MonoBehaviour
             currentAnimator.SetBool("isMoving", false);
             //ToDo, move below to action function. later.
             currentUnit.clickcheckM = false;
-            currentUnit.hasMoved=true;
+            currentUnit.hasMoved = true;
             currTile.occupied = currentUnit.GetComponent<Unit>();
-            if(currentUnit.NMEtag)
+            if (currentUnit.NMEtag)
             {
-                currentUnit.EndTurn();
+                EnemyUnit atkNME = currentUnit.GetComponent<EnemyUnit>();
+                atkNME.attack_state = true;
+                atkNME.FindTilesBST(atkNME.unitData.attackRange);
+                Debug.Log("hey wtf");
+                atkNME.Attacking();
             }
         }
     }
@@ -188,14 +192,14 @@ public class LTacticsMove : MonoBehaviour
 
     void SetHorzVel()
     {
-        velo=compass*moveSpeed;
+        velo = compass * moveSpeed;
     }
 
     public void RemoveSelcTiles()
     {
-        if(currTile!=null)
+        if (currTile != null)
         {
-            currTile.current=false;
+            currTile.current = false;
             // currTile=null;
         }
         foreach (Tile tile in selectTiles)
@@ -208,9 +212,9 @@ public class LTacticsMove : MonoBehaviour
     protected Tile FindLowestF(List<Tile> listo)
     {
         Tile low = listo[0];
-        foreach(Tile t in listo)
+        foreach (Tile t in listo)
         {
-            if(t.f < low.f)
+            if (t.f < low.f)
             {
                 low = t;
             }
@@ -224,18 +228,18 @@ public class LTacticsMove : MonoBehaviour
     {
         Stack<Tile> tempPath = new Stack<Tile>();
         Tile next = t.par;
-        while(next!=null)
+        while (next != null)
         {
             tempPath.Push(next);
             next = next.par;
         }
-        if(tempPath.Count <= move)
+        if (tempPath.Count <= move)
         {
             return t.par;
         }
 
-        Tile endTile=null;
-        for (int i=0;i<=move && tempPath.Count > 0;i++)
+        Tile endTile = null;
+        for (int i = 0; i <= move && tempPath.Count > 0; i++)
         {
             endTile = tempPath.Pop();
 
@@ -258,14 +262,14 @@ public class LTacticsMove : MonoBehaviour
 
         openList.Add(currTile);
         currTile.h = Vector3.Distance(currTile.transform.position, target.transform.position);
-        currTile.f=currTile.h;
+        currTile.f = currTile.h;
 
         while (openList.Count > 0)
         {
-            Tile t =FindLowestF(openList);
+            Tile t = FindLowestF(openList);
             closedList.Add(t);
 
-            if(t==target)
+            if (t == target)
             {
                 TargAdjTile = FindEndTile(t);
                 //Debug.Log("Path found, target tile: " + TargAdjTile.name);
@@ -273,18 +277,18 @@ public class LTacticsMove : MonoBehaviour
                 return;
             }
 
-            foreach(Tile til in t.adjList)
+            foreach (Tile til in t.adjList)
             {
-                if(closedList.Contains(til))
+                if (closedList.Contains(til))
                 {
                     //nothing
                 }
                 else if (openList.Contains(til))
                 {
                     float tempG = t.g + Vector3.Distance(til.transform.position, t.transform.position);
-                    if(tempG<til.g)
+                    if (tempG < til.g)
                     {
-                        til.par=t;
+                        til.par = t;
                         til.g = tempG;
                         til.f = til.g + til.h;
                     }
@@ -292,9 +296,9 @@ public class LTacticsMove : MonoBehaviour
                 else
                 {
                     til.par = t;
-                    til.g = t.g+ Vector3.Distance(til.transform.position, t.transform.position);
+                    til.g = t.g + Vector3.Distance(til.transform.position, t.transform.position);
                     til.h = Vector3.Distance(til.transform.position, target.transform.position);
-                    til.f=til.g+til.h;
+                    til.f = til.g + til.h;
 
                     openList.Add(til);
                 }
@@ -302,10 +306,16 @@ public class LTacticsMove : MonoBehaviour
 
         }
         //Debug.LogWarning("Path to target not found.");
-        currentUnit.EndTurn();
+        //currentUnit.EndTurn();
         //if no path, do stuff here
+        RaycastHit hit;
+        Unit uni = null;
+        if (Physics.Raycast(target.transform.position, Vector3.up, out hit, 1))
+        {
+            uni = hit.collider.GetComponent<Unit>();
+        }
+        this.GetComponent<EnemyUnit>().toIgnore.Add(uni);
+        this.GetComponent<EnemyUnit>().FindNearTarg();
     }
-
-
 
 }

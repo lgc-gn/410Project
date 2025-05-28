@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 /*
  Handles enemy AI, derives from TacticalUnitBase
@@ -7,8 +8,9 @@ using UnityEngine;
 
 public class EnemyUnit : Unit
 {
-    public bool end=false;
+    public bool end = false;
     GameObject target2;
+    public List<Unit> toIgnore = new List<Unit>();
 
     private void Awake()
     {
@@ -19,46 +21,50 @@ public class EnemyUnit : Unit
         movementController.init(this, animator);
 
         InitalizeStats();
-        NMEtag=true;
+        NMEtag = true;
     }
 
 
     override public void HandleMoveCommand()
     {
-        clickcheckM=true;
-        if(clickcheckM && hasMoved==false)
+        clickcheckM = true;
+        if (clickcheckM && hasMoved == false)
         {
 
             if (unitData.activeTurn == false)
             {
                 return;
-            } 
+            }
 
             if (!unitData.isMoving)
             {
                 if (target2 == null)
                 {
-                    //Debug.Log("Finding target...");
-                    FindNearTarg(); 
+                    Debug.Log("Finding target...");
+                    FindNearTarg();
                 }
 
                 //Debug.Log("Attempting to calculate path...");
-                CalcPath(); 
+                CalcPath();
 
                 if (movementController.TargAdjTile != null)
                 {
                     movementController.TargAdjTile.target = true;
-                    //Debug.Log("Target tile found: " + movementController.TargAdjTile.name);
+                    Debug.Log("Target tile found: " + movementController.TargAdjTile.name);
                 }
                 else
                 {
-                    //Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
-                    this.EndTurn(); 
+                    Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
+                    this.EndTurn();
                 }
             }
             else
             {
-                movementController.Move();   
+                if (!target2.GetComponent<Unit>().dead)
+                {
+                    movementController.Move();
+                }
+                FindNearTarg();
             }
         }
     }
@@ -75,7 +81,7 @@ public class EnemyUnit : Unit
         Tile targetTile = movementController.GetTargTile(target2);
         if (targetTile == null)
         {
-            //Debug.LogWarning("Target tile not found! Ending turn.");
+            Debug.LogWarning("Target tile not found! Ending turn.");
             this.EndTurn();
             return;
         }
@@ -83,13 +89,13 @@ public class EnemyUnit : Unit
         movementController.FindPath(targetTile); // Find the path to the target tile.
 
         if (movementController.TargAdjTile == null)
-        { 
-            //Debug.LogWarning("No path to target! Ending turn.");
-            this.EndTurn(); 
+        {
+            Debug.LogWarning("No path to target! Ending turn.");
+            this.EndTurn();
         }
     }
 
-    void FindNearTarg()
+    public void FindNearTarg()
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Unit");
         GameObject nearest = null;
@@ -100,17 +106,36 @@ public class EnemyUnit : Unit
             if (obj.TryGetComponent<Unit>(out var unitComponent)
                 && !obj.TryGetComponent<EnemyUnit>(out _))
             {
-                float d = Vector3.Distance(transform.position, obj.transform.position);
-                if (d < minDist)
+                Unit objUni = obj.GetComponent<Unit>();
+                if (!toIgnore.Contains(objUni)&&!objUni.dead)
                 {
-                    minDist = d;
-                    nearest = obj;
+                    float d = Vector3.Distance(transform.position, obj.transform.position);
+                    if (d < minDist)
+                    {
+                        minDist = d;
+                        nearest = obj;
+                    }
                 }
             }
         }
 
         target2 = nearest;
-        //Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
+        Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
+    }
+
+    public void Attacking()
+    {
+        foreach (Tile tili in selectTiles)
+        {
+            Debug.Log("looping tiles");
+            if (tili.occupied && !tili.occupied.NMEtag)
+            {
+                OnAttack(tili);
+                Debug.Log("enemy dealt dmg");
+                this.EndTurn();
+            }
+        }
+        this.EndTurn();
     }
 
 
