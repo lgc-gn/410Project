@@ -26,11 +26,13 @@ public class UnitData : ScriptableObject
     [Header("Turn Info")]
     public bool activeTurn = false;
     public bool isMoving;
+    public bool movedThisTurn = false;
+    public bool attackedThisTurn = false;
 
     [Header("Resource Info")]
     public bool Lord;
-    public int maxHealth;
-    public int currentHealth;
+    public float maxHealth;
+    public float currentHealth;
     public int maxResource;
     public int currentResource;
 

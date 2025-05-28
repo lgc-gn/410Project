@@ -21,14 +21,17 @@ public class EnemyUnit : Unit
         movementController.init(this, animator);
 
         InitalizeStats();
+        InitializeWeapon();
         NMEtag = true;
     }
+
+
 
 
     override public void HandleMoveCommand()
     {
         clickcheckM = true;
-        if (clickcheckM && hasMoved == false)
+        if (clickcheckM && unitData.movedThisTurn == false)
         {
 
             if (unitData.activeTurn == false)
@@ -40,7 +43,7 @@ public class EnemyUnit : Unit
             {
                 if (target2 == null)
                 {
-                    Debug.Log("Finding target...");
+                    //Debug.Log("Finding target...");
                     FindNearTarg();
                 }
 
@@ -50,11 +53,11 @@ public class EnemyUnit : Unit
                 if (movementController.TargAdjTile != null)
                 {
                     movementController.TargAdjTile.target = true;
-                    Debug.Log("Target tile found: " + movementController.TargAdjTile.name);
+                    //Debug.Log("Target tile found: " + movementController.TargAdjTile.name);
                 }
                 else
                 {
-                    Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
+                    //Debug.LogWarning("TargAdjTile was null after pathfinding. Ending turn.");
                     this.EndTurn();
                 }
             }
@@ -69,6 +72,11 @@ public class EnemyUnit : Unit
         }
     }
 
+    override public void HandleStateTransition(UnitState newState)
+    {
+        print("asd");
+    }
+
     void Update()
     {
         HandleMoveCommand();
@@ -81,7 +89,7 @@ public class EnemyUnit : Unit
         Tile targetTile = movementController.GetTargTile(target2);
         if (targetTile == null)
         {
-            Debug.LogWarning("Target tile not found! Ending turn.");
+            //Debug.LogWarning("Target tile not found! Ending turn.");
             this.EndTurn();
             return;
         }
@@ -90,7 +98,7 @@ public class EnemyUnit : Unit
 
         if (movementController.TargAdjTile == null)
         {
-            Debug.LogWarning("No path to target! Ending turn.");
+            //Debug.LogWarning("No path to target! Ending turn.");
             this.EndTurn();
         }
     }
@@ -128,11 +136,10 @@ public class EnemyUnit : Unit
     {
         foreach (Tile tili in selectTiles)
         {
-            Debug.Log("looping tiles");
+            //Debug.Log("looping tiles");
             if (tili.occupied && !tili.occupied.NMEtag)
             {
-                OnAttack(tili);
-                Debug.Log("enemy dealt dmg");
+                //Debug.Log("enemy dealt dmg");
                 this.EndTurn();
             }
         }

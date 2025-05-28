@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using System;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,8 +12,8 @@ public class UIManager : MonoBehaviour
     public TurnOrderHandler TurnOrderScript;
 
     public Canvas playerHUD;
-    public RectTransform unitInfoTransformDefault, actionMenuTransformDefault; 
-    public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText;
+    public RectTransform unitInfoTransformDefault, actionMenuTransformDefault, toolTipTransformDefault; 
+    public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText, toolTipText, tempCombatLogText;
     public Image classIcon, unitPortrait, resourceBar, hpBar, xpBar;
     public GameObject actionMenu, unitEntryPrefab;
     public Transform turnOrderPanel, actionMenuPanel;
@@ -56,19 +56,17 @@ public class UIManager : MonoBehaviour
 
     void OnAttackClicked()
     {
-        //DisplayConfirm(WarningType.Attack);
-        TurnOrderScript.ReturnCurrentQueue().Peek().HandleActionCommand();
-        //StartCoroutine(SmoothMoveActionHelperUI("down", .1f));
-
+        Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
+        if (currentUnit.unitData.Allied == true)
+            currentUnit.HandleStateTransition(Unit.UnitState.Attack_Check);
 
     }
 
     void OnMoveClicked()
     {
-        DisplayConfirm(WarningType.Move);
-        TurnOrderScript.ReturnCurrentQueue().Peek().HandleMoveCommand();
-        //StartCoroutine(SmoothMoveActionHelperUI("down", .1f));
-
+        Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
+        if (currentUnit.unitData.Allied == true)
+            currentUnit.HandleStateTransition(Unit.UnitState.Move_Check);
 
 
     }
@@ -122,22 +120,57 @@ public class UIManager : MonoBehaviour
 
     }
 
-
-
-    private void DisplayConfirm(WarningType warning)
+    public IEnumerator DisplayToolTip(string direction, float duration, string textToolTip)
     {
-        switch (warning)
+        Vector2 startPos = toolTipTransformDefault.anchoredPosition;
+        Vector2 targetPos = startPos;
+        Vector2 defaultPos = new Vector2(0, 60.45f);
+
+        toolTipText.SetText(textToolTip);
+
+        if (direction == "down")
         {
-            case WarningType.EndTurn:
-                print("This will end your turn, confirm?");
-                break;
-            case WarningType.Move:
-
-                break;
-            case WarningType.Attack:
-
-                break;
+            targetPos = new Vector2(startPos.x, -100f);
         }
+        else if (direction == "up")
+        {
+            targetPos = new Vector2(startPos.x, 100f);
+        }
+        else if (direction == "neutral")
+        {
+            targetPos = defaultPos;
+        }
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            toolTipTransformDefault.anchoredPosition = Vector2.Lerp(startPos, targetPos, (elapsedTime / duration));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the panel reaches the target position after the loop
+        toolTipTransformDefault.anchoredPosition = targetPos;
+
+    }
+
+    public void IdleUIState()
+    {
+        StartCoroutine(DisplayToolTip("up", .1f, "..."));
+        StartCoroutine(SmoothMoveActionUI("left", .15f));
+    }
+
+    public void AorMUIState()
+    {
+        StartCoroutine(SmoothMoveActionUI("right", .15f));
+    }
+
+
+
+    public void ConfirmState()
+    {
+        
     }
 
     public void UpdateTurnOrderList(Queue<Unit> currentTurnOrder)
@@ -190,6 +223,15 @@ public class UIManager : MonoBehaviour
         }
 
     }
+
+    //private void Update()
+    //{
+    //    Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
+    //    if (currentUnit.unitData.Allied == false)
+    //    {
+    //        AorMUIState();
+    //    }
+    //}
 
     #endregion
 }

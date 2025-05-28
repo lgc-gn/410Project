@@ -14,7 +14,7 @@ public class TurnOrderHandler : MonoBehaviour
     public TileUpkeep upkeep;
 
     public UIManager UIManagerScript;
-    //public CameraManager CameraManagerScript;
+    public CameraManager CameraManagerScript;
     public GameObject winScreen;
     public SceneChanger scene;
 
@@ -31,17 +31,12 @@ public class TurnOrderHandler : MonoBehaviour
 
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
-        //CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
+        CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
 
         if (turnOrderQueue.Peek().unitData.Allied == true)
         {
-            //CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
-            StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
-        }
-        else
-        {
-            StartCoroutine(UIManagerScript.SmoothMoveActionUI("right", .05f));
-
+            CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
+            //StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
         }
 
         ReturnQueue(turnOrderQueue);
@@ -77,15 +72,15 @@ public class TurnOrderHandler : MonoBehaviour
             CheckWinConditions();
         }
 
-        foreach (GameObject obj in unitList)
-        {
-            Unit uni = obj.GetComponent<Unit>();
-            if (uni.dead)
-            {
-                unitList.Clear();
-                CreateAQueue();
-            }
-        }
+        //foreach (GameObject obj in unitList)
+        //{
+        //    Unit uni = obj.GetComponent<Unit>();
+        //    if (uni.dead)
+        //    {
+        //        unitList.Clear();
+        //        CreateAQueue();
+        //    }
+        //}
     }
 
 
@@ -222,13 +217,8 @@ public class TurnOrderHandler : MonoBehaviour
 
         if (turnOrderQueue.Peek().unitData.Allied == true)
         {
-            //CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
-            StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
-        }
-        else
-        {
-            StartCoroutine(UIManagerScript.SmoothMoveActionUI("right", .05f));
-
+            CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
+            //StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
         }
 
         if (turnOrderQueue.Count > 0)

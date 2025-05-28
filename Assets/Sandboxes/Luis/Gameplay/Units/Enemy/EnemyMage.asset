@@ -16,6 +16,9 @@ MonoBehaviour:
   Allied: 0
   activeTurn: 0
   isMoving: 0
+  movedThisTurn: 0
+  attackedThisTurn: 0
+  Lord: 0
   maxHealth: 80
   currentHealth: 80
   maxResource: 100
@@ -26,13 +29,14 @@ MonoBehaviour:
   Initiative: 3
   moveDistance: 3
   moveSpeed: 2
+  attackRange: 1
   strengthStat: 8
   dexterityStat: 12
   constitutionStat: 10
   intelligenceStat: 16
   wisdomStat: 10
   charismaStat: 10
-  RightHand: {fileID: 0}
+  RightHand: {fileID: 11400000, guid: 667feec532d3e3043938b5cb1a093ed1, type: 2}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Ally 1
   Allied: 1
-  activeTurn: 0
+  activeTurn: 1
   isMoving: 0
+  movedThisTurn: 0
+  attackedThisTurn: 0
   Lord: 1
   maxHealth: 140
   currentHealth: 140
@@ -34,7 +36,7 @@ MonoBehaviour:
   intelligenceStat: 10
   wisdomStat: 10
   charismaStat: 10
-  RightHand: {fileID: 0}
+  RightHand: {fileID: 11400000, guid: 4e38579f7a1378e4ea535526da1284ea, type: 2}
   LeftHand: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewClassData", menuName = "RPG Objects/Weapon Data")]
@@ -22,10 +21,16 @@ public class WeaponData : ScriptableObject
     public string weaponDescription;
     public WeaponType weaponType;
     public GameObject weaponModel;
+    public Texture weaponTexture;
+
+    [Header("Position/Rotation Properties")]
+    public Vector3 gripPositionOffset;
+    public Vector3 gripRotationOffset; // in Euler angles
 
     [Header("Animation Data")]
 
     public List<AnimationClip> animations;
+    public Animator weaponAnimations;
 
     [Header("Combat Data")]
     public float baseDamage;

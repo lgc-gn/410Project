@@ -178,7 +178,7 @@ public class LTacticsMove : MonoBehaviour
                 EnemyUnit atkNME = currentUnit.GetComponent<EnemyUnit>();
                 atkNME.attack_state = true;
                 atkNME.FindTilesBST(atkNME.unitData.attackRange);
-                Debug.Log("hey wtf");
+                //Debug.Log("hey wtf");
                 atkNME.Attacking();
             }
         }
