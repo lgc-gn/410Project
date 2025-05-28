@@ -63,7 +63,7 @@ public class EnemyUnit : Unit
             }
             else
             {
-                if (!target2.GetComponent<Unit>().dead)
+                if (!target2.GetComponent<Unit>().unitData.Dead)
                 {
                     movementController.Move();
                 }
@@ -115,7 +115,7 @@ public class EnemyUnit : Unit
                 && !obj.TryGetComponent<EnemyUnit>(out _))
             {
                 Unit objUni = obj.GetComponent<Unit>();
-                if (!toIgnore.Contains(objUni)&&!objUni.dead)
+                if (!toIgnore.Contains(objUni)&&!objUni.unitData.Dead)
                 {
                     float d = Vector3.Distance(transform.position, obj.transform.position);
                     if (d < minDist)

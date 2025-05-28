@@ -22,6 +22,7 @@ public class UnitData : ScriptableObject
     public string characterName; // name of the character
 
     public bool Allied;
+    public bool Dead;
 
     [Header("Turn Info")]
     public bool activeTurn = false;

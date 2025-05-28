@@ -96,7 +96,7 @@ public class TurnOrderHandler : MonoBehaviour
             Unit uni = obj.GetComponent<Unit>();
             if (uni != null)
             {
-                if (!uni.dead)
+                if (!uni.unitData.Dead)
                 {
                     anyEnemiesAlive = true;
                 }
@@ -135,7 +135,7 @@ public class TurnOrderHandler : MonoBehaviour
                 {
                     unitList.Remove(obj);
                 }
-                if (!unit.dead)
+                if (!unit.unitData.Dead)
                     {
                         unitList.Add(obj);
                     }

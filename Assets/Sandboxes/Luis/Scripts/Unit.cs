@@ -12,12 +12,13 @@ Handles player control of units
 
 public class Unit : TacticalUnitBase
 {
-    public bool dead = false;
     public bool clickcheckM;
     public bool clickcheckA;
-    public bool NMEtag = false;
+
+
     public bool hasMoved;
     public bool hasAttack;
+    public bool NMEtag = false;
     public bool attack_state;
 
     public Transform rightHandTransform;
@@ -361,38 +362,45 @@ public class Unit : TacticalUnitBase
             {
                 if (hit.collider.tag == "Tile")
                 {
-                    Tile t = hit.collider.GetComponent<Tile>();
+                    Tile targetTile = hit.collider.GetComponent<Tile>();
                     //Debug.Log(t.occupied);
-                    if (t.selectable && t.occupied != null)
+                    if (targetTile.selectable && targetTile.occupied != null)
                     {
                         //print(t.occupied.unitData.name);
-                        OnAttack(t);
+                        OnAttack(targetTile.occupied);
                         //HandleStateTransition(UnitState.Attack_Confirm);
                         //clickcheckA = true;
                         //unitData.isMoving = false;
                     }
                 }
+                else if (hit.collider.tag == "Unit")
+                {
+                    Unit Target = hit.collider.GetComponent<Unit>();
+                    //print($"hit a unit: {Target.unitData.characterName}");
+                    OnAttack(Target);
+                }
             }
         }
     }
 
+    void RotateTowardsTarget(GameObject Source, GameObject Target) {
+        
+    }
 
-
-    void OnAttack(Tile t/*Action act = Basic()*/)
+    void OnAttack(Unit target/*Action act = Basic()*/)
     {
-        print("on attack");
         animator.Play("Attack");
         float DamageValue = unitData.RightHand.baseDamage;
-        t.occupied.unitData.currentHealth -= DamageValue;
-        if (t.occupied.unitData.currentHealth <= 0)
+        target.unitData.currentHealth -= DamageValue;
+        if (target.unitData.currentHealth <= 0f)
         {
-            t.occupied.dead = true;
-            UIManagerScript.tempCombatLogText.SetText($"{unitData.characterName} hit {t.occupied.unitData.characterName} for {DamageValue} dmg!\n\n<b>{t.occupied.unitData.characterName} has died!</b>");
+            target.unitData.Dead = true;
+            UIManagerScript.tempCombatLogText.SetText($"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!\n\n<b>{target.unitData.characterName} has died!</b>");
 
         }
         unitData.attackedThisTurn = true;
         clickcheckA = true;
-        UIManagerScript.tempCombatLogText.SetText($"{unitData.characterName} hit {t.occupied.unitData.characterName} for {DamageValue} dmg!");
+        UIManagerScript.tempCombatLogText.SetText($"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!");
         HandleStateTransition(UnitState.Idle);
         UIManagerScript.attackButton.interactable = !unitData.attackedThisTurn;
 
