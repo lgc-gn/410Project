@@ -131,10 +131,14 @@ public class TurnOrderHandler : MonoBehaviour
             Unit unit = obj.GetComponent<Unit>();
             if (unit != null)
             {
-                if (!unit.dead)
+                if (unitList.Contains(obj))
                 {
-                    unitList.Add(obj);
+                    unitList.Remove(obj);
                 }
+                if (!unit.dead)
+                    {
+                        unitList.Add(obj);
+                    }
             }
         }
 
