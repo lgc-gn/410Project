@@ -63,7 +63,7 @@ public class EnemyUnit : Unit
             }
             else
             {
-                if (!target2.GetComponent<Unit>().unitData.Dead)
+                if (target2 && !target2.GetComponent<Unit>().unitData.Dead)
                 {
                     movementController.Move();
                 }

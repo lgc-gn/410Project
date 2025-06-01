@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEditor.ShaderGraph.Internal;
 /*
 
 UNIT Method Script
@@ -12,22 +13,30 @@ Handles player control of units
 
 public class Unit : TacticalUnitBase
 {
+    [Header("Movement/Action checks")]
     public bool clickcheckM;
     public bool clickcheckA;
 
-
+    [Header("State Machine")]
     public bool hasMoved;
     public bool hasAttack;
     public bool NMEtag = false;
     public bool attack_state;
 
+    private bool AttackDebounce;
+
+    [Header("Attach Points")]
     public Transform rightHandTransform;
     public Transform leftHandTransform;
+    public Transform backTransform;
+
+
 
     private bool isHandlingMove = false;
     private bool isHandlingAction = false;
 
     private UIManager UIManagerScript;
+    private TurnOrderHandler TurnOrderScript;
 
     private GameObject currentRightWeaponInstance;
     private GameObject currentLeftWeaponInstance;
@@ -42,6 +51,7 @@ public class Unit : TacticalUnitBase
         Move_Check,
         Attack_Confirm,
         Moving,
+        Dead,
         Waiting_For_Input
     }
 
@@ -60,6 +70,7 @@ public class Unit : TacticalUnitBase
 
     public void InitalizeStats()
     {
+        unitData.Dead = false;
         unitData.activeTurn = false;
         unitData.movedThisTurn = false;
         unitData.currentHealth = unitData.maxHealth;
@@ -75,7 +86,11 @@ public class Unit : TacticalUnitBase
 
             currentRightWeaponInstance = Instantiate(equippedRightWeapon.weaponModel, rightHandTransform);
             Renderer weaponRenderer = currentRightWeaponInstance.GetComponentInChildren<Renderer>();
-            weaponRenderer.material.mainTexture = equippedRightWeapon.weaponTexture;
+            if (equippedRightWeapon.weaponTexture != null)
+            {
+                weaponRenderer.material.mainTexture = equippedRightWeapon.weaponTexture;
+
+            }
 
             currentRightWeaponInstance.transform.localPosition = equippedRightWeapon.gripPositionOffset;
             currentRightWeaponInstance.transform.localEulerAngles = equippedRightWeapon.gripRotationOffset;
@@ -86,12 +101,17 @@ public class Unit : TacticalUnitBase
 
             currentLeftWeaponInstance = Instantiate(equippedLeftWeapon.weaponModel, leftHandTransform);
             Renderer weaponRenderer = currentLeftWeaponInstance.GetComponentInChildren<Renderer>();
-            weaponRenderer.material.mainTexture = equippedLeftWeapon.weaponTexture;
+            if (equippedLeftWeapon.weaponTexture != null)
+            {
+                weaponRenderer.material.mainTexture = equippedLeftWeapon.weaponTexture;
+
+            }
 
             currentLeftWeaponInstance.transform.localPosition = equippedLeftWeapon.gripPositionOffset;
             currentLeftWeaponInstance.transform.localEulerAngles = equippedLeftWeapon.gripRotationOffset;
 
         }
+
     }
 
     private void Update()
@@ -117,9 +137,10 @@ public class Unit : TacticalUnitBase
         if (gm != null)
         {
             UIManagerScript = gm.GetComponent<UIManager>();
+            TurnOrderScript = gm.GetComponent<TurnOrderHandler>();
         }
 
-        if (UIManagerScript == null)
+        if (UIManagerScript == null || TurnOrderScript == null)
         {
             Debug.LogError("UIManager not found on GameManager!");
         }
@@ -159,7 +180,7 @@ public class Unit : TacticalUnitBase
         {
             currentState = newState;
 
-
+            AttackDebounce = false;
             movementController.RemoveSelcTiles();
 
             UIManagerScript.IdleUIState();
@@ -315,7 +336,7 @@ public class Unit : TacticalUnitBase
             yield return null;
         }
 
-        unitData.movedThisTurn = true;
+        //unitData.movedThisTurn = true;
         isHandlingMove = false;
         clickcheckM = true;
         HandleStateTransition(UnitState.Idle);
@@ -373,37 +394,88 @@ public class Unit : TacticalUnitBase
                         //unitData.isMoving = false;
                     }
                 }
+                // TODO: This needs to check fi its in range
                 else if (hit.collider.tag == "Unit")
                 {
                     Unit Target = hit.collider.GetComponent<Unit>();
-                    //print($"hit a unit: {Target.unitData.characterName}");
-                    OnAttack(Target);
+                    if (Target.unitData.Allied == false)
+                        if (AttackDebounce == false)
+                        {
+                            AttackDebounce = true;
+                            OnAttack(Target);
+                        }
                 }
             }
         }
     }
 
-    void RotateTowardsTarget(GameObject Source, GameObject Target) {
-        
+    IEnumerator RotateToTarget(Transform target)
+    {
+        Vector3 dir = target.position - transform.position;
+        dir.y = 0;
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+
+        while (Quaternion.Angle(transform.rotation, targetRot) > 0.1f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 13f);
+            yield return null;
+        }
+
+        transform.rotation = targetRot; 
     }
 
-    void OnAttack(Unit target/*Action act = Basic()*/)
+
+    public void OnAttack(Unit target)
     {
+        StartCoroutine(HandleAttack(target));
+    }
+
+    private IEnumerator HandleAttack(Unit target)
+    {
+
+        UIManagerScript.NoToolTipState();
+
+        yield return StartCoroutine(RotateToTarget(target.transform));
+
         animator.Play("Attack");
+
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animationLength * 0.4f);
+
         float DamageValue = unitData.RightHand.baseDamage;
         target.unitData.currentHealth -= DamageValue;
+
+        UIManagerScript.DisplayDamageNumber(DamageValue, target);
+        target.animator.Play("HitReaction");
+
+        if (classData.className == "Monk")
+        {
+            yield return new WaitForSeconds(.7f);
+            float DamageValue2 = unitData.LeftHand.baseDamage + 1.0f;
+            target.unitData.currentHealth -= DamageValue2;
+            target.animator.Play("HitReaction", 0, 0f);
+
+            UIManagerScript.DisplayDamageNumber(DamageValue2, target);
+        }
+
         if (target.unitData.currentHealth <= 0f)
         {
             target.unitData.Dead = true;
-            UIManagerScript.tempCombatLogText.SetText($"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!\n\n<b>{target.unitData.characterName} has died!</b>");
-
+            target.animator.Play("Death");
+            UIManagerScript.UpdateTurnOrderList(TurnOrderScript.ReturnCurrentQueue());
+            UIManagerScript.tempCombatLogText.SetText(
+                $"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!\n\n<b>{target.unitData.characterName} has died!</b>");
         }
+        else
+        {
+            UIManagerScript.tempCombatLogText.SetText(
+                $"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!");
+        }
+
         unitData.attackedThisTurn = true;
         clickcheckA = true;
-        UIManagerScript.tempCombatLogText.SetText($"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!");
         HandleStateTransition(UnitState.Idle);
         UIManagerScript.attackButton.interactable = !unitData.attackedThisTurn;
-
     }
 
     void Wait()

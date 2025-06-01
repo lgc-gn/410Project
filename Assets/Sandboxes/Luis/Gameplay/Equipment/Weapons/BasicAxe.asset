@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 8ef6228297d28294b878f192bcee7e1d, type: 2}
   - {fileID: 7400000, guid: 58dcf5bcd659e4a48947c0c651406044, type: 2}
   weaponAnimations: {fileID: 0}
-  baseDamage: 16
+  baseDamage: 1000
   critChance: 5
   critMultiplier: 1.2
   flatArmorPen: 0

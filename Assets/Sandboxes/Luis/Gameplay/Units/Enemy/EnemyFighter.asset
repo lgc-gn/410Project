@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Enemy 3
   Allied: 0
+  Dead: 0
   activeTurn: 0
   isMoving: 0
   movedThisTurn: 0
   attackedThisTurn: 0
-  Lord: 1
+  Lord: 0
   maxHealth: 120
   currentHealth: 120
   maxResource: 0

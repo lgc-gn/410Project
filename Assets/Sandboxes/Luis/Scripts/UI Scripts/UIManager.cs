@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public RectTransform unitInfoTransformDefault, actionMenuTransformDefault, toolTipTransformDefault; 
     public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText, toolTipText, tempCombatLogText;
     public Image classIcon, unitPortrait, resourceBar, hpBar, xpBar;
-    public GameObject actionMenu, unitEntryPrefab;
+    public GameObject actionMenu, unitEntryPrefab, dmgNumberPrefab;
     public Transform turnOrderPanel, actionMenuPanel;
 
     [Header("Action Menu Button")]
@@ -166,6 +166,12 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SmoothMoveActionUI("right", .15f));
     }
 
+    public void NoToolTipState()
+    {
+        StartCoroutine(DisplayToolTip("up", .1f, "..."));
+        StartCoroutine(SmoothMoveActionUI("left", .15f));
+    }
+
 
 
     public void ConfirmState()
@@ -182,15 +188,24 @@ public class UIManager : MonoBehaviour
 
         foreach (Unit unit in currentTurnOrder)
         {
-            GameObject entry = Instantiate(unitEntryPrefab, turnOrderPanel, false);
-            entry.GetComponent<Image>().color = unit.unitData.Allied ? allyColor : enemyColor;
-            entry.transform.Find("UnitName").GetComponent<TMP_Text>().SetText(unit.unitData.characterName);
-            entry.transform.Find("UnitClass").GetComponent<TMP_Text>().SetText($"Lvl. {unit.unitData.currentLevel} {unit.classData.className}");
-            entry.transform.Find("ClassIcon").GetComponent<Image>().sprite = unit.classData.classIcon;
+            if (unit.unitData.Dead == false)
+            {
+                GameObject entry = Instantiate(unitEntryPrefab, turnOrderPanel, false);
+                entry.GetComponent<Image>().color = unit.unitData.Allied ? allyColor : enemyColor;
+                entry.transform.Find("UnitName").GetComponent<TMP_Text>().SetText(unit.unitData.characterName);
+                entry.transform.Find("UnitClass").GetComponent<TMP_Text>().SetText($"Lvl. {unit.unitData.currentLevel} {unit.classData.className}");
+                entry.transform.Find("ClassIcon").GetComponent<Image>().sprite = unit.classData.classIcon;
+            }
 
         }
     }
 
+    public void DisplayDamageNumber(float DamageValue, Unit Target)
+    {
+        GameObject DamageNumber = Instantiate(dmgNumberPrefab, Target.transform.position, Quaternion.identity, Target.transform);
+        DamageNumber.GetComponent<TextMeshPro>().SetText($"{DamageValue}");
+
+    }
 
     public void ShowUnitInfo(Unit unit)
     {

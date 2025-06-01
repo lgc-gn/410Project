@@ -135,7 +135,7 @@ public class TurnOrderHandler : MonoBehaviour
                 {
                     unitList.Remove(obj);
                 }
-                if (!unit.unitData.Dead)
+                if (unit.unitData.Dead == false)
                     {
                         unitList.Add(obj);
                     }
@@ -208,13 +208,12 @@ public class TurnOrderHandler : MonoBehaviour
 
         record.RecordPositions(unitList);
 
-        //Debug.Log("Finished turn for: " + turnUnit.name);
         turnUnit.EndTurn();
         upkeep.UpdateTileOccupancy();
 
         RequeueUnit();
 
-        //DEBUGReturnQueue(turnOrderQueue);
+        print(ReturnQueue(ReturnCurrentQueue()));
 
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());

@@ -22,7 +22,7 @@ public class UnitData : ScriptableObject
     public string characterName; // name of the character
 
     public bool Allied;
-    public bool Dead;
+    public bool Dead = false;
 
     [Header("Turn Info")]
     public bool activeTurn = false;
@@ -58,6 +58,8 @@ public class UnitData : ScriptableObject
     [Header("Equipment")]
     public WeaponData RightHand;
     public WeaponData LeftHand;
+
+    public WeaponData QuiverSlot; // 
 
     public ArmorData HeadPiece;
     public ArmorData Armor;
