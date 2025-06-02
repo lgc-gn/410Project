@@ -7,6 +7,7 @@ public class TurnOrderHandler : MonoBehaviour
 {
     public Queue<Unit> turnOrderQueue = new Queue<Unit>();
     public List<GameObject> unitList = new List<GameObject>();  // Use List instead of array for dynamic additions
+    public List<Tile> tileList = new List<Tile>();
 
     public Unit turnUnit;
     public UnitCursor cursor;
@@ -28,6 +29,13 @@ public class TurnOrderHandler : MonoBehaviour
         CreateAQueue();
         record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
         upkeep.Start();
+
+        GameObject[] tileObjectList = GameObject.FindGameObjectsWithTag("Tile");
+
+        foreach (GameObject til in tileObjectList)
+        {
+            tileList.Add(til.GetComponent<Tile>());
+        }
 
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
@@ -154,6 +162,14 @@ public class TurnOrderHandler : MonoBehaviour
         }
     }
 
+    void TileClear()
+    {
+        foreach (Tile til in tileList)
+        {
+            til.Reset();
+        }
+    }
+
     // Check if turn is done
     public bool IsTurnDone() => turnOrderQueue.Count <= 0;
 
@@ -209,6 +225,7 @@ public class TurnOrderHandler : MonoBehaviour
         record.RecordPositions(unitList);
 
         turnUnit.EndTurn();
+        TileClear();
         upkeep.UpdateTileOccupancy();
 
         RequeueUnit();

@@ -70,6 +70,7 @@ public class EnemyUnit : Unit
                 FindNearTarg();
             }
         }
+        //Attacking();
     }
 
     override public void HandleStateTransition(UnitState newState)
@@ -139,6 +140,7 @@ public class EnemyUnit : Unit
             //Debug.Log("looping tiles");
             if (tili.occupied && !tili.occupied.NMEtag)
             {
+                OnAttack(tili.occupied);
                 //Debug.Log("enemy dealt dmg");
                 this.EndTurn();
             }

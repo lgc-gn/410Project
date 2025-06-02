@@ -18,6 +18,16 @@ public class TileUpkeep : MonoBehaviour
                     tileList.Add(t);
             }
         }
+
+        foreach (Tile tild in tileList)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(tild.transform.position, Vector3.up, out hit, 1))
+            {
+                Unit uni = hit.collider.GetComponent<Unit>();
+                tild.occupied = uni;
+            }
+        }
     }
 
     /// <summary>

@@ -18,15 +18,22 @@ public class UIManager : MonoBehaviour
     public GameObject actionMenu, unitEntryPrefab, dmgNumberPrefab;
     public Transform turnOrderPanel, actionMenuPanel;
 
+    public GameObject[] cameras;  // Assign in Inspector
+    private int currentIndex = 0;
+
+    public GameObject ActionBoard;
     [Header("Action Menu Button")]
     public Button attackButton;
     public Button moveButton;
     public Button statusButton;
     public Button classActionButton;
     public Button endTurnButton;
+    public Button camResetButton;
+
 
     [SerializeField] private Color enemyColor, allyColor;
     [SerializeField] private Sprite enemySprite, allySprite;
+
 
     private enum WarningType
     {
@@ -49,7 +56,10 @@ public class UIManager : MonoBehaviour
         moveButton.onClick.AddListener(OnMoveClicked);
         statusButton.onClick.AddListener(OnStatusClicked);
         classActionButton.onClick.AddListener(OnClassActionClicked);
+        camResetButton.onClick.AddListener(OnResetClicked);
         endTurnButton.onClick.AddListener(OnEndTurnClicked);
+
+        UpdateActiveCamera();
     }
 
     #region Player Button Input
@@ -80,6 +90,40 @@ public class UIManager : MonoBehaviour
     void OnClassActionClicked()
     {
 
+    }
+
+    void OnResetClicked()
+    {
+        cameras[currentIndex].SetActive(false);
+        currentIndex = (currentIndex + 1) % cameras.Length;
+        cameras[currentIndex].SetActive(true);
+
+        if (currentIndex % cameras.Length == 0)
+        {
+            ActionBoard.SetActive(true);
+        }
+        else
+        {
+            ActionBoard.SetActive(false);
+        }
+
+        Debug.Log("Switched to camera: " + cameras[currentIndex].name);
+    }
+
+    void UpdateActiveCamera()
+    {
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            bool shouldBeActive = (i == currentIndex);
+            cameras[i].SetActive(shouldBeActive);
+
+            // Optional: Also ensure Camera component is enabled
+            Camera cam = cameras[i].GetComponent<Camera>();
+            if (cam != null)
+            {
+                cam.enabled = shouldBeActive;
+            }
+        }
     }
 
     void OnEndTurnClicked()
