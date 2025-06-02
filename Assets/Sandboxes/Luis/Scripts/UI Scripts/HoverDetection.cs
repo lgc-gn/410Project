@@ -1,73 +1,71 @@
 using UnityEngine;
 
-public class HoverDetector : MonoBehaviour
+public class HoverDetection : MonoBehaviour
 {
-    //[SerializeField] private Unit lastHoveredUnit;
+    private GameObject currentHoveredObject;
+    public UIManager UI;
+    private bool hoverState;
 
-    //private void Start()
-    //{
-    //    private Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //    private RaycastHit hit;
-    //}
+    void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-    //void Update()
-    //{
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObject = hit.collider.gameObject;
 
-    //}
+            if (hitObject.GetComponent<Unit>() != null)
+            {
+                if (hitObject != currentHoveredObject)
+                {
+                    if (currentHoveredObject != null)
+                    {
+                        Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
+                        hoverState = false;
 
-//    void HoverDetect()
-//    {
+                    }
+                    currentHoveredObject = hitObject;
+                }
 
+                // Log every frame while hovering the same unit
+                Debug.Log("Mouse is over " + currentHoveredObject.name);
+                hoverState = true;
+                AdjStats(currentHoveredObject.GetComponent<Unit>());
+            }
+            else
+            {
+                if (currentHoveredObject != null)
+                {
+                    Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
+                    currentHoveredObject = null;
+                    hoverState = false;
+                }
+            }
+        }
+        else
+        {
+            if (currentHoveredObject != null)
+            {
+                Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
+                currentHoveredObject = null;
+                hoverState = false;
+            }
+        }
+    }
 
-//        if (Physics.Raycast(ray, out hit))
-//        {
-
-//            if (hit.collider.CompareTag("Unit"))
-//            {
-//                Unit unit = hit.collider.GetComponent<Unit>();
-//                if (unit != null)
-//                {
-
-//                    if (unit != lastHoveredUnit)
-//                    {
-//                        lastHoveredUnit = unit;
-//                        lastHoveredUnit.animator.SetBool("isSelected", true);
-
-//                        UIManager.Instance.ShowUnitInfo(unit);
-//                    }
-
-
-//                    if (Input.GetMouseButtonDown(0))
-//                    {
-//                        OnUnitClicked(unit);
-//                    }
-//                }
-//            }
-//            else
-//            {
-//                ClearHover();
-//            }
-//        }
-//        else
-//        {
-//            ClearHover();
-//        }
-//    }
-
-//    void OnUnitClicked(Unit unit)
-//    {
-//        //Debug.Log($"Unit clicked: {unit.unitData.characterName}");
-
-//    }
-
-//    void ClearHover()
-//    {
-//        if (lastHoveredUnit != null)
-//        {
-//            lastHoveredUnit.animator.SetBool("isSelected", false);
-
-//            lastHoveredUnit = null;
-//            UIManager.Instance.HideUnitInfo();
-//        }
-//    }
+    void AdjStats(Unit uni)
+    {
+        if (!hoverState)
+        {
+            UI.StatsBoard.SetActive(false);
+        }
+        else
+        {
+            UI.StatsBoard.SetActive(true);
+            UI.ShowUnitInfo(uni);
+        }
+    }
 }
+
+

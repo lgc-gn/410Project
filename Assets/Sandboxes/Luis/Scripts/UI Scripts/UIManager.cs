@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public TurnOrderHandler TurnOrderScript;
+    public bool CamState=true;
+
 
     public Canvas playerHUD;
     public RectTransform unitInfoTransformDefault, actionMenuTransformDefault, toolTipTransformDefault; 
@@ -22,6 +24,7 @@ public class UIManager : MonoBehaviour
     private int currentIndex = 0;
 
     public GameObject ActionBoard;
+    public GameObject StatsBoard;
     [Header("Action Menu Button")]
     public Button attackButton;
     public Button moveButton;
@@ -77,8 +80,6 @@ public class UIManager : MonoBehaviour
         Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
         if (currentUnit.unitData.Allied == true)
             currentUnit.HandleStateTransition(Unit.UnitState.Move_Check);
-
-
     }
 
     void OnStatusClicked()
@@ -95,19 +96,26 @@ public class UIManager : MonoBehaviour
     void OnResetClicked()
     {
         cameras[currentIndex].SetActive(false);
+        CamState = !CamState;
         currentIndex = (currentIndex + 1) % cameras.Length;
         cameras[currentIndex].SetActive(true);
+        HoverDetection hover = this.GetComponent<HoverDetection>();
+        hover.enabled = false;
 
         if (currentIndex % cameras.Length == 0)
         {
             ActionBoard.SetActive(true);
+            StatsBoard.SetActive(true);
+            hover.enabled = false;
         }
         else
         {
             ActionBoard.SetActive(false);
+            hover.enabled = true;
         }
 
         Debug.Log("Switched to camera: " + cameras[currentIndex].name);
+        Debug.Log(currentIndex);
     }
 
     void UpdateActiveCamera()
