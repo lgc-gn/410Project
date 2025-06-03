@@ -6,7 +6,7 @@ public class DamageNumberHandler : MonoBehaviour
     public float destroyTime = 1.5f;
     public float floatSpeed = .1f;
     public Vector3 offset;
-    public Vector3 randomize;
+    public Vector3 randomize = new Vector3(2,0,0);
 
     private TextMeshPro textMesh;
     private Color originalColor;

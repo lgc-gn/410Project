@@ -17,7 +17,7 @@ MonoBehaviour:
   Dead: 0
   activeTurn: 1
   isMoving: 0
-  movedThisTurn: 1
+  movedThisTurn: 0
   attackedThisTurn: 1
   Lord: 0
   maxHealth: 100
@@ -27,8 +27,8 @@ MonoBehaviour:
   currentLevel: 1
   xpNeeded: 100
   xpCurrent: 0
-  Initiative: 10
-  moveDistance: 6
+  Initiative: 20
+  moveDistance: 12
   moveSpeed: 5
   attackRange: 1
   strengthStat: 10

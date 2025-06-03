@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     public Canvas playerHUD;
     public RectTransform unitInfoTransformDefault, actionMenuTransformDefault, toolTipTransformDefault; 
-    public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText, toolTipText, tempCombatLogText;
+    public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText, toolTipText;
     public Image classIcon, unitPortrait, resourceBar, hpBar, xpBar;
     public GameObject actionMenu, unitEntryPrefab, dmgNumberPrefab;
     public Transform turnOrderPanel, actionMenuPanel;
@@ -221,7 +221,7 @@ public class UIManager : MonoBehaviour
     public void NoToolTipState()
     {
         StartCoroutine(DisplayToolTip("up", .1f, "..."));
-        StartCoroutine(SmoothMoveActionUI("left", .15f));
+        StartCoroutine(SmoothMoveActionUI("right", .15f));
     }
 
 

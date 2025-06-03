@@ -21,6 +21,7 @@ MonoBehaviour:
   gripRotationOffset: {x: 0, y: 0, z: 0}
   animations: []
   weaponAnimations: {fileID: 0}
+  OnHitParticle: {fileID: 7226583673155636401, guid: 003aabf5289d6c146ae9e3a99b41f1e6, type: 3}
   baseDamage: 9
   critChance: 5
   critMultiplier: 1.2

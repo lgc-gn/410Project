@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using UnityEditor.ShaderGraph.Internal;
+using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 /*
 
 UNIT Method Script
@@ -17,6 +19,8 @@ public class Unit : TacticalUnitBase
     public bool clickcheckM;
     public bool clickcheckA;
 
+    private AttackStyle unitAttackStyle;
+
     [Header("State Machine")]
     public bool hasMoved;
     public bool hasAttack;
@@ -30,6 +34,8 @@ public class Unit : TacticalUnitBase
     public Transform leftHandTransform;
     public Transform backTransform;
 
+    [Header("Status Effects")]
+    [SerializeField] private List<ActiveStatusEffect> activeEffects = new();
 
 
     private bool isHandlingMove = false;
@@ -50,9 +56,16 @@ public class Unit : TacticalUnitBase
         Attack_Check,
         Move_Check,
         Attack_Confirm,
+        Channeling,
         Moving,
         Dead,
         Waiting_For_Input
+    }
+
+    public enum AttackStyle
+    {
+        Standard,
+        Monk
     }
 
     #region Wake up functions
@@ -114,22 +127,22 @@ public class Unit : TacticalUnitBase
 
     }
 
-    private void Update()
-    {
-        if (unitData.RightHand != null)
-        {
-            WeaponData equippedRightWeapon = unitData.RightHand;
-            currentRightWeaponInstance.transform.localPosition = equippedRightWeapon.gripPositionOffset;
-            currentRightWeaponInstance.transform.localEulerAngles = equippedRightWeapon.gripRotationOffset;
-        }
-        if (unitData.LeftHand != null)
-        {
-            WeaponData equippedLeftWeapon = unitData.RightHand;
-            currentLeftWeaponInstance.transform.localPosition = equippedLeftWeapon.gripPositionOffset;
-            currentLeftWeaponInstance.transform.localEulerAngles = equippedLeftWeapon.gripRotationOffset;
+    //private void Update()
+    //{
+    //    if (unitData.RightHand != null)
+    //    {
+    //        WeaponData equippedRightWeapon = unitData.RightHand;
+    //        currentRightWeaponInstance.transform.localPosition = equippedRightWeapon.gripPositionOffset;
+    //        currentRightWeaponInstance.transform.localEulerAngles = equippedRightWeapon.gripRotationOffset;
+    //    }
+    //    if (unitData.LeftHand != null)
+    //    {
+    //        WeaponData equippedLeftWeapon = unitData.RightHand;
+    //        currentLeftWeaponInstance.transform.localPosition = equippedLeftWeapon.gripPositionOffset;
+    //        currentLeftWeaponInstance.transform.localEulerAngles = equippedLeftWeapon.gripRotationOffset;
 
-        }
-    }
+    //    }
+    //}
 
     void Start()
     {
@@ -144,9 +157,20 @@ public class Unit : TacticalUnitBase
         {
             Debug.LogError("UIManager not found on GameManager!");
         }
+
+        if (classData.className == "Monk")
+        {
+            unitAttackStyle = AttackStyle.Monk;
+        }
+        else
+        {
+            unitAttackStyle = AttackStyle.Standard;
+        }
     }
 
     #endregion
+
+    #region Turn Handlers
 
     public void BeginTurn()
     {
@@ -174,59 +198,7 @@ public class Unit : TacticalUnitBase
         animator.SetBool("isMoving", false);
     }
 
-    public virtual void HandleStateTransition(UnitState newState)
-    {
-        if (newState == UnitState.Idle)
-        {
-            currentState = newState;
-
-            AttackDebounce = false;
-            movementController.RemoveSelcTiles();
-
-            UIManagerScript.IdleUIState();
-            clickcheckM = false;
-            attack_state = false;
-            clickcheckA = false;
-        }
-        else if (newState == UnitState.Attack_Check)
-        {
-
-            if (unitData.attackedThisTurn == true)
-            {
-                return;
-            }
-
-            currentState = newState;
-
-            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on any <b><color=red>RED</color></b> tile {unitData.name} should attack towards\n\npress <b>ESC</b> to cancel"));
-            UIManagerScript.AorMUIState();
-            HandleActionCommand();
-        }
-        else if (newState == UnitState.Move_Check)
-        {
-            if (unitData.movedThisTurn == true)
-            {
-                return;
-            }
-
-            currentState = newState;
-
-            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on any <b><color=#43A7CC>BLUE</color></b> tile {unitData.name} should move towards\n\npress <b>ESC</b> to cancel"));
-            UIManagerScript.AorMUIState();
-            HandleMoveCommand();
-        }
-        else if (newState == UnitState.Attack_Confirm)
-        {
-            if (unitData.attackedThisTurn == true)
-            {
-                return;
-            }
-
-            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on the target again to confirm attack\n\npress <b>ESC</b> to cancel"));
-            UIManagerScript.AorMUIState();
-
-        }
-    }
+    #endregion
 
     #region Handlers
 
@@ -291,7 +263,6 @@ public class Unit : TacticalUnitBase
         // Cleanup
         attack_state = false;
         isHandlingAction = false;
-        Debug.Log("Action completed.");
     }
 
 
@@ -352,6 +323,7 @@ public class Unit : TacticalUnitBase
 
     void CheckMouseMov()
     {
+
         if (Input.GetMouseButtonUp(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -359,12 +331,14 @@ public class Unit : TacticalUnitBase
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag == "Tile")
+                if (hit.collider.CompareTag("Tile"))
                 {
                     Tile t = hit.collider.GetComponent<Tile>();
                     if (t.selectable&&t.walk)
                     {
                         movementController.MoveToTile(t);
+                        UIManagerScript.NoToolTipState();
+
                     }
                 }
             }
@@ -388,7 +362,7 @@ public class Unit : TacticalUnitBase
                     if (targetTile.selectable && targetTile.occupied != null)
                     {
                         //print(t.occupied.unitData.name);
-                        OnAttack(targetTile.occupied);
+                        OnAttack(targetTile.occupied, unitAttackStyle);
                         //HandleStateTransition(UnitState.Attack_Confirm);
                         //clickcheckA = true;
                         //unitData.isMoving = false;
@@ -398,11 +372,11 @@ public class Unit : TacticalUnitBase
                 else if (hit.collider.tag == "Unit")
                 {
                     Unit Target = hit.collider.GetComponent<Unit>();
-                    if (Target.unitData.Allied == false)
+                    if (Target.unitData.Allied == false && Target.unitData.Dead == false)
                         if (AttackDebounce == false)
                         {
                             AttackDebounce = true;
-                            OnAttack(Target);
+                            OnAttack(Target, unitAttackStyle);
                         }
                 }
             }
@@ -425,12 +399,14 @@ public class Unit : TacticalUnitBase
     }
 
 
-    public void OnAttack(Unit target)
+    public void OnAttack(Unit target, AttackStyle style)
     {
-        StartCoroutine(HandleAttack(target));
+
+        StartCoroutine(HandleAttack(target, style));
+
     }
 
-    private IEnumerator HandleAttack(Unit target)
+    public IEnumerator HandleAttack(Unit target, AttackStyle style)
     {
 
         UIManagerScript.NoToolTipState();
@@ -439,6 +415,8 @@ public class Unit : TacticalUnitBase
 
         animator.Play("Attack");
 
+        Vector3 MidPoint = (rightHandTransform.position + target.transform.position) * 0.5f;
+
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(animationLength * 0.4f);
 
@@ -446,30 +424,44 @@ public class Unit : TacticalUnitBase
         target.unitData.currentHealth -= DamageValue;
 
         UIManagerScript.DisplayDamageNumber(DamageValue, target);
+
+        if (unitData.RightHand.OnHitParticle != null)
+        {
+            GameObject effectInstance = Instantiate(unitData.RightHand.OnHitParticle, MidPoint, Quaternion.identity);
+            ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+            ps.Play();
+            Destroy(effectInstance, ps.main.duration + ps.main.startLifetime.constantMax);
+        }
+
         target.animator.Play("HitReaction");
 
-        if (classData.className == "Monk")
+        #region Monk specific
+        if (style == AttackStyle.Monk)
         {
             yield return new WaitForSeconds(.7f);
             float DamageValue2 = unitData.LeftHand.baseDamage + 1.0f;
             target.unitData.currentHealth -= DamageValue2;
             target.animator.Play("HitReaction", 0, 0f);
 
+            MidPoint = (leftHandTransform.position + target.transform.position) * 0.5f;
+
+            if (unitData.LeftHand.OnHitParticle != null)
+            {
+                GameObject effectInstance = Instantiate(unitData.RightHand.OnHitParticle, MidPoint, Quaternion.identity);
+                ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+                ps.Play();
+                Destroy(effectInstance, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+
             UIManagerScript.DisplayDamageNumber(DamageValue2, target);
         }
+        #endregion
 
         if (target.unitData.currentHealth <= 0f)
         {
             target.unitData.Dead = true;
             target.animator.Play("Death");
             UIManagerScript.UpdateTurnOrderList(TurnOrderScript.ReturnCurrentQueue());
-            UIManagerScript.tempCombatLogText.SetText(
-                $"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!\n\n<b>{target.unitData.characterName} has died!</b>");
-        }
-        else
-        {
-            UIManagerScript.tempCombatLogText.SetText(
-                $"{unitData.characterName} hit {target.unitData.characterName} for {DamageValue} dmg!");
         }
 
         unitData.attackedThisTurn = true;
@@ -478,16 +470,70 @@ public class Unit : TacticalUnitBase
         UIManagerScript.attackButton.interactable = !unitData.attackedThisTurn;
     }
 
-    void Wait()
-    {
-        unitData.activeTurn = false;
-    }
+    #endregion
 
-  /*  void CheckAction()
+
+    #region State Machine
+
+    public virtual void HandleStateTransition(UnitState newState)
     {
-        
-    }*/
+        if (newState == UnitState.Idle)
+        {
+            currentState = newState;
+
+            AttackDebounce = false;
+            movementController.RemoveSelcTiles();
+
+            UIManagerScript.IdleUIState();
+            clickcheckM = false;
+            attack_state = false;
+            clickcheckA = false;
+        }
+        else if (newState == UnitState.Attack_Check)
+        {
+
+            if (unitData.attackedThisTurn == true)
+            {
+                return;
+            }
+
+            currentState = newState;
+
+            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on any <b><color=red>RED</color></b> tile {unitData.name} should attack towards\n\npress <b>ESC</b> to cancel"));
+            UIManagerScript.AorMUIState();
+            HandleActionCommand();
+        }
+        else if (newState == UnitState.Move_Check)
+        {
+            if (unitData.movedThisTurn == true)
+            {
+                return;
+            }
+
+            currentState = newState;
+
+            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on any <b><color=#43A7CC>BLUE</color></b> tile {unitData.name} should move towards\n\npress <b>ESC</b> to cancel"));
+            UIManagerScript.AorMUIState();
+            HandleMoveCommand();
+        }
+        else if (newState == UnitState.Attack_Confirm)
+        {
+            if (unitData.attackedThisTurn == true)
+            {
+                return;
+            }
+
+            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on the target again to confirm attack\n\npress <b>ESC</b> to cancel"));
+            UIManagerScript.AorMUIState();
+
+        }
+    }
 
     #endregion
 
+    #region Status Effects
+
+    
+
+    #endregion
 }

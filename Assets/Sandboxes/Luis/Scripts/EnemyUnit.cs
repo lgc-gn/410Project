@@ -12,6 +12,8 @@ public class EnemyUnit : Unit
     GameObject target2;
     public List<Unit> toIgnore = new List<Unit>();
 
+    private AttackStyle enemyAttackStyle;
+
     private void Awake()
     {
 
@@ -23,9 +25,12 @@ public class EnemyUnit : Unit
         InitalizeStats();
         InitializeWeapon();
         NMEtag = true;
+
+        if (classData.className == "Monk")
+            enemyAttackStyle = AttackStyle.Monk;
+        else
+            enemyAttackStyle = AttackStyle.Standard;
     }
-
-
 
 
     override public void HandleMoveCommand()
@@ -132,21 +137,29 @@ public class EnemyUnit : Unit
         Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
     }
 
-//ToDo: animation here maybe?
-    public void Attacking()
+    public IEnumerator EnemyAttack(Unit target, AttackStyle style)
+    {
+
+        yield return StartCoroutine(HandleAttack(target, style));
+
+    }
+
+
+    //ToDo: animation here maybe?
+    public IEnumerator Attacking()
     {
         foreach (Tile tili in selectTiles)
         {
-            //Debug.Log("looping tiles");
             if (tili.occupied && !tili.occupied.NMEtag)
             {
-                OnAttack(tili.occupied);
-                //Debug.Log("enemy dealt dmg");
+                yield return StartCoroutine(EnemyAttack(tili.occupied, enemyAttackStyle));
                 this.EndTurn();
+                yield break; 
             }
         }
-        this.EndTurn();
+        this.EndTurn(); 
     }
+
 
 
     #endregion

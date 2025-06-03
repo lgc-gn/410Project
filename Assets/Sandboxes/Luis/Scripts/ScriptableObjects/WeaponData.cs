@@ -32,6 +32,9 @@ public class WeaponData : ScriptableObject
     public List<AnimationClip> animations;
     public Animator weaponAnimations;
 
+    [Header("Effects")]
+    public GameObject OnHitParticle;
+
     [Header("Combat Data")]
     public float baseDamage;
     public float critChance = 5f;
