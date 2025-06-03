@@ -14,8 +14,6 @@ public class EnemyUnit : Unit
 
     private AttackStyle enemyAttackStyle;
 
-    private bool isReadyToAttack = false;
-    private bool hasAttacked = false;
     private bool isMovingToTarget = false;
     private bool isAttacking = false;
     private bool hasCompletedTurn = false;

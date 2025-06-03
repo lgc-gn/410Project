@@ -419,7 +419,12 @@ public class Unit : TacticalUnitBase
         Vector3 MidPoint = (rightHandTransform.position + target.transform.position) * 0.5f;
 
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(animationLength * 0.4f);
+
+        if (style == AttackStyle.Rogue)
+                yield return new WaitForSeconds(animationLength * 0.7f);
+        else
+            yield return new WaitForSeconds(animationLength * 0.4f);
+
 
         float DamageValue = unitData.RightHand.baseDamage;
         target.unitData.currentHealth -= DamageValue;
@@ -462,7 +467,7 @@ public class Unit : TacticalUnitBase
         if (style == AttackStyle.Rogue)
         {
             print("second animation");
-            yield return new WaitForSeconds(1.7f);
+            yield return new WaitForSeconds(1.6f);
             float DamageValue2 = unitData.LeftHand.baseDamage + 1.0f;
             target.unitData.currentHealth -= DamageValue2;
             target.animator.Play("HitReaction", 0, 0f);
