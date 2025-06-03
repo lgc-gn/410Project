@@ -65,7 +65,8 @@ public class Unit : TacticalUnitBase
     public enum AttackStyle
     {
         Standard,
-        Monk
+        Monk,
+        Rogue
     }
 
     #region Wake up functions
@@ -172,7 +173,7 @@ public class Unit : TacticalUnitBase
 
     #region Turn Handlers
 
-    public void BeginTurn()
+    public virtual void BeginTurn()
     {
 
         unitData.activeTurn = true;
@@ -190,7 +191,7 @@ public class Unit : TacticalUnitBase
 
     }
 
-    public void EndTurn()
+    public virtual void EndTurn()
     {
 
         unitData.activeTurn = false;
@@ -439,6 +440,29 @@ public class Unit : TacticalUnitBase
         if (style == AttackStyle.Monk)
         {
             yield return new WaitForSeconds(.7f);
+            float DamageValue2 = unitData.LeftHand.baseDamage + 1.0f;
+            target.unitData.currentHealth -= DamageValue2;
+            target.animator.Play("HitReaction", 0, 0f);
+
+            MidPoint = (leftHandTransform.position + target.transform.position) * 0.5f;
+
+            if (unitData.LeftHand.OnHitParticle != null)
+            {
+                GameObject effectInstance = Instantiate(unitData.RightHand.OnHitParticle, MidPoint, Quaternion.identity);
+                ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+                ps.Play();
+                Destroy(effectInstance, ps.main.duration + ps.main.startLifetime.constantMax);
+            }
+
+            UIManagerScript.DisplayDamageNumber(DamageValue2, target);
+        }
+        #endregion
+
+        #region Rogue specific
+        if (style == AttackStyle.Rogue)
+        {
+            print("second animation");
+            yield return new WaitForSeconds(1.7f);
             float DamageValue2 = unitData.LeftHand.baseDamage + 1.0f;
             target.unitData.currentHealth -= DamageValue2;
             target.animator.Play("HitReaction", 0, 0f);
