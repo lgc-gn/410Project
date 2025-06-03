@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 12ccb828343c3405fb94289774b51aad, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -16865,6 +16865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnOrderScript: {fileID: 1551845473}
+  CamState: 1
   playerHUD: {fileID: 1363010309}
   unitInfoTransformDefault: {fileID: 305338960}
   actionMenuTransformDefault: {fileID: 1656207439}
@@ -16878,7 +16879,6 @@ MonoBehaviour:
   lvlText: {fileID: 0}
   affiliationText: {fileID: 1528124159}
   toolTipText: {fileID: 1197733768}
-  tempCombatLogText: {fileID: 1529443919}
   classIcon: {fileID: 1085992688}
   unitPortrait: {fileID: 1913657682}
   resourceBar: {fileID: 825985455}
@@ -16893,6 +16893,7 @@ MonoBehaviour:
   - {fileID: 218173747}
   - {fileID: 1032593873}
   ActionBoard: {fileID: 1656207438}
+  StatsBoard: {fileID: 0}
   attackButton: {fileID: 839908966}
   moveButton: {fileID: 525013699}
   statusButton: {fileID: 1022547593}
@@ -16915,6 +16916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c359ade926eb1a34dba14c2cc6a3092f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
 --- !u!114 &1551845473
 MonoBehaviour:
   m_ObjectHideFlags: 0
