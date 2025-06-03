@@ -490,6 +490,16 @@ public class Unit : TacticalUnitBase
         {
             target.unitData.Dead = true;
             target.animator.Play("Death");
+            Tile tileUnderneath = null;
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f))
+            {
+                tileUnderneath = hit.collider.GetComponent<Tile>();
+                if (tileUnderneath != null && tileUnderneath.occupied == this)
+                {
+                    tileUnderneath.occupied = null;
+                }
+            }
             UIManagerScript.UpdateTurnOrderList(TurnOrderScript.ReturnCurrentQueue());
         }
 

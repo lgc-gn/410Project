@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public Transform turnOrderPanel, actionMenuPanel;
 
     public GameObject[] cameras;  // Assign in Inspector
+    public GameObject primaryCam;
     private int currentIndex = 0;
 
     public GameObject ActionBoard;
@@ -90,28 +91,34 @@ public class UIManager : MonoBehaviour
 
     void OnClassActionClicked()
     {
-
+        Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
+        AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
+        if (currentUnit.unitData.Allied == true)
+        {
+            AOEhover.currUnit = currentUnit;
+        }
     }
 
-    void OnResetClicked()
+    public void OnResetClicked()
     {
         cameras[currentIndex].SetActive(false);
         CamState = !CamState;
         currentIndex = (currentIndex + 1) % cameras.Length;
         cameras[currentIndex].SetActive(true);
+        primaryCam = cameras[currentIndex];
         HoverDetection hover = this.GetComponent<HoverDetection>();
-        hover.enabled = false;
+        //hover.enabled = false;
 
         if (currentIndex % cameras.Length == 0)
         {
             ActionBoard.SetActive(true);
             StatsBoard.SetActive(true);
-            hover.enabled = false;
+            //hover.enabled = false;
         }
         else
         {
             ActionBoard.SetActive(false);
-            hover.enabled = true;
+            //hover.enabled = true;
         }
 
         Debug.Log("Switched to camera: " + cameras[currentIndex].name);

@@ -65,7 +65,7 @@ public class TurnOrderHandler : MonoBehaviour
         Unit current = turnOrderQueue.Peek();
         cursor.SetActiveUnit(current);
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Y))
         {
             record.UndoMove(turnUnit);
         }
@@ -79,6 +79,12 @@ public class TurnOrderHandler : MonoBehaviour
         {
             CheckWinConditions();
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            UIManagerScript.OnResetClicked();
+        }
+
 
         //foreach (GameObject obj in unitList)
         //{

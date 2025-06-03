@@ -99,11 +99,15 @@ public class LTacticsMove : MonoBehaviour
             t.selectable = true;
 
             // Categorize
-            if (t.occupied == null)
+            if (t.occupied == null || t.occupied.unitData.Dead)
+            {
                 Movable.Add(t);
+            }
             else
+            {
                 Attackable.Add(t);
-            t.selectable = true;
+            }
+            //t.selectable = true;
 
             // Expand neighbors if within range
             if (t.dist < range)
@@ -146,6 +150,16 @@ public class LTacticsMove : MonoBehaviour
             Vector3 target = t.transform.position;
             //top of cube calc
             target.y += halfHeight + t.GetComponent<Collider>().bounds.extents.y;
+
+            if (t.occupied != null && t.occupied.NMEtag && !t.occupied.unitData.Dead)
+            {
+                Debug.LogWarning("Blocked by enemy unit on tile: " + t.name);
+                currentUnit.unitData.isMoving = false;
+                currentAnimator.SetBool("isMoving", false);
+                currentUnit.clickcheckM = false;
+                currentUnit.hasMoved = true;
+                return;
+            }
 
             if (Vector3.Distance(transform.position, target) >= .05f)
             {
@@ -295,6 +309,11 @@ public class LTacticsMove : MonoBehaviour
                 }
                 else
                 {
+                    if (til.occupied != null && til.occupied.NMEtag && !til.occupied.unitData.Dead)
+                    {
+                        continue;
+                    }
+
                     til.par = t;
                     til.g = t.g + Vector3.Distance(til.transform.position, t.transform.position);
                     til.h = Vector3.Distance(til.transform.position, target.transform.position);

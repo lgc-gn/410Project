@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     public bool current=false;
     public bool target=false;
     public bool selectable=false;
+    public bool AOE = false;
 
     //general flags
 
@@ -82,31 +83,39 @@ public class Tile : MonoBehaviour
     {
         Color highlightColor = baseColor;
 
+        // Start with base colors for flags that can overlap:
         if (current)
         {
-            highlightColor = Color.Lerp(baseColor, Color.black, 0.5f); // 50% toward black
+            highlightColor = Color.Lerp(highlightColor, Color.black, 0.5f); // 50% toward black
         }
-        else if (target)
+        if (target)
         {
-            highlightColor = Color.Lerp(baseColor, Color.green, 0.5f);
+            highlightColor = Color.Lerp(highlightColor, Color.green, 0.5f);
         }
-        else if (selectable)
+        if (selectable)
         {
-            highlightColor = Color.Lerp(baseColor, newTileColor, 0.5f);
+            highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
+        }
+
+        // Then blend in AOE color on top if active (higher blend for visibility)
+        if (AOE)
+        {
+            highlightColor = Color.Lerp(highlightColor, Color.red, 0.5f);
         }
 
         GetComponent<Renderer>().material.color = highlightColor;
     }
 
+
     //clears position for new movement when selected
     public void Reset()
     {
         adjList.Clear();
-        current=false;
-        target=false;
-        selectable=false;
-        g=h=f=0;
-        par=null;
+        current = false;
+        target = false;
+        selectable = false;
+        g = h = f = 0;
+        par = null;
 
         //general flags
         //walk = true;
@@ -114,9 +123,16 @@ public class Tile : MonoBehaviour
         //BFS strategy
         visited = false;
         par = null;
-        dist=0;
+        dist = 0;
 
-        f=g=h=0;
+        f = g = h = 0;
+
+        AOEreset();
+    }
+
+    public void AOEreset()
+    {
+        AOE = false;
     }
     //checks neighboring tiles existing
     public void Neighbors(Tile target)

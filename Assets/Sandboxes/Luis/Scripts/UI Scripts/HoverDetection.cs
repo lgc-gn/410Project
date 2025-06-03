@@ -8,8 +8,15 @@ public class HoverDetection : MonoBehaviour
 
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        GameObject primary = UI.primaryCam;
+        if (!primary.TryGetComponent<Camera>(out Camera camera))
+        {
+            Debug.Log(primary.name);
+            primary = primary.transform.GetChild(0).gameObject;
+        }
+        Ray ray = primary.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
 
         if (Physics.Raycast(ray, out hit))
         {
