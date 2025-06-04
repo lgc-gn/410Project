@@ -41,11 +41,11 @@ public class TurnOrderHandler : MonoBehaviour
         UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
         CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
 
-        if (turnOrderQueue.Peek().unitData.Allied == true)
-        {
+        //if (turnOrderQueue.Peek().unitData.Allied == true)
+        //{
             CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
             //StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
-        }
+        //}
 
         ReturnQueue(turnOrderQueue);
 
@@ -204,18 +204,11 @@ public class TurnOrderHandler : MonoBehaviour
     {
 
         Unit currentUnit = turnOrderQueue.Peek();
-        //currentUnit.unitData.activeTurn = true;
 
-        if (currentUnit != null)
+        if (currentUnit != null )
         {
-            //Debug.Log("Starting turn for: " + currentUnit.name);
             turnUnit = currentUnit;
             currentUnit.BeginTurn();
-        }
-
-        else
-        {
-            Debug.LogWarning("No unit available for turn!");
         }
     }
 
@@ -236,7 +229,7 @@ public class TurnOrderHandler : MonoBehaviour
 
         RequeueUnit();
 
-        print(ReturnQueue(ReturnCurrentQueue()));
+        //print(ReturnQueue(ReturnCurrentQueue()));
 
         UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
         if (UIManagerScript.CamState)
@@ -244,17 +237,17 @@ public class TurnOrderHandler : MonoBehaviour
             UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
         }
 
-        if (turnOrderQueue.Peek().unitData.Allied == true)
-            {
+        //if (turnOrderQueue.Peek().unitData.Allied == true)
+        //    {
                 CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
                 //StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
-            }
+            //}
 
         if (turnOrderQueue.Count > 0)
         {
             Unit next = turnOrderQueue.Peek();
             turnUnit = next;
-            Debug.Log("Starting turn for: " + next.name);
+            //Debug.Log("Starting turn for: " + next.name);
             next.BeginTurn();
         }
         else

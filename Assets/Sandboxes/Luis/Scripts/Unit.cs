@@ -5,6 +5,7 @@ using System;
 using UnityEditor.ShaderGraph.Internal;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using System.Security.Cryptography;
 /*
 
 UNIT Method Script
@@ -19,13 +20,14 @@ public class Unit : TacticalUnitBase
     public bool clickcheckM;
     public bool clickcheckA;
 
-    private AttackStyle unitAttackStyle;
-
     [Header("State Machine")]
     public bool hasMoved;
     public bool hasAttack;
     public bool NMEtag = false;
     public bool attack_state;
+
+    private Unit selectedTarget;
+    private AttackStyle unitAttackStyle;
 
     private bool AttackDebounce;
 
@@ -56,6 +58,7 @@ public class Unit : TacticalUnitBase
         Attack_Check,
         Move_Check,
         Attack_Confirm,
+        Move_Confirm,
         Channeling,
         Moving,
         Dead,
@@ -145,6 +148,7 @@ public class Unit : TacticalUnitBase
     //    }
     //}
 
+
     void Start()
     {
         GameObject gm = GameObject.Find("GameManager");
@@ -183,6 +187,8 @@ public class Unit : TacticalUnitBase
         UIManagerScript.moveButton.interactable = !unitData.movedThisTurn;
         UIManagerScript.attackButton.interactable = !unitData.attackedThisTurn;
 
+        selectedTarget = null;
+        AttackDebounce = false;
 
         if (unitData.Allied == true)
             HandleStateTransition(UnitState.Idle);
@@ -193,12 +199,12 @@ public class Unit : TacticalUnitBase
 
     public virtual void EndTurn()
     {
-
         unitData.activeTurn = false;
         unitData.isMoving = false;
         animator.SetBool("isMoving", false);
-    }
 
+        UIManagerScript.confirmButton.onClick.RemoveAllListeners();
+    }
     #endregion
 
     #region Handlers
@@ -227,21 +233,29 @@ public class Unit : TacticalUnitBase
         isHandlingAction = true;
         attack_state = true;
         bool cancelledAction = false;
+        bool waitingForConfirm = false;
 
-        // Highlight attack range
         movementController.FindTilesBST(unitData.attackRange);
 
-        // Wait for player to select a target or press Escape
         while (!unitData.isMoving && attack_state)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log("Action cancelled by Escape key.");
                 cancelledAction = true;
                 break;
             }
 
-            CheckMouseAct();
+            if (!waitingForConfirm)
+            {
+                CheckMouseAct();
+
+                if (selectedTarget != null)
+                {
+
+                    waitingForConfirm = true;
+                }
+            }
+
             yield return null;
         }
 
@@ -250,21 +264,31 @@ public class Unit : TacticalUnitBase
             movementController.RemoveSelcTiles();
             attack_state = false;
             isHandlingAction = false;
+            selectedTarget = null;
             HandleStateTransition(UnitState.Idle);
             yield break;
         }
 
-        // Wait for movement to finish if the action requires it
-        while (unitData.isMoving)
+        while (waitingForConfirm)
         {
-            movementController.Move();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                selectedTarget = null;
+                HandleStateTransition(UnitState.Idle);
+                waitingForConfirm = false;
+            }
+
+            if (!attack_state)
+            {
+                waitingForConfirm = false;
+            }
+
             yield return null;
         }
 
-        // Cleanup
-        attack_state = false;
         isHandlingAction = false;
     }
+
 
 
     private IEnumerator HandleMoveRoutine()
@@ -287,7 +311,7 @@ public class Unit : TacticalUnitBase
                     break;
                 }
 
-                CheckMouseMov(); // Your method that checks if player clicked a tile
+                CheckMouseMov(); 
                 yield return null;
             }
         }
@@ -301,14 +325,12 @@ public class Unit : TacticalUnitBase
             yield break;
         }
 
-        // Player selected a tile; now wait for movement to complete
         while (unitData.isMoving)
         {
-            movementController.Move(); // Movement can't be cancelled once started
+            movementController.Move();
             yield return null;
         }
 
-        //unitData.movedThisTurn = true;
         isHandlingMove = false;
         clickcheckM = true;
         HandleStateTransition(UnitState.Idle);
@@ -317,7 +339,6 @@ public class Unit : TacticalUnitBase
 
 
     #endregion
-
 
     #region Helper Functions
 
@@ -356,33 +377,39 @@ public class Unit : TacticalUnitBase
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag == "Tile")
+
+                if (hit.collider.CompareTag("Tile"))
                 {
                     Tile targetTile = hit.collider.GetComponent<Tile>();
-                    //Debug.Log(t.occupied);
+
                     if (targetTile.selectable && targetTile.occupied != null)
                     {
-                        //print(t.occupied.unitData.name);
-                        OnAttack(targetTile.occupied, unitAttackStyle);
-                        //HandleStateTransition(UnitState.Attack_Confirm);
-                        //clickcheckA = true;
-                        //unitData.isMoving = false;
+                        selectedTarget = targetTile.occupied;
+                        //Debug.Log(selectedTarget.unitData.characterName);
+                        HandleStateTransition(UnitState.Attack_Confirm);
                     }
                 }
-                // TODO: This needs to check fi its in range
-                else if (hit.collider.tag == "Unit")
+
+                else if (hit.collider.CompareTag("Unit"))
                 {
-                    Unit Target = hit.collider.GetComponent<Unit>();
-                    if (Target.unitData.Allied == false && Target.unitData.Dead == false)
-                        if (AttackDebounce == false)
-                        {
-                            AttackDebounce = true;
-                            OnAttack(Target, unitAttackStyle);
-                        }
+                    Unit raycastTarget = hit.collider.GetComponent<Unit>();
+
+                    // Only allow attacks on alive enemies
+                    if (!raycastTarget.unitData.Allied && !raycastTarget.unitData.Dead)
+                    {
+                        selectedTarget = raycastTarget;
+                        //Debug.Log(selectedTarget.unitData.characterName);
+                        HandleStateTransition(UnitState.Attack_Confirm);
+                    }
+                    else
+                    {
+                        Debug.Log("Clicked on ally or dead unit");
+                    }
                 }
             }
         }
     }
+
 
     IEnumerator RotateToTarget(Transform target)
     {
@@ -400,9 +427,13 @@ public class Unit : TacticalUnitBase
     }
 
 
+    #endregion
+
+    #region Combat
+
     public void OnAttack(Unit target, AttackStyle style)
     {
-
+        //print($"Attacking {target.unitData.characterName}");
         StartCoroutine(HandleAttack(target, style));
 
     }
@@ -421,7 +452,7 @@ public class Unit : TacticalUnitBase
         float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
 
         if (style == AttackStyle.Rogue)
-                yield return new WaitForSeconds(animationLength * 0.7f);
+            yield return new WaitForSeconds(animationLength * 0.7f);
         else
             yield return new WaitForSeconds(animationLength * 0.4f);
 
@@ -466,8 +497,8 @@ public class Unit : TacticalUnitBase
         #region Rogue specific
         if (style == AttackStyle.Rogue)
         {
-            print("second animation");
-            yield return new WaitForSeconds(1.6f);
+            //print("second animation");
+            yield return new WaitForSeconds(1.4f);
             float DamageValue2 = unitData.LeftHand.baseDamage + 1.0f;
             target.unitData.currentHealth -= DamageValue2;
             target.animator.Play("HitReaction", 0, 0f);
@@ -511,11 +542,11 @@ public class Unit : TacticalUnitBase
 
     #endregion
 
-
     #region State Machine
 
     public virtual void HandleStateTransition(UnitState newState)
     {
+
         if (newState == UnitState.Idle)
         {
             currentState = newState;
@@ -527,6 +558,11 @@ public class Unit : TacticalUnitBase
             clickcheckM = false;
             attack_state = false;
             clickcheckA = false;
+
+            UIManagerScript.unitInfoPanel.SetActive(true);
+            UIManagerScript.targetCombatPanel.SetActive(false);
+            UIManagerScript.confirmButtonPanel.SetActive(false);
+
         }
         else if (newState == UnitState.Attack_Check)
         {
@@ -557,13 +593,43 @@ public class Unit : TacticalUnitBase
         }
         else if (newState == UnitState.Attack_Confirm)
         {
+
             if (unitData.attackedThisTurn == true)
             {
                 return;
             }
 
-            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>LEFT CLICK</b> on the target again to confirm attack\n\npress <b>ESC</b> to cancel"));
+            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"Confirm your attack on <b>{selectedTarget.unitData.characterName}</b>?\n\npress <b>ESC</b> to cancel"));
             UIManagerScript.AorMUIState();
+            UIManagerScript.unitInfoPanel.SetActive(false);
+            UIManagerScript.targetCombatPanel.SetActive(true);
+
+            UIManagerScript.confirmButtonPanel.SetActive(true);
+
+            UIManagerScript.confirmButton.onClick.RemoveAllListeners();
+
+            UIManagerScript.confirmButton.onClick.AddListener(() => {
+                if (AttackDebounce == false)
+                {
+                    OnAttack(selectedTarget, unitAttackStyle);
+                    AttackDebounce = true;
+                }
+            });
+
+
+        }
+
+        else if (newState == UnitState.Move_Confirm)
+        {
+            if (unitData.attackedThisTurn == true)
+            {
+                return;
+            }
+
+            StartCoroutine(UIManagerScript.DisplayToolTip("down", .1f, $"<b>CONFIRM</b> on the target again to confirm attack\n\npress <b>ESC</b> to cancel"));
+            UIManagerScript.AorMUIState();
+            UIManagerScript.unitInfoPanel.SetActive(false);
+            UIManagerScript.targetCombatPanel.SetActive(true);
 
         }
     }

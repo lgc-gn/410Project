@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public RectTransform unitInfoTransformDefault, actionMenuTransformDefault, toolTipTransformDefault; 
     public TMP_Text unitNameText, classText, classActionButtonText, resourceText, hpText, xpText, lvlText, affiliationText, toolTipText;
     public Image classIcon, unitPortrait, resourceBar, hpBar, xpBar;
-    public GameObject actionMenu, unitEntryPrefab, dmgNumberPrefab;
+    public GameObject actionMenu, unitEntryPrefab, dmgNumberPrefab, targetCombatPanel, unitInfoPanel, confirmButtonPanel;
     public Transform turnOrderPanel, actionMenuPanel;
 
     public GameObject[] cameras;  // Assign in Inspector
@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     public Button classActionButton;
     public Button endTurnButton;
     public Button camResetButton;
-
+    public Button confirmButton;
 
     [SerializeField] private Color enemyColor, allyColor;
     [SerializeField] private Sprite enemySprite, allySprite;

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8189e188a51314a9600fad89a6cf3a, type: 3}
+  m_Name: Stunning Strike
+  m_EditorClassIdentifier: 
+  skillName: Stunning Strike
+  skillDescription: Strike your target with a powerful kick, <b>stunning</b> them
+    till their next turn.
+  skillRange: 1
+  resourceChange: 20
+  skillDamage: 15
+  skillType: 0
+  startupAnim: {fileID: 0}
+  channelAnim: {fileID: 7400000, guid: b56dedd903837cc438a2555c7365ee65, type: 2}
+  castAnim: {fileID: 7400000, guid: 66b579f0ba64ca548aaa9a082213bd1a, type: 2}
+  statusEffect: {fileID: 11400000, guid: f2de9c48485ec5f48967fa04c1e12bde, type: 2}
+  skillIcon: {fileID: 21300000, guid: 9a5bb0469ac714c4982f7126cb8d03b3, type: 3}

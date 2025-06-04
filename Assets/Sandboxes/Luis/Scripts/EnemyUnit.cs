@@ -118,7 +118,8 @@ public class EnemyUnit : Unit
 
     override public void HandleStateTransition(UnitState newState)
     {
-        print("asd");
+        //print("asd");
+        return;
     }
 
     void Update()
@@ -183,7 +184,7 @@ public class EnemyUnit : Unit
         }
 
         target2 = nearest;
-        Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
+        //Debug.Log("Target found: " + (target2 != null ? target2.name : "None"));
     }
 
     public IEnumerator Attacking()

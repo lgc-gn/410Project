@@ -15,6 +15,7 @@ public class AttackHoverDetection : MonoBehaviour
     void Start()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
+        currUnit = UI.TurnOrderScript.ReturnCurrentQueue().Peek();
     }
 
     void Update()
