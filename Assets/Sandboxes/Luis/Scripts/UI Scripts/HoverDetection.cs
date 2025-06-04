@@ -4,41 +4,58 @@ public class HoverDetection : MonoBehaviour
 {
     private GameObject currentHoveredObject;
     public UIManager UI;
-    private bool hoverState;
+    public bool hoverState;
+    public GameObject primary;
+    public Unit defaultUni;
 
     void Update()
     {
-        GameObject primary = UI.primaryCam;
+        primary = UI.primaryCam;
         if (!primary.TryGetComponent<Camera>(out Camera camera))
         {
-            Debug.Log(primary.name);
-            primary = primary.transform.GetChild(0).gameObject;
-        }
-        Ray ray = primary.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            GameObject hitObject = hit.collider.gameObject;
-
-            if (hitObject.GetComponent<Unit>() != null)
+            if (primary.transform.childCount > 0)
             {
-                if (hitObject != currentHoveredObject)
+                primary = primary.transform.GetChild(0).gameObject;
+            }
+            else
+            {
+                Debug.LogWarning($"{primary.name} has no children!");
+            }
+
+        }
+        if (hoverState)
+        {
+            Ray ray = primary.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+
+                if (hitObject.GetComponent<Unit>() != null)
+                {
+                    if (hitObject != currentHoveredObject)
+                    {
+                        if (currentHoveredObject != null)
+                        {
+                            Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
+
+                        }
+                        currentHoveredObject = hitObject;
+                    }
+
+                    // Log every frame while hovering the same unit
+                    Debug.Log("Mouse is over " + currentHoveredObject.name);
+                    AdjStats(currentHoveredObject.GetComponent<Unit>());
+                }
+                else
                 {
                     if (currentHoveredObject != null)
                     {
                         Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
-                        hoverState = false;
-
+                        currentHoveredObject = null;
                     }
-                    currentHoveredObject = hitObject;
                 }
-
-                // Log every frame while hovering the same unit
-                Debug.Log("Mouse is over " + currentHoveredObject.name);
-                hoverState = true;
-                AdjStats(currentHoveredObject.GetComponent<Unit>());
             }
             else
             {
@@ -46,32 +63,18 @@ public class HoverDetection : MonoBehaviour
                 {
                     Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
                     currentHoveredObject = null;
-                    hoverState = false;
                 }
             }
         }
         else
         {
-            if (currentHoveredObject != null)
-            {
-                Debug.Log("Mouse is no longer on " + currentHoveredObject.name);
-                currentHoveredObject = null;
-                hoverState = false;
-            }
+            AdjStats(defaultUni);
         }
     }
 
     void AdjStats(Unit uni)
     {
-        if (!hoverState)
-        {
-            UI.StatsBoard.SetActive(false);
-        }
-        else
-        {
-            UI.StatsBoard.SetActive(true);
-            UI.ShowUnitInfo(uni);
-        }
+        UI.ShowUnitInfo(uni);
     }
 }
 

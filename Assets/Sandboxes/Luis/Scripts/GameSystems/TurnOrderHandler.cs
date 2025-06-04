@@ -16,6 +16,7 @@ public class TurnOrderHandler : MonoBehaviour
 
     public UIManager UIManagerScript;
     public CameraManager CameraManagerScript;
+    public CameraMove freecam;
     public GameObject winScreen;
     public SceneChanger scene;
 
@@ -208,6 +209,7 @@ public class TurnOrderHandler : MonoBehaviour
         if (currentUnit != null )
         {
             turnUnit = currentUnit;
+            freecam.transform.position = currentUnit.transform.position;
             currentUnit.BeginTurn();
         }
     }

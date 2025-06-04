@@ -1,54 +1,76 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class CameraMove : MonoBehaviour
 {
+    [Header("Movement Settings")]
+    public float moveSpeed = 5f;
 
-    public float moveSpeed = 5f; // Speed of movement
-    public float rotSpeed = 100f;
+    [Header("Camera Settings")]
+    public Transform cameraTransform;
     public float zoomSpeed = 10f;
-    public GameObject target;
-    public float max = 100;
-    public float min = 1;
+    public float minZoomDistance = 2f;
+    public float maxZoomDistance = 15f;
+    public Transform cameraTarget; // Usually the player (this object)
+
+    void Start()
+    {
+        // Auto-assign if not set
+        if (cameraTransform == null)
+            cameraTransform = Camera.main.transform;
+
+        if (cameraTarget == null)
+            cameraTarget = this.transform;
+
+        
+    }
+
     void Update()
     {
-        // Get input from WASD or arrow keys
-        float moveX = Input.GetAxis("Horizontal"); // A/D or Left/Right
-        float moveZ = Input.GetAxis("Vertical");   // W/S or Up/Down
+        HandleMovement();
+        //HandleZoom();
+    }
 
-        // Create movement vector
-        Vector3 LR = transform.right * moveX;
-        Vector3 UD = transform.forward * moveZ;
-        Vector3 move = LR + UD;
+    void HandleMovement()
+    {
+        float inputX = Input.GetAxis("Horizontal");
+        float inputZ = Input.GetAxis("Vertical");
 
+        // Get camera-relative movement vectors, ignoring Y
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+        camForward.Normalize();
+        camRight.Normalize();
 
+        Vector3 moveDir = (camRight * inputX + camForward * inputZ).normalized;
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
 
-        // Apply movement
-        transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
-        if (Input.GetKey(KeyCode.E))
+        // Optional: rotate to face movement direction
+        if (moveDir != Vector3.zero)
         {
-            transform.Rotate(Vector3.up, -rotSpeed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
-        }
+    }
 
+    void HandleZoom()
+    {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
         if (scrollInput != 0f)
         {
             // Direction from camera to target
-            Vector3 direction = (target.transform.position - transform.position).normalized;
+            Vector3 direction = (cameraTarget.transform.position - transform.position).normalized;
 
             // Calculate new position
-            Vector3 newPosition = transform.position + direction * scrollInput * zoomSpeed;
+            Vector3 newPosition = cameraTarget.position + direction * scrollInput * zoomSpeed;
 
             // Clamp distance to min/max
-            float distance = Vector3.Distance(newPosition, target.transform.position);
-            if (distance >= min && distance <= max)
+            float distance = Vector3.Distance(newPosition, cameraTarget.transform.position);
+            if (distance >= minZoomDistance && distance <= maxZoomDistance)
             {
                 transform.position = newPosition;
             }

@@ -92,32 +92,36 @@ public class UIManager : MonoBehaviour
     void OnClassActionClicked()
     {
         Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
-        AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
+        //AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
         if (currentUnit.unitData.Allied == true)
         {
-            AOEhover.currUnit = currentUnit;
+            //AOEhover.currUnit = currentUnit;
         }
     }
 
     public void OnResetClicked()
     {
+        Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
         cameras[currentIndex].SetActive(false);
         CamState = !CamState;
         currentIndex = (currentIndex + 1) % cameras.Length;
         cameras[currentIndex].SetActive(true);
         primaryCam = cameras[currentIndex];
-        HoverDetection hover = this.GetComponent<HoverDetection>();
+        HoverDetection hover = GetComponent<HoverDetection>();
         //hover.enabled = false;
 
         if (currentIndex % cameras.Length == 0)
         {
             ActionBoard.SetActive(true);
-            StatsBoard.SetActive(true);
+            hover.hoverState = false;
+            hover.defaultUni = currentUnit;
             //hover.enabled = false;
         }
         else
         {
             ActionBoard.SetActive(false);
+            Debug.Log(primaryCam.name);
+            hover.hoverState = true;
             //hover.enabled = true;
         }
 
