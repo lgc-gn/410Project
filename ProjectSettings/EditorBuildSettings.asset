@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sandboxes/Luis/Scenes/LMovement.unity
     guid: 3c3f1527e0727294884de123d4874d96
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sandboxes/Braeden/Scenes/MoveBraed.unity
     guid: 53b513f7e46cb154cbf0321ac5b2b1b4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sandboxes/Braeden/Scenes/MoveBraed2.unity
     guid: bc4e30be5bb91ff41a003768309802b1
   m_configObjects:

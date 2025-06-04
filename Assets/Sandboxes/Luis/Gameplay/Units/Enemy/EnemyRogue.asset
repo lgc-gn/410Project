@@ -18,7 +18,7 @@ MonoBehaviour:
   activeTurn: 0
   isMoving: 0
   movedThisTurn: 0
-  attackedThisTurn: 0
+  attackedThisTurn: 1
   Lord: 0
   maxHealth: 100
   currentHealth: 100
@@ -31,7 +31,7 @@ MonoBehaviour:
   moveDistance: 6
   moveSpeed: 5
   attackRange: 1
-  strengthStat: 10
+  strengthStat: 8
   dexterityStat: 17
   constitutionStat: 14
   intelligenceStat: 10
@@ -39,6 +39,7 @@ MonoBehaviour:
   charismaStat: 10
   RightHand: {fileID: 11400000, guid: c898d3d9ecce78d49b56c8a3f981683c, type: 2}
   LeftHand: {fileID: 11400000, guid: ea8149332bd80f043819e5dcf73d0d87, type: 2}
+  QuiverSlot: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}
   Accessory1: {fileID: 0}

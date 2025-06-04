@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     public bool target=false;
     public bool selectable=false;
     public bool AOE = false;
+    public bool attackable = false;
 
     //general flags
 
@@ -97,6 +98,11 @@ public class Tile : MonoBehaviour
             highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
         }
 
+        if (attackable)
+        {
+            highlightColor = Color.Lerp(highlightColor, Color.red, 0.5f);
+        }
+
         // Then blend in AOE color on top if active (higher blend for visibility)
         if (AOE)
         {
@@ -114,6 +120,7 @@ public class Tile : MonoBehaviour
         current = false;
         target = false;
         selectable = false;
+        attackable = false;
         g = h = f = 0;
         par = null;
 

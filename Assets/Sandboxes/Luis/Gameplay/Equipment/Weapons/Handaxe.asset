@@ -21,7 +21,8 @@ MonoBehaviour:
   gripRotationOffset: {x: 0, y: 180, z: -90}
   animations: []
   weaponAnimations: {fileID: 0}
-  baseDamage: 0
+  OnHitParticle: {fileID: 0}
+  baseDamage: 8
   critChance: 5
   critMultiplier: 1.2
   flatArmorPen: 0

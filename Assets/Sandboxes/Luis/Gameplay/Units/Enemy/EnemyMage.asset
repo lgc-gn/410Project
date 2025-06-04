@@ -15,13 +15,14 @@ MonoBehaviour:
   characterName: Enemy 2
   Allied: 0
   Dead: 0
+  KnownSkills: []
   activeTurn: 0
   isMoving: 0
   movedThisTurn: 0
-  attackedThisTurn: 0
+  attackedThisTurn: 1
   Lord: 0
   maxHealth: 80
-  currentHealth: 80
+  currentHealth: 65
   maxResource: 100
   currentResource: 100
   currentLevel: 2
@@ -29,16 +30,17 @@ MonoBehaviour:
   xpCurrent: 0
   Initiative: 3
   moveDistance: 3
-  moveSpeed: 2
+  moveSpeed: 4
   attackRange: 1
   strengthStat: 8
   dexterityStat: 12
   constitutionStat: 10
   intelligenceStat: 16
-  wisdomStat: 10
+  wisdomStat: 12
   charismaStat: 10
   RightHand: {fileID: 11400000, guid: 667feec532d3e3043938b5cb1a093ed1, type: 2}
-  LeftHand: {fileID: 0}
+  LeftHand: {fileID: 11400000, guid: 9d479cd2bc2e0584bbaf0bffab5acffe, type: 2}
+  QuiverSlot: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}
   Accessory1: {fileID: 0}

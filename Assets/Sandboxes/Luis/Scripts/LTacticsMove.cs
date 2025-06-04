@@ -98,14 +98,20 @@ public class LTacticsMove : MonoBehaviour
             selectTiles.Add(t);  // All reachable tiles for this range
             t.selectable = true;
 
+            Unit unitOnTile = findAbove(t);
+
             // Categorize
-            if (t.occupied == null || t.occupied.unitData.Dead)
+
+            if (unitOnTile == null || unitOnTile.unitData.Dead)
             {
                 Movable.Add(t);
             }
-            else
+            else if (unitOnTile.unitData != null && unitOnTile != currentUnit)
             {
+                Debug.Log("Adding target: " + unitOnTile.unitData.characterName);
+                t.occupied = unitOnTile;
                 Attackable.Add(t);
+                t.attackable = true;
             }
             //t.selectable = true;
 
@@ -197,6 +203,25 @@ public class LTacticsMove : MonoBehaviour
             }
         }
     }
+
+    Unit findAbove(Tile t)
+    {
+        RaycastHit hit;
+
+        // Start from the tile's center and raycast upward
+        Vector3 origin = t.transform.position + Vector3.up * 0.1f;
+        if (Physics.Raycast(origin, Vector3.up, out hit, 2f))
+        {
+            Unit u = hit.collider.GetComponent<Unit>();
+            if (u != null && !u.unitData.Dead)
+            {
+                return u;
+            }
+        }
+
+        return null;
+    }
+
 
     void CalcHeading(Vector3 target)
     {

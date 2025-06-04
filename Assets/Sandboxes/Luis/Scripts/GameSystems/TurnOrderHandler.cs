@@ -1,6 +1,7 @@
 using UnityEngine; 
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 [RequireComponent(typeof(UnitCursor))]
 
 public class TurnOrderHandler : MonoBehaviour
@@ -17,7 +18,6 @@ public class TurnOrderHandler : MonoBehaviour
     public UIManager UIManagerScript;
     public CameraManager CameraManagerScript;
     public CameraMove freecam;
-    public GameObject winScreen;
     public SceneChanger scene;
 
     private bool winTriggered=false;
@@ -25,7 +25,7 @@ public class TurnOrderHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        winScreen.SetActive(false);
+
 
         CreateAQueue();
         record.Init(unitList.ConvertAll(u => u.GetComponent<Unit>()));
@@ -81,10 +81,10 @@ public class TurnOrderHandler : MonoBehaviour
             CheckWinConditions();
         }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            UIManagerScript.OnResetClicked();
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    UIManagerScript.OnResetClicked();
+        //}
 
 
         //foreach (GameObject obj in unitList)
@@ -100,40 +100,33 @@ public class TurnOrderHandler : MonoBehaviour
 
 
     //ToDo: make a real lose con and add fail anim
-//ToDo: update objectives UI for what is needed
-    private void CheckWinConditions()
+    //ToDo: update objectives UI for what is needed
+    public void CheckWinConditions()
     {
-        bool lordDead = false;
         bool anyEnemiesAlive = false;
 
-        foreach (GameObject obj in unitList)
+        foreach (Unit unit in turnOrderQueue)
         {
-            Unit uni = obj.GetComponent<Unit>();
-            if (uni != null)
+            if (unit == null || unit.unitData == null)
+                continue;
+
+            if (!unit.unitData.Allied && !unit.unitData.Dead)
             {
-                if (!uni.unitData.Dead)
-                {
-                    anyEnemiesAlive = true;
-                }
-                else if (uni.unitData.Lord)
-                {
-                    if (!uni.NMEtag)
-                    {
-                        break;
-                    }
-                    lordDead = true;
-                    break; // No need to check further
-                }
+                anyEnemiesAlive = true;
+                break;
             }
         }
 
-        if (lordDead || !anyEnemiesAlive)
+        if (!anyEnemiesAlive)
         {
-            winTriggered = true;
-            winScreen.SetActive(true);
+            Debug.Log("All enemies defeated. You win.");
+            UIManagerScript.VictoryOverlay.SetActive(true);
             Invoke("MoveToNext", 5f);
+
         }
     }
+
+
 
 
     public void CreateAQueue()
@@ -169,6 +162,29 @@ public class TurnOrderHandler : MonoBehaviour
         }
     }
 
+    public void RefreshQueue()
+    {
+        Queue<Unit> refreshedQueue = new Queue<Unit>();
+
+        foreach (GameObject obj in unitList)
+        {
+            Unit unit = obj.GetComponent<Unit>();
+            if (unit != null && !unit.unitData.Dead)
+            {
+                refreshedQueue.Enqueue(unit);
+            }
+        }
+
+        turnOrderQueue = refreshedQueue;
+
+        UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
+
+        if (turnOrderQueue.Count > 0 && UIManagerScript.CamState)
+        {
+            UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
+        }
+    }
+
     void TileClear()
     {
         foreach (Tile til in tileList)
@@ -183,23 +199,33 @@ public class TurnOrderHandler : MonoBehaviour
 
     public Unit GetNextCharacter()
     {
-        Unit activeTurnUnit = turnOrderQueue.Peek();
+        while (turnOrderQueue.Count > 0)
+        {
+            Unit next = turnOrderQueue.Dequeue();
+            if (!next.unitData.Dead)
+                return next;
+        }
 
-        if (IsTurnDone())
-            return null;
-        return turnOrderQueue.Dequeue();
+        return null; // All remaining units were dead
     }
 
     public void RequeueUnit()
     {
-        Unit requeuedUnit = turnOrderQueue.Peek();
+        if (turnOrderQueue.Count == 0)
+            return;
 
-        turnOrderQueue.Dequeue();
+        Unit requeuedUnit = turnOrderQueue.Dequeue();
 
-        turnOrderQueue.Enqueue(requeuedUnit);
-
-        //print($"Requeued: {requeuedUnit.unitData.characterName}");
+        if (requeuedUnit.unitData.Dead == false)
+        {
+            turnOrderQueue.Enqueue(requeuedUnit);
+        }
+        else
+        {
+            unitList.Remove(requeuedUnit.gameObject);
+        }
     }
+
 
     public void StartTurn()
     {
@@ -276,10 +302,12 @@ public class TurnOrderHandler : MonoBehaviour
         return turnOrderQueue;
     }
 
+
     void MoveToNext()
     {
-        scene.ChangeSceneByIndex(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
 
 }
 

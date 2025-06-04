@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -24,6 +25,8 @@ public class UnitData : ScriptableObject
     public bool Allied;
     public bool Dead = false;
 
+    public List<SkillData> KnownSkills = new();
+
     [Header("Turn Info")]
     public bool activeTurn = false;
     public bool isMoving;
@@ -34,8 +37,8 @@ public class UnitData : ScriptableObject
     public bool Lord;
     public float maxHealth;
     public float currentHealth;
-    public int maxResource;
-    public int currentResource;
+    public float maxResource;
+    public float currentResource;
 
     [Header("Level/XP Info")]
     public int currentLevel;

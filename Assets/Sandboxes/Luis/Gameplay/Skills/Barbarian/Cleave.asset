@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8189e188a51314a9600fad89a6cf3a, type: 3}
+  m_Name: Cleave
+  m_EditorClassIdentifier: 
+  skillName: Cleave
+  skillDescription: Strike all targets within a 1 tile range around this unit.
+  skillRange: 1
+  resourceChange: 20
+  skillDamage: 12
+  skillType: 1
+  resourceType: 0
+  hitSound: {fileID: 8300000, guid: 3c93674b98d3b4c56a7a047e924c159d, type: 3}
+  freeAction: 0
+  startupAnim: {fileID: 0}
+  channelAnim: {fileID: 0}
+  castAnim: {fileID: 7400000, guid: c4bf7ae51cec6cb498b89f6d7758bdf0, type: 2}
+  impactMultiplier: 0.8
+  statusEffect: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: 67010f51dcdb1044790938315090ac10, type: 3}

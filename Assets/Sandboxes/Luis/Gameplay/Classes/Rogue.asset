@@ -15,7 +15,8 @@ MonoBehaviour:
   className: Rogue
   classDescription: Rogues rely on skill, stealth, and their foes' vulnerabilities
     to get the upper hand in any situation.
+  subclassName: 
   classAction: Techniques
   resourceType: Stamina
-  resourceColor: {r: 0.13477044, g: 0.4811321, b: 0.12936097, a: 1}
+  resourceColor: {r: 0.5019608, g: 0.13725491, b: 0.13725491, a: 1}
   classIcon: {fileID: 21300000, guid: 88435e9c5aacf4945b03b12b7baf80d2, type: 3}

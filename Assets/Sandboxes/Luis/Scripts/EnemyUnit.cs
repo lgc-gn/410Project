@@ -189,20 +189,21 @@ public class EnemyUnit : Unit
 
     public IEnumerator Attacking()
     {
-
         foreach (Tile tili in selectTiles)
         {
             if (tili.occupied && !tili.occupied.NMEtag)
             {
                 yield return StartCoroutine(EnemyAttack(tili.occupied, enemyAttackStyle));
-                EndTurn();
                 hasCompletedTurn = true;
+                EndTurn();
                 yield break;
             }
         }
 
-        EndTurn();
+        yield return new WaitForSeconds(2f);
         hasCompletedTurn = true;
+
+        EndTurn();
     }
 
 

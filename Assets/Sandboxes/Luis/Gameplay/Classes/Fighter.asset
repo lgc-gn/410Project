@@ -15,7 +15,8 @@ MonoBehaviour:
   className: Fighter
   classDescription: Fighters share an unparalleled mastery with weapons and armor,
     and a thorough knowledge of the skills of combat.
+  subclassName: 
   classAction: Arts of War
   resourceType: Stamina
-  resourceColor: {r: 0.745283, g: 0.6784888, b: 0.6784888, a: 1}
+  resourceColor: {r: 0.5019608, g: 0.13725491, b: 0.13725491, a: 1}
   classIcon: {fileID: 21300000, guid: 660d7f0fc58dce847992b2aef697d1b5, type: 3}

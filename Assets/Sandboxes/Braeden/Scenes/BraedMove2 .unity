@@ -630,6 +630,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -764,6 +766,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1019,6 +1023,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1153,6 +1159,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1287,6 +1295,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1421,6 +1431,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1555,6 +1567,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1689,6 +1703,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -1823,6 +1839,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -2033,6 +2051,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -2167,6 +2187,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -2437,6 +2459,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -2571,6 +2595,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -2705,6 +2731,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -3220,6 +3248,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -3354,6 +3384,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -3567,6 +3599,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -3701,6 +3735,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -3835,6 +3871,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -4131,6 +4169,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -4386,6 +4426,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -4520,6 +4562,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -5019,6 +5063,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -5158,6 +5204,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -5292,6 +5340,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -5426,6 +5476,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -5560,6 +5612,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -5694,6 +5748,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -6030,6 +6086,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -6164,6 +6222,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -6371,6 +6431,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -6629,6 +6691,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -6763,6 +6827,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -6928,6 +6994,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -7062,6 +7130,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -7196,6 +7266,8 @@ MonoBehaviour:
   current: 1
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -7466,6 +7538,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -7600,6 +7674,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -7734,6 +7810,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -7868,6 +7946,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -8002,6 +8082,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -8136,6 +8218,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -8347,6 +8431,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -8523,6 +8609,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -8657,6 +8745,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -8927,6 +9017,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -9061,6 +9153,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -9356,6 +9450,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -9658,6 +9754,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -9792,6 +9890,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -9926,6 +10026,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -10060,6 +10162,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -10194,6 +10298,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -10328,6 +10434,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -10598,6 +10706,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -10732,6 +10842,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -10866,6 +10978,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -11042,6 +11156,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -11176,6 +11292,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -11310,6 +11428,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -11444,6 +11564,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -11578,6 +11700,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -11739,11 +11863,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rotSpeed: 100
+  cameraTransform: {fileID: 0}
   zoomSpeed: 10
-  target: {fileID: 434210773}
-  max: 100
-  min: 1
+  minZoomDistance: 2
+  maxZoomDistance: 15
+  cameraTarget: {fileID: 0}
 --- !u!4 &1032593875
 Transform:
   m_ObjectHideFlags: 0
@@ -12020,6 +12144,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -12244,6 +12370,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -12378,6 +12506,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -12633,6 +12763,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -12941,6 +13073,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -13075,6 +13209,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -13209,6 +13345,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -13616,6 +13754,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -13896,6 +14036,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -14030,6 +14172,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -14164,6 +14308,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -14340,6 +14486,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -14474,6 +14622,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -14788,6 +14938,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -14922,6 +15074,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -15158,6 +15312,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -15334,6 +15490,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -15589,6 +15747,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -15723,6 +15883,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -15862,6 +16024,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -15996,6 +16160,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -16130,6 +16296,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -16264,6 +16432,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -16398,6 +16568,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -16804,6 +16976,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -16830,6 +17004,8 @@ GameObject:
   - component: {fileID: 1551845475}
   - component: {fileID: 1551845477}
   - component: {fileID: 1551845478}
+  - component: {fileID: 1551845479}
+  - component: {fileID: 1551845480}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -16865,6 +17041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnOrderScript: {fileID: 1551845473}
+  CamState: 1
   playerHUD: {fileID: 1363010309}
   unitInfoTransformDefault: {fileID: 305338960}
   actionMenuTransformDefault: {fileID: 1656207439}
@@ -16878,7 +17055,6 @@ MonoBehaviour:
   lvlText: {fileID: 0}
   affiliationText: {fileID: 1528124159}
   toolTipText: {fileID: 1197733768}
-  tempCombatLogText: {fileID: 1529443919}
   classIcon: {fileID: 1085992688}
   unitPortrait: {fileID: 1913657682}
   resourceBar: {fileID: 825985455}
@@ -16887,18 +17063,44 @@ MonoBehaviour:
   actionMenu: {fileID: 2123614714}
   unitEntryPrefab: {fileID: 8288409241115195820, guid: b3ee06f32e40cc84ebf20b4855aa5b70, type: 3}
   dmgNumberPrefab: {fileID: 7552544457673746912, guid: f5cab722e7c8cbb459ec4c20383de222, type: 3}
+  targetCombatPanel: {fileID: 0}
+  unitInfoPanel: {fileID: 0}
+  confirmButtonPanel: {fileID: 0}
   turnOrderPanel: {fileID: 1616398683}
   actionMenuPanel: {fileID: 1656207439}
+  VictoryOverlay: {fileID: 0}
   cameras:
   - {fileID: 218173747}
   - {fileID: 1032593873}
+  primaryCam: {fileID: 0}
   ActionBoard: {fileID: 1656207438}
+  StatsBoard: {fileID: 0}
   attackButton: {fileID: 839908966}
   moveButton: {fileID: 525013699}
   statusButton: {fileID: 1022547593}
   classActionButton: {fileID: 106637175}
   endTurnButton: {fileID: 1436256957}
   camResetButton: {fileID: 1115571896}
+  confirmButton: {fileID: 0}
+  statusMenuEnabled: {r: 0, g: 0, b: 0, a: 0}
+  statusMenuDisabled: {r: 0, g: 0, b: 0, a: 0}
+  strAttributeNumber: {fileID: 0}
+  dexAttributeNumber: {fileID: 0}
+  conAttributeNumber: {fileID: 0}
+  intAttributeNumber: {fileID: 0}
+  wisAttributeNumber: {fileID: 0}
+  chrAttributeNumber: {fileID: 0}
+  skillMenuPanel: {fileID: 0}
+  skillListPrefab: {fileID: 0}
+  skillListPanel: {fileID: 0}
+  sourceHealth: {fileID: 0}
+  sourceResource: {fileID: 0}
+  targetHealth: {fileID: 0}
+  targetResource: {fileID: 0}
+  sourceHealthBar: {fileID: 0}
+  sourceResourceBar: {fileID: 0}
+  targetHealthBar: {fileID: 0}
+  targetResourceBar: {fileID: 0}
   enemyColor: {r: 0.6037736, g: 0.23638305, b: 0.23638305, a: 1}
   allyColor: {r: 0.18378428, g: 0.42756182, b: 0.6603774, a: 1}
   enemySprite: {fileID: 21300000, guid: 9e261171c9c48d54fb36ca94292d94e0, type: 3}
@@ -16915,6 +17117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c359ade926eb1a34dba14c2cc6a3092f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
+  hoverState: 0
+  primary: {fileID: 0}
+  defaultUni: {fileID: 0}
 --- !u!114 &1551845473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16935,7 +17141,7 @@ MonoBehaviour:
   upkeep: {fileID: 1551845478}
   UIManagerScript: {fileID: 1551845471}
   CameraManagerScript: {fileID: 1551845477}
-  winScreen: {fileID: 42483315}
+  freecam: {fileID: 0}
   scene: {fileID: 0}
 --- !u!114 &1551845474
 MonoBehaviour:
@@ -16991,6 +17197,116 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileList: []
+--- !u!114 &1551845479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551845469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287dce9b000aa2e45adb8e20ecccb09a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleTheme: {fileID: 8300000, guid: 0170daeccc27d0042b953121832bea7e, type: 3}
+--- !u!82 &1551845480
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551845469}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.502
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1558067165
 GameObject:
   m_ObjectHideFlags: 0
@@ -17293,6 +17609,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -17666,6 +17984,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -17805,6 +18125,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18016,6 +18338,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18150,6 +18474,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18284,6 +18610,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18460,6 +18788,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18671,6 +19001,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18805,6 +19137,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -18944,6 +19278,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19078,6 +19414,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19212,6 +19550,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19346,6 +19686,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19522,6 +19864,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19656,6 +20000,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19790,6 +20136,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -19924,6 +20272,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -20058,6 +20408,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -20192,6 +20544,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -20326,6 +20680,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -20671,6 +21027,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -20943,6 +21301,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -21290,6 +21650,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -21503,6 +21865,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -21637,6 +22001,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -21813,6 +22179,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -21947,6 +22315,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22081,6 +22451,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22257,6 +22629,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22391,6 +22765,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22525,6 +22901,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22659,6 +23037,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22793,6 +23173,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
@@ -22927,6 +23309,8 @@ MonoBehaviour:
   current: 0
   target: 0
   selectable: 0
+  AOE: 0
+  attackable: 0
   adjList: []
   visited: 0
   par: {fileID: 0}
