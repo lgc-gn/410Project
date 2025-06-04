@@ -103,7 +103,7 @@ public class TurnOrderHandler : MonoBehaviour
 //ToDo: update objectives UI for what is needed
     private void CheckWinConditions()
     {
-        bool lordDead = false;
+        bool playerLordDead = false;
         bool anyEnemiesAlive = false;
 
         foreach (GameObject obj in unitList)
@@ -113,22 +113,32 @@ public class TurnOrderHandler : MonoBehaviour
             {
                 if (!uni.unitData.Dead)
                 {
-                    anyEnemiesAlive = true;
-                }
-                else if (uni.unitData.Lord)
-                {
-                    if (!uni.NMEtag)
+                    if (uni.NMEtag)
                     {
-                        break;
+                        anyEnemiesAlive = true;
                     }
-                    lordDead = true;
-                    break; // No need to check further
+                    if (uni.unitData.Lord && !uni.NMEtag)
+                    {
+                        playerLordDead = false;
+                    }
+                }
+                else if (uni.unitData.Lord && !uni.NMEtag)
+                {
+                    playerLordDead = true;
                 }
             }
         }
 
-        if (lordDead || !anyEnemiesAlive)
+        if (playerLordDead)
         {
+            Debug.Log("Player Lord is dead. You lose (not implemented).");
+            // TODO: Implement lose condition
+            return;
+        }
+
+        if (!anyEnemiesAlive)
+        {
+            Debug.Log("All enemies are dead. You win!");
             winTriggered = true;
             winScreen.SetActive(true);
             Invoke("MoveToNext", 5f);
@@ -136,30 +146,23 @@ public class TurnOrderHandler : MonoBehaviour
     }
 
 
+
     public void CreateAQueue()
     {
         GameObject[] unitObjectList = GameObject.FindGameObjectsWithTag("Unit");
 
+        unitList.Clear(); // Clear previous list completely
+
         foreach (GameObject obj in unitObjectList)
         {
-
             Unit unit = obj.GetComponent<Unit>();
-            if (unit != null)
+            if (unit != null && !unit.unitData.Dead)
             {
-                if (unitList.Contains(obj))
-                {
-                    unitList.Remove(obj);
-                }
-                if (unit.unitData.Dead == false)
-                    {
-                        unitList.Add(obj);
-                    }
+                unitList.Add(obj);
             }
         }
 
         unitList.Sort((a, b) => b.GetComponent<Unit>().unitData.Initiative.CompareTo(a.GetComponent<Unit>().unitData.Initiative));
-
-        // Sort the unit list by initative, and then add to the queue
 
         turnOrderQueue.Clear();
 
@@ -168,6 +171,7 @@ public class TurnOrderHandler : MonoBehaviour
             turnOrderQueue.Enqueue(obj.GetComponent<Unit>());
         }
     }
+
 
     void TileClear()
     {
@@ -224,32 +228,32 @@ public class TurnOrderHandler : MonoBehaviour
         }
 
         record.RecordPositions(unitList);
-
         turnUnit.EndTurn();
         TileClear();
         upkeep.UpdateTileOccupancy();
 
-        RequeueUnit();
-
-        //print(ReturnQueue(ReturnCurrentQueue()));
-
-        UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
-        if (UIManagerScript.CamState)
+        // Check if the unit is dead, and handle removal
+        if (turnUnit.unitData.Dead)
         {
-            UIManagerScript.ShowUnitInfo(turnOrderQueue.Peek());
+            Debug.Log($"{turnUnit.unitData.characterName} is dead and will be removed from the queue.");
+            turnOrderQueue.Dequeue();
+        }
+        else
+        {
+            RequeueUnit();
         }
 
-        //if (turnOrderQueue.Peek().unitData.Allied == true)
-        //    {
-                CameraManagerScript.UpdateCameraTracking(turnOrderQueue.Peek());
-                //StartCoroutine(UIManagerScript.SmoothMoveActionUI("left", .15f));
-            //}
+        UIManagerScript.UpdateTurnOrderList(turnOrderQueue);
 
         if (turnOrderQueue.Count > 0)
         {
             Unit next = turnOrderQueue.Peek();
             turnUnit = next;
-            //Debug.Log("Starting turn for: " + next.name);
+            if (UIManagerScript.CamState)
+            {
+                UIManagerScript.ShowUnitInfo(next);
+            }
+            CameraManagerScript.UpdateCameraTracking(next);
             next.BeginTurn();
         }
         else
@@ -257,6 +261,7 @@ public class TurnOrderHandler : MonoBehaviour
             Debug.LogWarning("The turn queue is empty!");
         }
     }
+
 
 
     public string ReturnQueue(Queue<Unit> queuetocheck)

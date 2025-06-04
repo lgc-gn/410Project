@@ -179,6 +179,10 @@ public class Unit : TacticalUnitBase
 
     public virtual void BeginTurn()
     {
+        if (unitData.Dead)
+        {
+            TurnOrderScript.End_of_Turn();
+        }
 
         unitData.activeTurn = true;
         unitData.movedThisTurn = false;

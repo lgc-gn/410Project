@@ -83,21 +83,32 @@ public class Tile : MonoBehaviour
     {
         Color highlightColor = baseColor;
 
-        // Start with base colors for flags that can overlap:
+        // current and target colors (unchanged)
         if (current)
         {
-            highlightColor = Color.Lerp(highlightColor, Color.black, 0.5f); // 50% toward black
+            highlightColor = Color.Lerp(highlightColor, Color.black, 0.5f);
         }
         if (target)
         {
             highlightColor = Color.Lerp(highlightColor, Color.green, 0.5f);
         }
+
+        // For selectable tiles:
         if (selectable)
         {
-            highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
+            if (attackstate)
+            {
+                // selectable + attackstate = red color
+                highlightColor = Color.Lerp(highlightColor, Color.red, 0.7f);
+            }
+            else
+            {
+                // selectable but not attackstate, use your usual selectable color
+                highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
+            }
         }
 
-        // Then blend in AOE color on top if active (higher blend for visibility)
+        // AOE color blend remains if you want it:
         if (AOE)
         {
             highlightColor = Color.Lerp(highlightColor, Color.red, 0.5f);
@@ -105,6 +116,9 @@ public class Tile : MonoBehaviour
 
         GetComponent<Renderer>().material.color = highlightColor;
     }
+
+
+
 
 
     //clears position for new movement when selected
@@ -144,22 +158,24 @@ public class Tile : MonoBehaviour
         CheckTile(-Vector3.right, target);
     }
     //checks tile type, tag, and contents
-    public void CheckTile(Vector3 direction, Tile target /*jumpheight*/)
+    public void CheckTile(Vector3 direction, Tile target)
     {
         Vector3 halfEx = new Vector3(0.25f, 0.25f, 0.25f);
-        Collider[] colliders = Physics.OverlapBox(transform.position+direction, halfEx);
+        Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfEx);
 
         foreach (Collider item in colliders)
         {
             Tile tile = item.GetComponent<Tile>();
-            if (tile!=null && tile.walk)
+            if (tile != null)
             {
-                if(attackstate)
+                if (attackstate)
                 {
+                    // In attack mode, include all tiles — even if occupied or not walkable
                     adjList.Add(tile);
                 }
-                else
+                else if (tile.walk)
                 {
+                    // In move mode, only include walkable and unoccupied tiles (or the target tile)
                     RaycastHit hit;
                     if (!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1) || (tile == target))
                     {
@@ -169,5 +185,6 @@ public class Tile : MonoBehaviour
             }
         }
     }
+
 
 }

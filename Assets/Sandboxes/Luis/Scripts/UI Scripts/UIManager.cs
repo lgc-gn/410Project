@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public TurnOrderHandler TurnOrderScript;
     public bool CamState=true;
+    public bool readyAOE=false;
 
 
     public Canvas playerHUD;
@@ -92,10 +93,12 @@ public class UIManager : MonoBehaviour
     void OnClassActionClicked()
     {
         Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
-        //AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
+        AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
         if (currentUnit.unitData.Allied == true)
         {
-            //AOEhover.currUnit = currentUnit;
+            readyAOE = !readyAOE;
+            AOEhover.readyAOE = readyAOE;
+            AOEhover.currUnit = currentUnit;
         }
     }
 
@@ -145,7 +148,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void OnEndTurnClicked()
+    public void OnEndTurnClicked()
     {
         //DisplayConfirm(WarningType.EndTurn);
         TurnOrderScript.ReturnCurrentQueue().Peek().EndTurn();

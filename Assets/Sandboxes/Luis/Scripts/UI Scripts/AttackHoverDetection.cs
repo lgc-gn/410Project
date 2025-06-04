@@ -9,6 +9,9 @@ public class AttackHoverDetection : MonoBehaviour
     Tile currTile;
     GameObject[] tiles;
 
+//this bool controls on/off state
+    public bool readyAOE;
+
     List<Tile> prevAOETiles = new List<Tile>();
 
 
@@ -16,6 +19,7 @@ public class AttackHoverDetection : MonoBehaviour
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         currUnit = UI.TurnOrderScript.ReturnCurrentQueue().Peek();
+
     }
 
     void Update()
@@ -30,32 +34,43 @@ public class AttackHoverDetection : MonoBehaviour
 
         if (camera == null)
             return;
-
-        Ray ray = camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (readyAOE)
         {
-            GameObject hitObject = hit.collider.gameObject;
+            currUnit.attack_state = true;
+            Ray ray = camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
-            if (hitObject.GetComponent<Tile>() != null)
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                if (hitObject != currentHoveredObject)
+                GameObject hitObject = hit.collider.gameObject;
+
+                if (hitObject.GetComponent<Tile>() != null)
+                {
+                    if (hitObject != currentHoveredObject)
+                    {
+                        if (currentHoveredObject != null)
+                        {
+                            ClearAOEFlags();
+                        }
+                        currentHoveredObject = hitObject;
+                    }
+
+                    currTile = currentHoveredObject.GetComponent<Tile>();
+
+                    ClearAOEFlags();
+
+                    // Set attackstate for all tiles before BFS
+                    SetAllTilesAttackState(currUnit.attack_state);
+
+                    FindAOETilesBST(currTile, 2);
+                }
+                else
                 {
                     if (currentHoveredObject != null)
                     {
                         ClearAOEFlags();
+                        currentHoveredObject = null;
                     }
-                    currentHoveredObject = hitObject;
                 }
-
-                currTile = currentHoveredObject.GetComponent<Tile>();
-
-                ClearAOEFlags();
-
-                // Set attackstate for all tiles before BFS
-                SetAllTilesAttackState(currUnit.attack_state);
-
-                FindAOETilesBST(currTile, 2);
             }
             else
             {
@@ -63,16 +78,14 @@ public class AttackHoverDetection : MonoBehaviour
                 {
                     ClearAOEFlags();
                     currentHoveredObject = null;
+                    ClearSelectableFlags();
                 }
             }
         }
         else
         {
-            if (currentHoveredObject != null)
-            {
-                ClearAOEFlags();
-                currentHoveredObject = null;
-            }
+            Debug.Log("lol");
+            ClearAOEFlags();
         }
     }
 
@@ -80,10 +93,11 @@ public class AttackHoverDetection : MonoBehaviour
     {
         foreach (Tile tile in prevAOETiles)
         {
-            tile.AOE = false;
+            tile.AOE = false; // Do NOT touch tile.selectable here
         }
         prevAOETiles.Clear();
     }
+
 
 
     void SetAllTilesAttackState(bool attackState)
@@ -155,4 +169,14 @@ public class AttackHoverDetection : MonoBehaviour
             t.Neighbors(target); // update neighbors if needed
         }
     }
+
+    public void ClearSelectableFlags()
+    {
+        foreach (GameObject tileObj in tiles)
+        {
+            Tile tile = tileObj.GetComponent<Tile>();
+            tile.selectable = false;
+        }
+    }
+
 }
