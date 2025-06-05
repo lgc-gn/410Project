@@ -429,7 +429,7 @@ public class Unit : TacticalUnitBase
                             }
                             else
                             {
-                                Debug.Log("Raycast hit something, but it wasn’t a tile.");
+                                Debug.Log("Raycast hit something, but it wasnï¿½t a tile.");
                             }
                         }
                         else
@@ -501,7 +501,8 @@ public class Unit : TacticalUnitBase
 
     public IEnumerator HandleAttack(Unit target, AttackStyle style)
     {
-
+        //maybe try adding the aoe check somewhere near the start and if AOE true, call attackhoverdetection to have a working
+        //aoe marker? not entirely sure but if it were to be called, it would be in here
         UIManagerScript.NoToolTipState();
 
         yield return StartCoroutine(RotateToTarget(target.transform));
@@ -709,7 +710,7 @@ public class Unit : TacticalUnitBase
 
                         else if (skillToCast.skillType == SkillData.SkillType.Area_of_Effect && hit.collider.CompareTag("Tile"))
                         {
-                            // Optional: For AOE support by tile — placeholder
+                            // Optional: For AOE support by tile ï¿½ placeholder
                             Tile targetTile = hit.collider.GetComponent<Tile>();
                             if (targetTile.selectable)
                             {
