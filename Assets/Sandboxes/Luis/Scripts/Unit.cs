@@ -465,8 +465,11 @@ public class Unit : TacticalUnitBase
         target.unitData.currentHealth -= DamageValue;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         UIManagerScript.DisplayDamageNumber(DamageValue, target);
 =======
+=======
+>>>>>>> Stashed changes
         UIManagerScript.DisplayDamageNumber(DamageValue, target, Color.yellow);
         AudioSource.PlayClipAtPoint(defaultHitSound, target.transform.position);
 >>>>>>> Stashed changes
