@@ -4,9 +4,6 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
 
-<<<<<<< Updated upstream
-    public string skillName, skillDescription;
-=======
     public enum SkillType
     {
         Single,
@@ -22,52 +19,28 @@ public class SkillData : ScriptableObject
     }
 
     [Header("Skill Information")]
-    public string skillName;
-    [TextArea(5, 20)] public string skillDescription;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    public string skillName, skillDescription;
     public int skillRange, resourceChange;
 
+    [Header("Damage Stats")]
     public float skillDamage;
     public SkillType skillType;
+    public AfflictedResource resourceType = AfflictedResource.Damage;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    public enum SkillType
-    {
-        Single,
-        AoE,
-        Self
-    }
-
-=======
-=======
->>>>>>> Stashed changes
-    [Header("Sound Effects")]
-    public AudioClip startupSound;
-    public AudioClip channelSound;
-    public AudioClip castSound;
     public AudioClip hitSound;
-
-
-    [Header("Particle Effects")]
-    public ParticleSystem startupEffect;
-    public ParticleSystem channelEffect;
-    public ParticleSystem castEffect;
     public ParticleSystem hitEffect;
-
 
     public bool freeAction;
 
     [Header("Animation Clips")]
->>>>>>> Stashed changes
     public AnimationClip startupAnim;
     public AnimationClip channelAnim;
     public AnimationClip castAnim;
+    public float impactMultiplier = .8f;
 
+    [Header("Status Data")]
     public StatusEffectData statusEffect;
 
+    [Header("Art")]
     public Sprite skillIcon;
 }

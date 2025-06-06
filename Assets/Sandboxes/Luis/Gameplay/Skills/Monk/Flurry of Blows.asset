@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8189e188a51314a9600fad89a6cf3a, type: 3}
+  m_Name: Flurry of Blows
+  m_EditorClassIdentifier: 
+  skillName: Flurry of Blows
+  skillDescription: Punch a target multiple times in quick succession
+  skillRange: 1
+  resourceChange: 18
+  skillDamage: 20
+  skillType: 0
+  resourceType: 0
+  hitSound: {fileID: 8300000, guid: 7cbf09914eb19d94a9f06b5c04cd9af1, type: 3}
+  hitEffect: {fileID: 7226583673155636403, guid: 003aabf5289d6c146ae9e3a99b41f1e6, type: 3}
+  freeAction: 0
+  startupAnim: {fileID: 0}
+  channelAnim: {fileID: 0}
+  castAnim: {fileID: 7400000, guid: 2c7754dfb0bf9cf45929416fcb151e08, type: 2}
+  impactMultiplier: 0.8
+  statusEffect: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: f04c5f8837f8fc7429b62a7bb8bbaeb8, type: 3}

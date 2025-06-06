@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Unit_38
   Allied: 0
+  Dead: 0
+  KnownSkills: []
   activeTurn: 0
   isMoving: 0
+  movedThisTurn: 0
+  attackedThisTurn: 0
   Lord: 0
   maxHealth: 95
   currentHealth: 95
@@ -24,7 +28,7 @@ MonoBehaviour:
   currentLevel: 10
   xpNeeded: 1000
   xpCurrent: 0
-  Initiative: 6
+  Initiative: 7
   moveDistance: 5
   moveSpeed: 4
   attackRange: 1
@@ -34,8 +38,9 @@ MonoBehaviour:
   intelligenceStat: 11
   wisdomStat: 14
   charismaStat: 2
-  RightHand: {fileID: 0}
+  RightHand: {fileID: 11400000, guid: d19b832569cd087438cbd67b55f9c143, type: 2}
   LeftHand: {fileID: 0}
+  QuiverSlot: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}
   Accessory1: {fileID: 0}

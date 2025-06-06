@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Paladin
   classDescription: 
+  subclassName: 
   classAction: Channel Oath
-  resourceType: Faith
-  resourceColor: {r: 0.8867924, g: 0.86138994, b: 0.17150229, a: 0}
+  resourceType: Mana
+  resourceColor: {r: 0.19215687, g: 0.42352942, b: 0.6117647, a: 1}
   classIcon: {fileID: 21300000, guid: a5242283d811aa3408d4deb8524edb6d, type: 3}

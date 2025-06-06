@@ -19,8 +19,13 @@ MonoBehaviour:
   resourceChange: 20
   skillDamage: 15
   skillType: 0
+  resourceType: 0
+  hitSound: {fileID: 8300000, guid: f9448980fb370244d9db5c00d74ad693, type: 3}
+  hitEffect: {fileID: 7226583673155636403, guid: 003aabf5289d6c146ae9e3a99b41f1e6, type: 3}
+  freeAction: 0
   startupAnim: {fileID: 0}
   channelAnim: {fileID: 7400000, guid: b56dedd903837cc438a2555c7365ee65, type: 2}
   castAnim: {fileID: 7400000, guid: 66b579f0ba64ca548aaa9a082213bd1a, type: 2}
+  impactMultiplier: 0.5
   statusEffect: {fileID: 11400000, guid: f2de9c48485ec5f48967fa04c1e12bde, type: 2}
-  skillIcon: {fileID: 21300000, guid: 9a5bb0469ac714c4982f7126cb8d03b3, type: 3}
+  skillIcon: {fileID: 21300000, guid: 4dabb37d5dad34e48894cb435e3ae8d3, type: 3}

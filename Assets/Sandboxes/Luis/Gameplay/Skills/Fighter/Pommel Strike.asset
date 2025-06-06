@@ -18,19 +18,9 @@ MonoBehaviour:
   resourceChange: 0
   skillDamage: 0
   skillType: 0
-  resourceType: 0
-  startupSound: {fileID: 0}
-  channelSound: {fileID: 0}
-  castSound: {fileID: 0}
-  hitSound: {fileID: 0}
-  startupEffect: {fileID: 0}
-  channelEffect: {fileID: 0}
-  castEffect: {fileID: 0}
-  hitEffect: {fileID: 0}
   freeAction: 0
   startupAnim: {fileID: 0}
   channelAnim: {fileID: 0}
   castAnim: {fileID: 0}
-  impactMultiplier: 0.8
   statusEffect: {fileID: 11400000, guid: f2de9c48485ec5f48967fa04c1e12bde, type: 2}
   skillIcon: {fileID: 0}

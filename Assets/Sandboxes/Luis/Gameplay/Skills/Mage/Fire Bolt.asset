@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8189e188a51314a9600fad89a6cf3a, type: 3}
+  m_Name: Fire Bolt
+  m_EditorClassIdentifier: 
+  skillName: Fire Bolt
+  skillDescription: Hurl a bolt of fire at an enemy.
+  skillRange: 5
+  resourceChange: 8
+  skillDamage: 12
+  skillType: 0
+  resourceType: 0
+  hitSound: {fileID: 8300000, guid: 051794d7a466c4646acdff6b9df13497, type: 3}
+  hitEffect: {fileID: 0}
+  freeAction: 0
+  startupAnim: {fileID: 0}
+  channelAnim: {fileID: 0}
+  castAnim: {fileID: 7400000, guid: acd572b621b1061488ea1607d93a8389, type: 2}
+  impactMultiplier: 0.8
+  statusEffect: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: cd12a2989960e3747bfab35744b80189, type: 3}
