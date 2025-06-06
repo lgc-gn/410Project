@@ -18,13 +18,8 @@ MonoBehaviour:
   isMoving: 0
   Lord: 0
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   maxHealth: 135
   currentHealth: 135
-=======
-  maxHealth: 95
-  currentHealth: 95
->>>>>>> Stashed changes
 =======
   maxHealth: 95
   currentHealth: 95
@@ -45,12 +40,9 @@ MonoBehaviour:
   wisdomStat: 15
   charismaStat: 7
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   RightHand: {fileID: 0}
   LeftHand: {fileID: 0}
 =======
-=======
->>>>>>> Stashed changes
   RightHand: {fileID: 11400000, guid: c898d3d9ecce78d49b56c8a3f981683c, type: 2}
   LeftHand: {fileID: 11400000, guid: ea8149332bd80f043819e5dcf73d0d87, type: 2}
   QuiverSlot: {fileID: 0}

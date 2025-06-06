@@ -321,9 +321,6 @@ public class UIManager : MonoBehaviour
     }
 
     public void DisplayDamageNumber(float DamageValue, Unit Target, Color color)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     {
         GameObject DamageNumber = Instantiate(dmgNumberPrefab, Target.transform.position, Quaternion.identity, Target.transform);

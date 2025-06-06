@@ -24,16 +24,12 @@ public class SkillData : ScriptableObject
     [Header("Skill Information")]
     public string skillName;
     [TextArea(5, 20)] public string skillDescription;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
     public int skillRange, resourceChange;
 
     public float skillDamage;
     public SkillType skillType;
 
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     public enum SkillType
     {
@@ -43,8 +39,6 @@ public class SkillData : ScriptableObject
     }
 
 =======
-=======
->>>>>>> Stashed changes
     [Header("Sound Effects")]
     public AudioClip startupSound;
     public AudioClip channelSound;

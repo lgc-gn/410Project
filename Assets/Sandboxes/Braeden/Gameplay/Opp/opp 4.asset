@@ -25,21 +25,15 @@ MonoBehaviour:
   xpNeeded: 500
   xpCurrent: 0
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   Initiative: 7
   moveDistance: 1
   moveSpeed: 1
   attackRange: 3
 =======
-=======
->>>>>>> Stashed changes
   Initiative: 6
   moveDistance: 4
   moveSpeed: 4
   attackRange: 1
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   strengthStat: 16
   dexterityStat: 6
@@ -48,11 +42,7 @@ MonoBehaviour:
   wisdomStat: 18
   charismaStat: 4
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   RightHand: {fileID: 0}
-=======
-  RightHand: {fileID: 11400000, guid: 30314e3f0c4a7c04f809ddc87c39430a, type: 2}
->>>>>>> Stashed changes
 =======
   RightHand: {fileID: 11400000, guid: 30314e3f0c4a7c04f809ddc87c39430a, type: 2}
 >>>>>>> Stashed changes
