@@ -30,7 +30,7 @@ MonoBehaviour:
   xpCurrent: 0
   Initiative: 7
   moveDistance: 5
-  moveSpeed: 3
+  moveSpeed: 4
   attackRange: 1
   strengthStat: 12
   dexterityStat: 15

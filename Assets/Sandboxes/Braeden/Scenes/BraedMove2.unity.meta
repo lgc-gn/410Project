@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sandboxes/Braeden/Scenes/BraedMove2.unity.meta
 guid: 33e669395d863e04e99913bb22bbe32f
+========
+<<<<<<<< Updated upstream:Assets/Sandboxes/Braeden/Scenes/Movement.unity.meta
+guid: b48c542a9b3e2294ca24ea68ae73c43a
+>>>>>>>> d9e99ce (final build):Assets/Sandboxes/Braeden/Scenes/Movement.unity.meta
 DefaultImporter:
+========
+guid: 25776f57961abf34bb97d96c9e5a4843
+NativeFormatImporter:
+>>>>>>>> Stashed changes:Assets/Sandboxes/Luis/Animations/Classes/Paladin/DivineSmiteCast.anim.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

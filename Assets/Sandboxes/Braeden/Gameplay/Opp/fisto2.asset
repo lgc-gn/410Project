@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
   m_Name: fisto2
   m_EditorClassIdentifier: 
-  characterName: firey fist-o-pain
+  characterName: fist-o-pain
   Allied: 0
   Dead: 0
   KnownSkills: []
