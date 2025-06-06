@@ -84,26 +84,32 @@ public class Tile : MonoBehaviour
     {
         Color highlightColor = baseColor;
 
-        // Start with base colors for flags that can overlap:
+        // current and target colors (unchanged)
         if (current)
         {
-            highlightColor = Color.Lerp(highlightColor, Color.black, 0.5f); // 50% toward black
+            highlightColor = Color.Lerp(highlightColor, Color.black, 0.5f);
         }
         if (target)
         {
             highlightColor = Color.Lerp(highlightColor, Color.green, 0.5f);
         }
+
+        // For selectable tiles:
         if (selectable)
         {
-            highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
+            if (attackstate)
+            {
+                // selectable + attackstate = red color
+                highlightColor = Color.Lerp(highlightColor, Color.red, 0.7f);
+            }
+            else
+            {
+                // selectable but not attackstate, use your usual selectable color
+                highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
+            }
         }
 
-        if (attackable)
-        {
-            highlightColor = Color.Lerp(highlightColor, Color.red, 0.5f);
-        }
-
-        // Then blend in AOE color on top if active (higher blend for visibility)
+        // AOE color blend remains if you want it:
         if (AOE)
         {
             highlightColor = Color.Lerp(highlightColor, Color.red, 0.5f);
@@ -111,6 +117,7 @@ public class Tile : MonoBehaviour
 
         GetComponent<Renderer>().material.color = highlightColor;
     }
+
 
 
     //clears position for new movement when selected

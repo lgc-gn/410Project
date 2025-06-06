@@ -305,8 +305,18 @@ public class TurnOrderHandler : MonoBehaviour
 
     void MoveToNext()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.LogWarning("No next scene available. End of build settings list.");
+            return;
+        }
     }
+
 
 
 }

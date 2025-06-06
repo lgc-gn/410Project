@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: opp 2
+  m_Name: fisto
   m_EditorClassIdentifier: 
-  characterName: Unit_93
+  characterName: Unit_63
   Allied: 0
   Dead: 0
   KnownSkills: []
@@ -21,24 +21,24 @@ MonoBehaviour:
   movedThisTurn: 0
   attackedThisTurn: 0
   Lord: 0
-  maxHealth: 135
-  currentHealth: 135
-  maxResource: 60
-  currentResource: 60
-  currentLevel: 7
-  xpNeeded: 700
+  maxHealth: 85
+  currentHealth: 85
+  maxResource: 86
+  currentResource: 86
+  currentLevel: 2
+  xpNeeded: 200
   xpCurrent: 0
-  Initiative: 2
+  Initiative: 10
   moveDistance: 6
-  moveSpeed: 2
+  moveSpeed: 5
   attackRange: 1
-  strengthStat: 1
-  dexterityStat: 8
-  constitutionStat: 16
-  intelligenceStat: 14
-  wisdomStat: 15
-  charismaStat: 7
-  RightHand: {fileID: 11400000, guid: 667feec532d3e3043938b5cb1a093ed1, type: 2}
+  strengthStat: 15
+  dexterityStat: 16
+  constitutionStat: 2
+  intelligenceStat: 5
+  wisdomStat: 19
+  charismaStat: 10
+  RightHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
   LeftHand: {fileID: 0}
   QuiverSlot: {fileID: 0}
   HeadPiece: {fileID: 0}
