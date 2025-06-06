@@ -22,9 +22,15 @@ MonoBehaviour:
   Lord: 0
   maxHealth: 150
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   currentHealth: 150
   maxResource: 100
   currentResource: 100
+=======
+  currentHealth: 138
+  maxResource: 100
+  currentResource: 80
+>>>>>>> Stashed changes
 =======
   currentHealth: 138
   maxResource: 100
@@ -35,7 +41,11 @@ MonoBehaviour:
   xpCurrent: 0
   Initiative: 15
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   moveDistance: 9
+=======
+  moveDistance: 50
+>>>>>>> Stashed changes
 =======
   moveDistance: 50
 >>>>>>> Stashed changes

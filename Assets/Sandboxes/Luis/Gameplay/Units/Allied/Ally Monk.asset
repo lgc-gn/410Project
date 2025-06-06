@@ -10,15 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
+<<<<<<< Updated upstream
   m_Name: Ally Monk
+=======
+<<<<<<<< Updated upstream:Assets/Sandboxes/Luis/Gameplay/Units/Enemy/Enemy Monk.asset
+  m_Name: Enemy Monk
+========
+  m_Name: Ally Monk
+>>>>>>>> Stashed changes:Assets/Sandboxes/Luis/Gameplay/Units/Allied/Ally Monk.asset
+>>>>>>> Stashed changes
   m_EditorClassIdentifier: 
   characterName: Ally 3
   Allied: 1
   Dead: 0
+<<<<<<< Updated upstream
   activeTurn: 1
   isMoving: 0
   movedThisTurn: 0
   attackedThisTurn: 1
+=======
+  KnownSkills:
+  - {fileID: 11400000, guid: 858fa95386bc3574aa0203a0898fb1f0, type: 2}
+  - {fileID: 11400000, guid: 48be2a6a64db7e44d91848c275318f27, type: 2}
+  activeTurn: 1
+  isMoving: 0
+  movedThisTurn: 0
+  attackedThisTurn: 0
+>>>>>>> Stashed changes
   Lord: 0
   maxHealth: 100
   currentHealth: 100
@@ -28,6 +46,7 @@ MonoBehaviour:
   xpNeeded: 100
   xpCurrent: 0
   Initiative: 20
+<<<<<<< Updated upstream
   moveDistance: 12
   moveSpeed: 5
   attackRange: 1
@@ -37,6 +56,17 @@ MonoBehaviour:
   intelligenceStat: 10
   wisdomStat: 12
   charismaStat: 10
+=======
+  moveDistance: 5
+  moveSpeed: 5
+  attackRange: 1
+  strengthStat: 12
+  dexterityStat: 17
+  constitutionStat: 14
+  intelligenceStat: 10
+  wisdomStat: 14
+  charismaStat: 8
+>>>>>>> Stashed changes
   RightHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
   LeftHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
   QuiverSlot: {fileID: 0}

@@ -5,6 +5,9 @@ using Unity.Cinemachine;
 =======
 using UnityEngine.SceneManagement;
 using TMPro;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 [RequireComponent(typeof(UnitCursor))]
 
@@ -82,6 +85,7 @@ public class TurnOrderHandler : MonoBehaviour
         }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (!winTriggered)
         {
             CheckWinConditions();
@@ -101,6 +105,11 @@ public class TurnOrderHandler : MonoBehaviour
         //        unitList.Clear();
         //        CreateAQueue();
         //    }
+=======
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    UIManagerScript.OnResetClicked();
+>>>>>>> Stashed changes
 =======
         //if (Input.GetKey(KeyCode.Space))
         //{
@@ -150,10 +159,13 @@ public class TurnOrderHandler : MonoBehaviour
         if (!anyEnemiesAlive)
         {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             Debug.Log("All enemies are dead. You win!");
             winTriggered = true;
             winScreen.SetActive(true);
 =======
+=======
+>>>>>>> Stashed changes
             UIManagerScript.VictoryOverlay.SetActive(true);
 >>>>>>> Stashed changes
             Invoke("MoveToNext", 5f);
@@ -299,8 +311,11 @@ public class TurnOrderHandler : MonoBehaviour
     void MoveToNext()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         scene.ChangeSceneByIndex(2);
 =======
+=======
+>>>>>>> Stashed changes
 
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {
@@ -313,6 +328,9 @@ public class TurnOrderHandler : MonoBehaviour
             SceneManager.LoadScene(nextSceneIndex);
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 

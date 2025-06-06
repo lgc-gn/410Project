@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Unit_77
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   Allied: 1
 =======
+=======
+>>>>>>> Stashed changes
   Allied: 0
   Dead: 0
   KnownSkills: []

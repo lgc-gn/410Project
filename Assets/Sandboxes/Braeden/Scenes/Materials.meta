@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Sandboxes/Braeden/Scenes/Materials.meta
 guid: 0692d92f64b459448954852d3ed67e3a
 folderAsset: yes
+=======
+<<<<<<<< Updated upstream:Assets/Sandboxes/Luis/Scenes/MainMenu.unity.meta
+guid: 31b91423e2717ea45bfdba0b4f2170f9
+========
+guid: 0692d92f64b459448954852d3ed67e3a
+folderAsset: yes
+>>>>>>>> Stashed changes:Assets/Sandboxes/Braeden/Scenes/Materials.meta
+>>>>>>> Stashed changes:Assets/Dimasjk Studio/_MainFiles/Materials.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
