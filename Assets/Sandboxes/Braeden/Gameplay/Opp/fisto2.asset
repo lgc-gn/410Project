@@ -39,7 +39,7 @@ MonoBehaviour:
   wisdomStat: 19
   charismaStat: 10
   RightHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
-  LeftHand: {fileID: 0}
+  LeftHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
   QuiverSlot: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}
