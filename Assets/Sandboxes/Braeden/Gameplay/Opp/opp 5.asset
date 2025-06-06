@@ -27,7 +27,7 @@ MonoBehaviour:
   Initiative: 12
   moveDistance: 3
   moveSpeed: 4
-  attackRange: 2
+  attackRange: 1
   strengthStat: 4
   dexterityStat: 18
   constitutionStat: 2

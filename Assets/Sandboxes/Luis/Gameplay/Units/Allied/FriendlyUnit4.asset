@@ -21,14 +21,24 @@ MonoBehaviour:
   attackedThisTurn: 1
   Lord: 0
   maxHealth: 150
+<<<<<<< Updated upstream
   currentHealth: 150
   maxResource: 100
   currentResource: 100
+=======
+  currentHealth: 138
+  maxResource: 100
+  currentResource: 80
+>>>>>>> Stashed changes
   currentLevel: 7
   xpNeeded: 0
   xpCurrent: 0
   Initiative: 15
+<<<<<<< Updated upstream
   moveDistance: 9
+=======
+  moveDistance: 50
+>>>>>>> Stashed changes
   moveSpeed: 5
   attackRange: 1
   strengthStat: 0

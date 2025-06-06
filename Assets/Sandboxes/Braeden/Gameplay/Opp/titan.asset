@@ -10,35 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
-  m_Name: FriendlyUnit3
+  m_Name: titan
   m_EditorClassIdentifier: 
-  characterName: Ally 3
-  Allied: 1
+  characterName: titan
+  Allied: 0
   Dead: 0
-  activeTurn: 1
+  KnownSkills:
+  - {fileID: 0}
+  activeTurn: 0
   isMoving: 0
   movedThisTurn: 0
-  attackedThisTurn: 1
-  Lord: 0
-  maxHealth: 100
-  currentHealth: 100
-  maxResource: 100
-  currentResource: 100
-  currentLevel: 1
-  xpNeeded: 100
+  attackedThisTurn: 0
+  Lord: 1
+  maxHealth: 250
+  currentHealth: 250
+  maxResource: 15
+  currentResource: 15
+  currentLevel: 3
+  xpNeeded: 300
   xpCurrent: 0
   Initiative: 20
-  moveDistance: 12
-  moveSpeed: 5
-  attackRange: 1
-  strengthStat: 10
-  dexterityStat: 17
-  constitutionStat: 14
-  intelligenceStat: 10
-  wisdomStat: 12
-  charismaStat: 10
-  RightHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
-  LeftHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
+  moveDistance: 2
+  moveSpeed: 4
+  attackRange: 2
+  strengthStat: 20
+  dexterityStat: 5
+  constitutionStat: 19
+  intelligenceStat: 13
+  wisdomStat: 16
+  charismaStat: 19
+  RightHand: {fileID: 11400000, guid: d19b832569cd087438cbd67b55f9c143, type: 2}
+  LeftHand: {fileID: 0}
   QuiverSlot: {fileID: 0}
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}

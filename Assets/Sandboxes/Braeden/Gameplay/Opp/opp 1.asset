@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: opp 1
   m_EditorClassIdentifier: 
   characterName: Unit_77
+<<<<<<< Updated upstream
   Allied: 1
+=======
+  Allied: 0
+  Dead: 0
+  KnownSkills: []
+>>>>>>> Stashed changes
   activeTurn: 0
   isMoving: 0
   Lord: 1
