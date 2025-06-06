@@ -64,6 +64,8 @@ public class UIManager : MonoBehaviour
         camResetButton.onClick.AddListener(OnResetClicked);
         endTurnButton.onClick.AddListener(OnEndTurnClicked);
 
+        //DontDestroyOnLoad(gameObject);
+
         UpdateActiveCamera();
     }
 
@@ -118,6 +120,7 @@ public class UIManager : MonoBehaviour
             ActionBoard.SetActive(true);
             hover.hoverState = false;
             hover.defaultUni = currentUnit;
+            ShowUnitInfo(TurnOrderScript.turnOrderQueue.Peek());
             //hover.enabled = false;
         }
         else
@@ -266,9 +269,62 @@ public class UIManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     public void DisplayDamageNumber(float DamageValue, Unit Target)
+=======
+    public void LoadSkillMenu()
+    {
+        Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
+
+        foreach (Transform item in skillListPanel)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach(SkillData skill in currentUnit.unitData.KnownSkills)
+        {
+            GameObject entry = Instantiate(skillListPrefab, skillListPanel, false);
+            entry.transform.Find("Icon").GetComponent<Image>().sprite = skill.skillIcon;
+            entry.transform.Find("SkillName").GetComponent<TMP_Text>().SetText(skill.skillName);
+            entry.transform.Find("SkillDescription").GetComponent<TMP_Text>().SetText(skill.skillDescription);
+
+            if (skill.resourceType == SkillData.AfflictedResource.Damage) {
+                entry.transform.Find("Damage").GetComponent<TMP_Text>().SetText("Damage");
+                entry.transform.Find("Damage").Find("dmgText").GetComponent<TMP_Text>().SetText(skill.skillDamage.ToString());
+            }
+            else if (skill.resourceType == SkillData.AfflictedResource.Heal) {
+                entry.transform.Find("Damage").GetComponent<TMP_Text>().SetText("Heal");
+                entry.transform.Find("Damage").Find("dmgText").GetComponent<TMP_Text>().SetText("+"+skill.skillDamage.ToString());
+            }
+            else if (skill.resourceType == SkillData.AfflictedResource.Mana)
+            {
+                entry.transform.Find("Damage").GetComponent<TMP_Text>().SetText("Mana");
+                entry.transform.Find("Damage").Find("dmgText").GetComponent<TMP_Text>().SetText("+" + skill.skillDamage.ToString());
+            }
+
+            if (skill.statusEffect != null)
+                entry.transform.Find("Effect").Find("effectText").GetComponent<TMP_Text>().SetText(skill.statusEffect.statusName);
+            else
+                entry.transform.Find("Effect").Find("effectText").GetComponent<TMP_Text>().SetText("N/A");
+
+            entry.transform.Find("Cost").Find("costText").GetComponent<TMP_Text>().SetText(skill.resourceChange.ToString());
+
+            SkillData capturedSkill = skill;
+            if (currentUnit.unitData.attackedThisTurn != true)
+            {
+                Button btn = entry.GetComponent<Button>();
+                btn.onClick.AddListener(() => {
+                    currentUnit.OnSkillSelected(capturedSkill);
+                });
+            }
+        }
+    }
+
+    public void DisplayDamageNumber(float DamageValue, Unit Target, Color color)
+>>>>>>> Stashed changes
     {
         GameObject DamageNumber = Instantiate(dmgNumberPrefab, Target.transform.position, Quaternion.identity, Target.transform);
+        DamageNumber.GetComponent<TMP_Text>().color = color;
         DamageNumber.GetComponent<TextMeshPro>().SetText($"{DamageValue}");
 
     }
