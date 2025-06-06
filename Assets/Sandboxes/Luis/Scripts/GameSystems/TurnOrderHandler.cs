@@ -1,11 +1,6 @@
 using UnityEngine; 
 using System.Collections.Generic;
 using Unity.Cinemachine;
-<<<<<<< Updated upstream
-=======
-using UnityEngine.SceneManagement;
-using TMPro;
->>>>>>> Stashed changes
 [RequireComponent(typeof(UnitCursor))]
 
 public class TurnOrderHandler : MonoBehaviour
@@ -15,7 +10,7 @@ public class TurnOrderHandler : MonoBehaviour
     public List<Tile> tileList = new List<Tile>();
 
     public Unit turnUnit;
-    //public UnitCursor cursor;
+    public UnitCursor cursor;
     public TurnRecord record;
     public TileUpkeep upkeep;
 
@@ -69,7 +64,7 @@ public class TurnOrderHandler : MonoBehaviour
         }
 
         Unit current = turnOrderQueue.Peek();
-        //cursor.SetActiveUnit(current);
+        cursor.SetActiveUnit(current);
 
         if (Input.GetKey(KeyCode.Y))
         {
@@ -81,7 +76,6 @@ public class TurnOrderHandler : MonoBehaviour
             End_of_Turn();
         }
 
-<<<<<<< Updated upstream
         if (!winTriggered)
         {
             CheckWinConditions();
@@ -101,11 +95,6 @@ public class TurnOrderHandler : MonoBehaviour
         //        unitList.Clear();
         //        CreateAQueue();
         //    }
-=======
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    UIManagerScript.OnResetClicked();
->>>>>>> Stashed changes
         //}
     }
 
@@ -149,13 +138,9 @@ public class TurnOrderHandler : MonoBehaviour
 
         if (!anyEnemiesAlive)
         {
-<<<<<<< Updated upstream
             Debug.Log("All enemies are dead. You win!");
             winTriggered = true;
             winScreen.SetActive(true);
-=======
-            UIManagerScript.VictoryOverlay.SetActive(true);
->>>>>>> Stashed changes
             Invoke("MoveToNext", 5f);
         }
     }
@@ -298,22 +283,7 @@ public class TurnOrderHandler : MonoBehaviour
 
     void MoveToNext()
     {
-<<<<<<< Updated upstream
         scene.ChangeSceneByIndex(2);
-=======
-
-        if (SceneManager.GetActiveScene().buildIndex == 3)
-        {
-            SceneManager.LoadScene(0);
-        }
-        else
-        {
-            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-
->>>>>>> Stashed changes
     }
 
 }
