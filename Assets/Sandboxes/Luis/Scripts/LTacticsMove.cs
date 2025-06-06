@@ -291,8 +291,9 @@ public class LTacticsMove : MonoBehaviour
         foreach (GameObject tileObj in tiles)
         {
             Tile tile = tileObj.GetComponent<Tile>();
-            tile.Reset(); // Make sure this clears: visited, par, g, h, f, etc.
+            tile.Reset(); // Clear visited, parent, cost values
         }
+
         CompAdjLists(target);
         GetCurrTile();
 
@@ -311,16 +312,19 @@ public class LTacticsMove : MonoBehaviour
             if (t == target)
             {
                 TargAdjTile = FindEndTile(t);
-                //Debug.Log("Path found, target tile: " + TargAdjTile.name);
                 MoveToTile(TargAdjTile);
                 return;
             }
 
             foreach (Tile til in t.adjList)
             {
+                //  NEW: Skip unwalkable tiles
+                if (!til.walk)
+                    continue;
+
                 if (closedList.Contains(til))
                 {
-                    //nothing
+                    continue;
                 }
                 else if (openList.Contains(til))
                 {
@@ -347,16 +351,18 @@ public class LTacticsMove : MonoBehaviour
                     openList.Add(til);
                 }
             }
-
         }
+
+        // If no path found, try new target
         RaycastHit hit;
         Unit uni = null;
         if (Physics.Raycast(target.transform.position, Vector3.up, out hit, 1))
         {
             uni = hit.collider.GetComponent<Unit>();
         }
+
         this.GetComponent<EnemyUnit>().toIgnore.Add(uni);
         this.GetComponent<EnemyUnit>().FindNearTarg();
     }
-
 }
+

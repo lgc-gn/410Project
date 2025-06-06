@@ -31,8 +31,8 @@ MonoBehaviour:
   xpCurrent: 0
   Initiative: 20
   moveDistance: 2
-  moveSpeed: 1
-  attackRange: 7
+  moveSpeed: 4
+  attackRange: 2
   strengthStat: 20
   dexterityStat: 5
   constitutionStat: 19

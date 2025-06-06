@@ -9,7 +9,6 @@ public class Tile : MonoBehaviour
     public bool target=false;
     public bool selectable=false;
     public bool AOE = false;
-    public bool attackable = false;
 
     //general flags
 
@@ -120,6 +119,8 @@ public class Tile : MonoBehaviour
 
 
 
+
+
     //clears position for new movement when selected
     public void Reset()
     {
@@ -127,7 +128,6 @@ public class Tile : MonoBehaviour
         current = false;
         target = false;
         selectable = false;
-        attackable = false;
         g = h = f = 0;
         par = null;
 
@@ -158,22 +158,24 @@ public class Tile : MonoBehaviour
         CheckTile(-Vector3.right, target);
     }
     //checks tile type, tag, and contents
-    public void CheckTile(Vector3 direction, Tile target /*jumpheight*/)
+    public void CheckTile(Vector3 direction, Tile target)
     {
         Vector3 halfEx = new Vector3(0.25f, 0.25f, 0.25f);
-        Collider[] colliders = Physics.OverlapBox(transform.position+direction, halfEx);
+        Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfEx);
 
         foreach (Collider item in colliders)
         {
             Tile tile = item.GetComponent<Tile>();
-            if (tile!=null && tile.walk)
+            if (tile != null)
             {
-                if(attackstate)
+                if (attackstate)
                 {
+                    // In attack mode, include all tiles — even if occupied or not walkable
                     adjList.Add(tile);
                 }
-                else
+                else if (tile.walk)
                 {
+                    // In move mode, only include walkable and unoccupied tiles (or the target tile)
                     RaycastHit hit;
                     if (!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1) || (tile == target))
                     {
@@ -183,5 +185,6 @@ public class Tile : MonoBehaviour
             }
         }
     }
+
 
 }

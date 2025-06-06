@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public TurnOrderHandler TurnOrderScript;
     public bool CamState=true;
+    public bool readyAOE=false;
 
 
     public Canvas playerHUD;
@@ -19,8 +20,6 @@ public class UIManager : MonoBehaviour
     public Image classIcon, unitPortrait, resourceBar, hpBar, xpBar;
     public GameObject actionMenu, unitEntryPrefab, dmgNumberPrefab, targetCombatPanel, unitInfoPanel, confirmButtonPanel;
     public Transform turnOrderPanel, actionMenuPanel;
-
-    public GameObject VictoryOverlay;
 
     public GameObject[] cameras;  // Assign in Inspector
     public GameObject primaryCam;
@@ -36,24 +35,6 @@ public class UIManager : MonoBehaviour
     public Button endTurnButton;
     public Button camResetButton;
     public Button confirmButton;
-
-    [Header("Status Menu Objects")]
-    public Color statusMenuEnabled;
-    public Color statusMenuDisabled;
-    public TMP_Text strAttributeNumber;
-    public TMP_Text dexAttributeNumber, conAttributeNumber , intAttributeNumber, wisAttributeNumber, chrAttributeNumber;
-    private bool statusMenuOpen = false;
-
-    [Header("Skill Menu Objects")]
-    private bool skillMenuOpen = false;
-    public GameObject skillMenuPanel;
-    public GameObject skillListPrefab;
-    public Transform skillListPanel;
-
-    [Header("Target Menu Objects")]
-    public TMP_Text sourceHealth;
-    public TMP_Text sourceResource, targetHealth, targetResource;
-    public Image sourceHealthBar, sourceResourceBar, targetHealthBar, targetResourceBar;
 
     [SerializeField] private Color enemyColor, allyColor;
     [SerializeField] private Sprite enemySprite, allySprite;
@@ -83,6 +64,8 @@ public class UIManager : MonoBehaviour
         camResetButton.onClick.AddListener(OnResetClicked);
         endTurnButton.onClick.AddListener(OnEndTurnClicked);
 
+        //DontDestroyOnLoad(gameObject);
+
         UpdateActiveCamera();
     }
 
@@ -105,19 +88,19 @@ public class UIManager : MonoBehaviour
 
     void OnStatusClicked()
     {
-        StatusMenuState("up");
-        statusMenuOpen = true;
-        
+        Debug.Log("Status clicked!");
+        // Show status panel
     }
 
     void OnClassActionClicked()
     {
         Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
-        //AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
+        AttackHoverDetection AOEhover = this.GetComponent<AttackHoverDetection>();
         if (currentUnit.unitData.Allied == true)
         {
-            SkillMenuState("enabled");
-            //AOEhover.currUnit = currentUnit;
+            readyAOE = !readyAOE;
+            AOEhover.readyAOE = readyAOE;
+            AOEhover.currUnit = currentUnit;
         }
     }
 
@@ -137,6 +120,7 @@ public class UIManager : MonoBehaviour
             ActionBoard.SetActive(true);
             hover.hoverState = false;
             hover.defaultUni = currentUnit;
+            ShowUnitInfo(TurnOrderScript.turnOrderQueue.Peek());
             //hover.enabled = false;
         }
         else
@@ -167,7 +151,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void OnEndTurnClicked()
+    public void OnEndTurnClicked()
     {
         //DisplayConfirm(WarningType.EndTurn);
         TurnOrderScript.ReturnCurrentQueue().Peek().EndTurn();
@@ -184,11 +168,11 @@ public class UIManager : MonoBehaviour
         Vector2 targetPos = startPos;
 
         if (direction == "left"){
-            targetPos = new Vector2(-150f, startPos.y);
+            targetPos = new Vector2(-100f, startPos.y);
         }
         else if (direction == "right")
         {
-            targetPos = new Vector2(150f, startPos.y);
+            targetPos = new Vector2(100f, startPos.y);
         }
 
         float elapsedTime = 0f;
@@ -205,38 +189,11 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public IEnumerator SmoothMoveStatusMenu(string direction, float duration)
-    {
-        Vector2 startPos = unitInfoTransformDefault.anchoredPosition;
-        Vector2 targetPos = startPos;
-
-        if (direction == "up")
-        {
-            targetPos = new Vector2(startPos.x, 800f);
-        }
-        else if (direction == "down")
-        {
-            targetPos = new Vector2(startPos.x, 100f);
-        }
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
-        {
-            unitInfoTransformDefault.anchoredPosition = Vector2.Lerp(startPos, targetPos, (elapsedTime / duration));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        unitInfoTransformDefault.anchoredPosition = targetPos;
-
-    }
-
     public IEnumerator DisplayToolTip(string direction, float duration, string textToolTip)
     {
         Vector2 startPos = toolTipTransformDefault.anchoredPosition;
         Vector2 targetPos = startPos;
-        Vector2 defaultPos = new Vector2(0, 100f);
+        Vector2 defaultPos = new Vector2(0, 60.45f);
 
         toolTipText.SetText(textToolTip);
 
@@ -284,37 +241,6 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SmoothMoveActionUI("right", .15f));
     }
 
-    public void StatusMenuState(string direction)
-    {
-        if (direction == "up")
-        {
-            StartCoroutine(SmoothMoveActionUI("right", .1f));
-            StartCoroutine(SmoothMoveStatusMenu(direction, .1f));
-        }
-        else if (direction == "down")
-        {
-            StartCoroutine(SmoothMoveActionUI("left", .1f));
-            StartCoroutine(SmoothMoveStatusMenu(direction, .1f));
-        }
-    }
-
-    public void SkillMenuState(string enabled)
-    {
-        if (enabled == "enabled")
-        {
-            StartCoroutine(SmoothMoveActionUI("right", .1f));
-            LoadSkillMenu();
-            skillMenuPanel.SetActive(true);
-            skillMenuOpen = true;
-        }
-        else if(enabled == "disabled")
-        {
-            StartCoroutine(SmoothMoveActionUI("left", .1f));
-            skillMenuPanel.SetActive(false);
-            skillMenuOpen = false;
-        }
-    }
-
 
 
     public void ConfirmState()
@@ -338,12 +264,14 @@ public class UIManager : MonoBehaviour
                 entry.transform.Find("UnitName").GetComponent<TMP_Text>().SetText(unit.unitData.characterName);
                 entry.transform.Find("UnitClass").GetComponent<TMP_Text>().SetText($"Lvl. {unit.unitData.currentLevel} {unit.classData.className}");
                 entry.transform.Find("ClassIcon").GetComponent<Image>().sprite = unit.classData.classIcon;
-                entry.transform.Find("HealthFrame").Find("HealthBar").GetComponent<Image>().fillAmount = (float)unit.unitData.currentHealth / unit.unitData.maxHealth;
             }
 
         }
     }
 
+<<<<<<< Updated upstream
+    public void DisplayDamageNumber(float DamageValue, Unit Target)
+=======
     public void LoadSkillMenu()
     {
         Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
@@ -392,9 +320,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void DisplayDamageNumber(float DamageValue, Unit Target)
+    public void DisplayDamageNumber(float DamageValue, Unit Target, Color color)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     {
         GameObject DamageNumber = Instantiate(dmgNumberPrefab, Target.transform.position, Quaternion.identity, Target.transform);
+        DamageNumber.GetComponent<TMP_Text>().color = color;
         DamageNumber.GetComponent<TextMeshPro>().SetText($"{DamageValue}");
 
     }
@@ -412,26 +345,10 @@ public class UIManager : MonoBehaviour
         resourceText.SetText($"{unit.classData.resourceType}: {unit.unitData.currentResource}/{unit.unitData.maxResource}");
         hpText.SetText($"Health: {unit.unitData.currentHealth}/{unit.unitData.maxHealth}");
         //xpText.SetText($"Experience: {unit.unitData.xpCurrent}/{unit.unitData.xpNeeded}");
-        lvlText.SetText($"Level: {unit.unitData.currentLevel}");
+        //lvlText.SetText($"Level: {unit.unitData.currentLevel}");
 
-        sourceResource.SetText($"{unit.classData.resourceType}: {unit.unitData.currentResource}/{unit.unitData.maxResource}");
-        sourceHealth.SetText($"Health: {unit.unitData.currentHealth}/{unit.unitData.maxHealth}");
-
-        strAttributeNumber.SetText(unit.unitData.strengthStat.ToString());
-        dexAttributeNumber.SetText(unit.unitData.dexterityStat.ToString());
-        conAttributeNumber.SetText(unit.unitData.constitutionStat.ToString());
-        intAttributeNumber.SetText(unit.unitData.intelligenceStat.ToString());
-        wisAttributeNumber.SetText(unit.unitData.wisdomStat.ToString());
-        chrAttributeNumber.SetText(unit.unitData.charismaStat.ToString());
-
-        hpBar.fillAmount = (float)unit.unitData.currentHealth / unit.unitData.maxHealth;
-        sourceHealthBar.fillAmount = (float)unit.unitData.currentHealth / unit.unitData.maxHealth;
-        resourceBar.fillAmount = (float)unit.unitData.currentResource / unit.unitData.maxResource;
-        sourceResourceBar.fillAmount = (float)unit.unitData.currentResource / unit.unitData.maxResource;
 
         resourceBar.color = unit.classData.resourceColor;
-        sourceResourceBar.color = unit.classData.resourceColor;
-
 
         if (unit.unitData.Allied == true)
         {
@@ -447,36 +364,14 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ShowTargetMenuInfo(Unit Target)
-    {
-        targetResource.SetText($"{Target.classData.resourceType}: {Target.unitData.currentResource}/{Target.unitData.maxResource}");
-        targetHealth.SetText($"Health: {Target.unitData.currentHealth}/{Target.unitData.maxHealth}");
-        targetHealthBar.fillAmount = (float)Target.unitData.currentHealth / Target.unitData.maxHealth;
-        targetResourceBar.fillAmount = (float)Target.unitData.currentResource / Target.unitData.maxResource;
-        targetResourceBar.color = Target.classData.resourceColor;
-    }
-
-
-    private void Update()
-    {
-        if (statusMenuOpen == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                StatusMenuState("down");
-                statusMenuOpen = false;
-            }
-        }
-
-        if (skillMenuOpen == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SkillMenuState("disabled");
-                skillMenuOpen = false;
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    Unit currentUnit = TurnOrderScript.ReturnCurrentQueue().Peek();
+    //    if (currentUnit.unitData.Allied == false)
+    //    {
+    //        AorMUIState();
+    //    }
+    //}
 
     #endregion
 }

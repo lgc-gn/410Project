@@ -4,6 +4,7 @@ public class HoverDetection : MonoBehaviour
 {
     private GameObject currentHoveredObject;
     public UIManager UI;
+    //on/off state
     public bool hoverState;
     public GameObject primary;
     public Unit defaultUni;

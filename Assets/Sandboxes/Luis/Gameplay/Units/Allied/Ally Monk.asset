@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
+<<<<<<< Updated upstream
+  m_Name: Ally Monk
+=======
+<<<<<<<< Updated upstream:Assets/Sandboxes/Luis/Gameplay/Units/Enemy/Enemy Monk.asset
+  m_Name: Enemy Monk
+========
+  m_Name: Ally Monk
+>>>>>>>> Stashed changes:Assets/Sandboxes/Luis/Gameplay/Units/Allied/Ally Monk.asset
+>>>>>>> Stashed changes
+  m_EditorClassIdentifier: 
+  characterName: Ally 3
+  Allied: 1
+  Dead: 0
+<<<<<<< Updated upstream
+  activeTurn: 1
+  isMoving: 0
+  movedThisTurn: 0
+  attackedThisTurn: 1
+=======
+  KnownSkills:
+  - {fileID: 11400000, guid: 858fa95386bc3574aa0203a0898fb1f0, type: 2}
+  - {fileID: 11400000, guid: 48be2a6a64db7e44d91848c275318f27, type: 2}
+  activeTurn: 1
+  isMoving: 0
+  movedThisTurn: 0
+  attackedThisTurn: 0
+>>>>>>> Stashed changes
+  Lord: 0
+  maxHealth: 100
+  currentHealth: 100
+  maxResource: 100
+  currentResource: 100
+  currentLevel: 1
+  xpNeeded: 100
+  xpCurrent: 0
+  Initiative: 20
+<<<<<<< Updated upstream
+  moveDistance: 12
+  moveSpeed: 5
+  attackRange: 1
+  strengthStat: 10
+  dexterityStat: 17
+  constitutionStat: 14
+  intelligenceStat: 10
+  wisdomStat: 12
+  charismaStat: 10
+=======
+  moveDistance: 5
+  moveSpeed: 5
+  attackRange: 1
+  strengthStat: 12
+  dexterityStat: 17
+  constitutionStat: 14
+  intelligenceStat: 10
+  wisdomStat: 14
+  charismaStat: 8
+>>>>>>> Stashed changes
+  RightHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
+  LeftHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
+  QuiverSlot: {fileID: 0}
+  HeadPiece: {fileID: 0}
+  Armor: {fileID: 0}
+  Accessory1: {fileID: 0}
+  Accessory2: {fileID: 0}

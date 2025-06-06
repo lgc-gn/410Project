@@ -12,34 +12,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
   m_Name: FriendlyUnit4
   m_EditorClassIdentifier: 
-  characterName: Paladin
+  characterName: The Guy
   Allied: 1
   Dead: 0
-  KnownSkills:
-  - {fileID: 11400000, guid: 42bc73c295713e34ea5b88eebaea7db3, type: 2}
-  - {fileID: 11400000, guid: 2d1c798a1a17fa24989a7948e8b786dc, type: 2}
   activeTurn: 0
   isMoving: 0
   movedThisTurn: 0
-  attackedThisTurn: 0
+  attackedThisTurn: 1
   Lord: 0
   maxHealth: 150
-  currentHealth: 131
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+  currentHealth: 150
   maxResource: 100
-  currentResource: 99
+  currentResource: 100
+=======
+  currentHealth: 138
+  maxResource: 100
+  currentResource: 80
+>>>>>>> Stashed changes
+=======
+  currentHealth: 138
+  maxResource: 100
+  currentResource: 80
+>>>>>>> Stashed changes
   currentLevel: 7
   xpNeeded: 0
   xpCurrent: 0
   Initiative: 15
-  moveDistance: 4
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+  moveDistance: 9
+=======
+  moveDistance: 50
+>>>>>>> Stashed changes
+=======
+  moveDistance: 50
+>>>>>>> Stashed changes
   moveSpeed: 5
   attackRange: 1
-  strengthStat: 17
-  dexterityStat: 14
-  constitutionStat: 16
-  intelligenceStat: 10
-  wisdomStat: 10
-  charismaStat: 12
+  strengthStat: 0
+  dexterityStat: 0
+  constitutionStat: 0
+  intelligenceStat: 0
+  wisdomStat: 0
+  charismaStat: 0
   RightHand: {fileID: 11400000, guid: 30314e3f0c4a7c04f809ddc87c39430a, type: 2}
   LeftHand: {fileID: 0}
   QuiverSlot: {fileID: 0}

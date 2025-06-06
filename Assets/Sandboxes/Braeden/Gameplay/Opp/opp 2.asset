@@ -14,23 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Unit_93
   Allied: 0
-  Dead: 0
-  KnownSkills: []
   activeTurn: 0
   isMoving: 0
-  movedThisTurn: 0
-  attackedThisTurn: 1
   Lord: 0
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
   maxHealth: 135
-  currentHealth: 116
+  currentHealth: 135
+=======
+  maxHealth: 95
+  currentHealth: 95
+>>>>>>> Stashed changes
+=======
+  maxHealth: 95
+  currentHealth: 95
+>>>>>>> Stashed changes
   maxResource: 60
   currentResource: 60
-  currentLevel: 7
+  currentLevel: 4
   xpNeeded: 700
   xpCurrent: 0
   Initiative: 2
-  moveDistance: 6
-  moveSpeed: 2
+  moveDistance: 5
+  moveSpeed: 4
   attackRange: 1
   strengthStat: 1
   dexterityStat: 8
@@ -38,9 +44,17 @@ MonoBehaviour:
   intelligenceStat: 14
   wisdomStat: 15
   charismaStat: 7
-  RightHand: {fileID: 11400000, guid: db44ca18f6537604a9809a1ede4671e8, type: 2}
-  LeftHand: {fileID: 11400000, guid: 9d479cd2bc2e0584bbaf0bffab5acffe, type: 2}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+  RightHand: {fileID: 0}
+  LeftHand: {fileID: 0}
+=======
+=======
+>>>>>>> Stashed changes
+  RightHand: {fileID: 11400000, guid: c898d3d9ecce78d49b56c8a3f981683c, type: 2}
+  LeftHand: {fileID: 11400000, guid: ea8149332bd80f043819e5dcf73d0d87, type: 2}
   QuiverSlot: {fileID: 0}
+>>>>>>> Stashed changes
   HeadPiece: {fileID: 0}
   Armor: {fileID: 0}
   Accessory1: {fileID: 0}

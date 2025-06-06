@@ -12,14 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d312ba77398b1474faed03832e262224, type: 3}
   m_Name: fisto2
   m_EditorClassIdentifier: 
-  characterName: firey fist-o-pain
+  characterName: fist-o-pain
   Allied: 0
   Dead: 0
+<<<<<<<< HEAD:Assets/Sandboxes/Luis/Gameplay/Units/Allied/FriendlyUnit3.asset
+  KnownSkills:
+  - {fileID: 11400000, guid: 858fa95386bc3574aa0203a0898fb1f0, type: 2}
+  - {fileID: 11400000, guid: 48be2a6a64db7e44d91848c275318f27, type: 2}
+  activeTurn: 0
+  isMoving: 0
+  movedThisTurn: 1
+  attackedThisTurn: 1
+========
   KnownSkills: []
   activeTurn: 0
   isMoving: 0
   movedThisTurn: 0
   attackedThisTurn: 0
+>>>>>>>> main:Assets/Sandboxes/Braeden/Gameplay/Opp/fisto2.asset
   Lord: 0
   maxHealth: 85
   currentHealth: 85
@@ -28,6 +38,18 @@ MonoBehaviour:
   currentLevel: 2
   xpNeeded: 200
   xpCurrent: 0
+<<<<<<<< HEAD:Assets/Sandboxes/Luis/Gameplay/Units/Allied/FriendlyUnit3.asset
+  Initiative: 20
+  moveDistance: 5
+  moveSpeed: 5
+  attackRange: 1
+  strengthStat: 12
+  dexterityStat: 17
+  constitutionStat: 14
+  intelligenceStat: 10
+  wisdomStat: 14
+  charismaStat: 8
+========
   Initiative: 8
   moveDistance: 6
   moveSpeed: 5
@@ -38,6 +60,7 @@ MonoBehaviour:
   intelligenceStat: 5
   wisdomStat: 19
   charismaStat: 10
+>>>>>>>> main:Assets/Sandboxes/Braeden/Gameplay/Opp/fisto2.asset
   RightHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
   LeftHand: {fileID: 11400000, guid: bac4e7206c9c01f4c9f4b5ae6eabb5f4, type: 2}
   QuiverSlot: {fileID: 0}

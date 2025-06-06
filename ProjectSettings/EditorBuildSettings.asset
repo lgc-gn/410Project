@@ -8,24 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
+  - enabled: 1
     path: Assets/Sandboxes/Luis/Scenes/LMovement.unity
     guid: 3c3f1527e0727294884de123d4874d96
-  - enabled: 0
-    path: Assets/Sandboxes/Braeden/Scenes/MoveBraed.unity
-    guid: 53b513f7e46cb154cbf0321ac5b2b1b4
-  - enabled: 0
-    path: Assets/Sandboxes/Braeden/Scenes/MoveBraed2.unity
-    guid: bc4e30be5bb91ff41a003768309802b1
+  - enabled: 1
+    path: Assets/Sandboxes/Luis/Scenes/MainMenu.unity
+    guid: 31b91423e2717ea45bfdba0b4f2170f9
   - enabled: 1
     path: Assets/Sandboxes/Braeden/Scenes/BraedMove1.unity
-    guid: 6cfe21439d1fd7b47a21705c839364e7
-  - enabled: 1
-    path: Assets/Sandboxes/Braeden/Scenes/BraedMove2.unity
-    guid: 33e669395d863e04e99913bb22bbe32f
-  - enabled: 1
-    path: Assets/Sandboxes/Braeden/Scenes/BraedMove3.unity
-    guid: b06db470e3d2353428b46647418aa596
+    guid: 1374d250135f50c4c84574ce0c5b6828
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
