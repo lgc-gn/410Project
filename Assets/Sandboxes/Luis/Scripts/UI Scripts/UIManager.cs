@@ -137,6 +137,7 @@ public class UIManager : MonoBehaviour
             ActionBoard.SetActive(true);
             hover.hoverState = false;
             hover.defaultUni = currentUnit;
+            ShowUnitInfo(TurnOrderScript.ReturnCurrentQueue().Peek());
             //hover.enabled = false;
         }
         else
@@ -392,10 +393,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void DisplayDamageNumber(float DamageValue, Unit Target)
+    public void DisplayDamageNumber(float DamageValue, Unit Target, Color numColor)
     {
         GameObject DamageNumber = Instantiate(dmgNumberPrefab, Target.transform.position, Quaternion.identity, Target.transform);
         DamageNumber.GetComponent<TextMeshPro>().SetText($"{DamageValue}");
+        DamageNumber.GetComponent<TextMeshPro>().color = numColor;
+
 
     }
 

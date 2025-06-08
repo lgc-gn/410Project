@@ -29,7 +29,7 @@ MonoBehaviour:
   xpNeeded: 800
   xpCurrent: 0
   Initiative: 4
-  moveDistance: 1
+  moveDistance: 4
   moveSpeed: 6
   attackRange: 1
   strengthStat: 17

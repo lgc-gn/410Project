@@ -2,9 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
-using UnityEditor.ShaderGraph.Internal;
-using Unity.VisualScripting;
-using UnityEngine.EventSystems;
 
 /*
 
@@ -188,7 +185,7 @@ public class Unit : TacticalUnitBase
 
     public virtual void BeginTurn()
     {
-
+        TurnOrderScript.CheckWinConditions();
         unitData.activeTurn = true;
         unitData.movedThisTurn = false;
         unitData.attackedThisTurn = false;
@@ -522,7 +519,7 @@ public class Unit : TacticalUnitBase
         float DamageValue = unitData.RightHand.baseDamage;
         target.unitData.currentHealth -= DamageValue;
 
-        UIManagerScript.DisplayDamageNumber(DamageValue, target);
+        UIManagerScript.DisplayDamageNumber(DamageValue, target, Color.yellow);
         AudioSource.PlayClipAtPoint(defaultHitSound, target.transform.position);
 
         if (unitData.RightHand.OnHitParticle != null)
@@ -553,7 +550,7 @@ public class Unit : TacticalUnitBase
                 Destroy(effectInstance, ps.main.duration + ps.main.startLifetime.constantMax);
             }
 
-            UIManagerScript.DisplayDamageNumber(DamageValue2, target);
+            UIManagerScript.DisplayDamageNumber(DamageValue2, target, Color.yellow);
         }
         #endregion
 
@@ -576,7 +573,7 @@ public class Unit : TacticalUnitBase
                 Destroy(effectInstance, ps.main.duration + ps.main.startLifetime.constantMax);
             }
 
-            UIManagerScript.DisplayDamageNumber(DamageValue2, target);
+            UIManagerScript.DisplayDamageNumber(DamageValue2, target, Color.yellow);
         }
         #endregion
 
@@ -622,6 +619,10 @@ public class Unit : TacticalUnitBase
             if (skillToCast.channelAnim != null)
             {
                 animator.Play("Channel");
+                if (skillToCast.channelSound != null)
+                    AudioSource.PlayClipAtPoint(skillToCast.channelSound, transform.position);
+                if (skillToCast.castEffect != null)
+                    PlayHitEffect(skillToCast.castEffect, target.transform.position);
                 yield return new WaitForSeconds(skillToCast.channelAnim.length);
             }
 
@@ -710,11 +711,10 @@ public class Unit : TacticalUnitBase
 
                         else if (skillToCast.skillType == SkillData.SkillType.Area_of_Effect && hit.collider.CompareTag("Tile"))
                         {
-                            // Optional: For AOE support by tile � placeholder
                             Tile targetTile = hit.collider.GetComponent<Tile>();
                             if (targetTile.selectable)
                             {
-                                // You could collect affected units here
+                                // AOE stuff
                                 break;
                             }
                         }
@@ -731,16 +731,20 @@ public class Unit : TacticalUnitBase
             }
         }
 
-
-        yield return StartCoroutine(RotateToTarget(target.transform));
+        if (skillToCast.skillType != SkillData.SkillType.Self)
+            yield return StartCoroutine(RotateToTarget(target.transform));
 
         if (skillToCast.startupAnim != null){
             animator.Play(skillToCast.startupAnim.name);
+            if (skillToCast.startupSound != null)
+                AudioSource.PlayClipAtPoint(skillToCast.startupSound, transform.position);
             yield return new WaitForSeconds(skillToCast.startupAnim.length);
         }
 
         if (skillToCast.channelAnim != null) {
             animator.Play(skillToCast.channelAnim.name, 0, 0f);
+            if (skillToCast.channelSound != null)
+                AudioSource.PlayClipAtPoint(skillToCast.channelSound, transform.position);
         }
 
         UIManagerScript.unitInfoPanel.SetActive(false);
@@ -776,10 +780,16 @@ public class Unit : TacticalUnitBase
 
         if (skillToCast.castAnim != null){
             animator.Play(skillToCast.castAnim.name);
+            if (skillToCast.castSound != null)
+                AudioSource.PlayClipAtPoint(skillToCast.castSound, transform.position);
+            if (skillToCast.castEffect != null)
+                PlayHitEffect(skillToCast.castEffect, target.transform.position);
+
             yield return new WaitForSeconds(skillToCast.castAnim.length * skillToCast.impactMultiplier);
         }
-        AudioSource.PlayClipAtPoint(skillToCast.hitSound, transform.position);
-        PlayHitEffect(skillToCast, target.transform.position);
+        if (skillToCast.hitSound !=null)
+            AudioSource.PlayClipAtPoint(skillToCast.hitSound, target.transform.position);
+        PlayHitEffect(skillToCast.hitEffect, target.transform.position);
 
         if (skillToCast.skillType != SkillData.SkillType.Area_of_Effect && target != null)
         {
@@ -790,16 +800,17 @@ public class Unit : TacticalUnitBase
                 case SkillData.AfflictedResource.Damage:
                     target.unitData.currentHealth -= value;
                     target.animator.Play("HitReaction");
-                    UIManagerScript.DisplayDamageNumber(value, target);
+                    UIManagerScript.DisplayDamageNumber(value, target, Color.yellow);
                     break;
 
                 case SkillData.AfflictedResource.Heal:
                     target.unitData.currentHealth = Mathf.Min(target.unitData.maxHealth, target.unitData.currentHealth + value);
-                    UIManagerScript.DisplayDamageNumber(-value, target);
+                    UIManagerScript.DisplayDamageNumber(value, target, Color.green);
                     break;
 
                 case SkillData.AfflictedResource.Mana:
                     target.unitData.currentResource = Mathf.Min(target.unitData.maxResource, target.unitData.currentResource + value);
+                    UIManagerScript.DisplayDamageNumber(value, target, Color.cyan);
                     break;
             }
 
@@ -853,16 +864,16 @@ public class Unit : TacticalUnitBase
         Debug.Log($"{unitData.characterName} gained status: {data.statusName}");
     }
 
-    public void PlayHitEffect(SkillData skill, Vector3 point)
+    public void PlayHitEffect(ParticleSystem effect, Vector3 point)
     {
-        if (skill.hitEffect == null)
+        if (effect == null)
         {
-            Debug.LogWarning($"No hit effect assigned in skill: {skill.skillName}");
+            Debug.LogWarning($"No hit effect assigned in skill");
             return;
         }
 
         Vector3 spawnPosition = transform.position + Vector3.up * 1.5f;
-        ParticleSystem instance = Instantiate(skill.hitEffect, point, Quaternion.identity);
+        ParticleSystem instance = Instantiate(effect, point, Quaternion.identity);
         instance.Play();
 
         float lifetime = instance.main.duration + instance.main.startLifetime.constantMax;

@@ -71,14 +71,14 @@ public class TurnOrderHandler : MonoBehaviour
             record.UndoMove(turnUnit);
         }
 
+        if (Input.GetKey(KeyCode.P))
+        {
+            Invoke("MoveToNext", 1);
+        }
+
         if (current != null && current.unitData.activeTurn == false)
         {
             End_of_Turn();
-        }
-
-        if (!winTriggered)
-        {
-            CheckWinConditions();
         }
 
         //if (Input.GetKey(KeyCode.Space))
@@ -306,14 +306,15 @@ public class TurnOrderHandler : MonoBehaviour
     void MoveToNext()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            print("beat the game, returnign to main menu");
+            SceneManager.LoadScene(0);
         }
         else
         {
-            Debug.LogWarning("No next scene available. End of build settings list.");
-            return;
+            SceneManager.LoadScene(nextSceneIndex);
         }
     }
 

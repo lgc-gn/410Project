@@ -24,5 +24,13 @@ MonoBehaviour:
   channelAnim: {fileID: 0}
   castAnim: {fileID: 7400000, guid: f67f1e4ec6bf0094faaffb50b324b00a, type: 2}
   impactMultiplier: 0.8
+  startupSound: {fileID: 0}
+  channelSound: {fileID: 0}
+  castSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 3edd941961ba6d84ebcf1a870a6af632, type: 3}
+  startupEffect: {fileID: 0}
+  channelEffect: {fileID: 0}
+  castEffect: {fileID: 19857428, guid: 37e803394624a5c48ae5f13fd212ac0b, type: 3}
+  hitEffect: {fileID: 0}
   statusEffect: {fileID: 0}
   skillIcon: {fileID: 21300000, guid: 7efad0386a8169742b4a9d39a9d0f929, type: 3}

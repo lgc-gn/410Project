@@ -30,6 +30,7 @@ public class Tile : MonoBehaviour
     public bool attackstate=false;
 
     public TileData tileData;
+    private TileData storedTileData;
 
     Color newTileColor;
 
@@ -63,6 +64,7 @@ public class Tile : MonoBehaviour
         {
             baseColor = tileData.tileColor;
             walk = tileData.walk;
+            storedTileData = tileData;
         }
         else
         {
@@ -83,6 +85,7 @@ public class Tile : MonoBehaviour
     void Update()
     {
         Color highlightColor = baseColor;
+        
 
         // current and target colors (unchanged)
         if (current)
@@ -105,7 +108,7 @@ public class Tile : MonoBehaviour
             else
             {
                 // selectable but not attackstate, use your usual selectable color
-                highlightColor = Color.Lerp(highlightColor, newTileColor, 0.5f);
+                highlightColor = Color.Lerp(newTileColor, newTileColor, 0.5f);
             }
         }
 
@@ -130,6 +133,8 @@ public class Tile : MonoBehaviour
         attackable = false;
         g = h = f = 0;
         par = null;
+        GetComponent<Renderer>().material.color = storedTileData.tileColor;
+
 
         //general flags
         //walk = true;

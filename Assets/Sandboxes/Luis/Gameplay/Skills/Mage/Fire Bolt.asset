@@ -14,17 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Fire Bolt
   skillDescription: Hurl a bolt of fire at an enemy.
-  skillRange: 5
-  resourceChange: 8
-  skillDamage: 12
+  skillRange: 6
+  resourceChange: 12
+  skillDamage: 17
   skillType: 0
   resourceType: 0
-  hitSound: {fileID: 8300000, guid: 051794d7a466c4646acdff6b9df13497, type: 3}
-  hitEffect: {fileID: 0}
   freeAction: 0
   startupAnim: {fileID: 0}
   channelAnim: {fileID: 0}
   castAnim: {fileID: 7400000, guid: acd572b621b1061488ea1607d93a8389, type: 2}
   impactMultiplier: 0.8
+  startupSound: {fileID: 8300000, guid: 11e248b3ae054440090212c2d39d1f64, type: 3}
+  channelSound: {fileID: 0}
+  castSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 051794d7a466c4646acdff6b9df13497, type: 3}
+  startupEffect: {fileID: 0}
+  channelEffect: {fileID: 0}
+  castEffect: {fileID: 0}
+  hitEffect: {fileID: 19842564, guid: c61aff177c1321f48af9c768f079859b, type: 3}
   statusEffect: {fileID: 0}
   skillIcon: {fileID: 21300000, guid: cd12a2989960e3747bfab35744b80189, type: 3}
